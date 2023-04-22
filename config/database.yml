@@ -81,6 +81,4 @@ test:
 #
 production:
   <<: *default
-  database: timbre_project_production
-  username: timbre_project
-  password: <%= ENV["TIMBRE_PROJECT_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
