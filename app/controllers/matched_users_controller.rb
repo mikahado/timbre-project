@@ -1,0 +1,2 @@
+class MatchedUsersController < ApplicationController
+end
