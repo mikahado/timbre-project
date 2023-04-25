@@ -22,12 +22,14 @@ const Navbar = () => {
    
       return (
         <>
+
+        
           <nav class="container-fluid">
 
             <ul>
 
             <NavLink to='/'>
-            {/* <li><h3><strong>{user.username}</strong></h3></li> */}
+            <li><h3><strong>{user.username}</strong></h3></li>
               </NavLink>
                 
             </ul>
@@ -35,14 +37,14 @@ const Navbar = () => {
             <ul>
 
               <li>
-              <NavLink to='/customers'>
-                <button className="button2">Clientele</button>
+              <NavLink to=''>
+                <button className="button2">A</button>
               </NavLink>
               </li>
 
               <li>
-              <NavLink to='/punchcards'>
-                <button className="button2">New</button>
+              <NavLink to=''>
+                <button className="button2">B</button>
               </NavLink>
               </li>
 
@@ -53,6 +55,8 @@ const Navbar = () => {
             <br/><br/>
             </ul>
           </nav>
+
+
           <hr/>   
           
 
@@ -63,22 +67,17 @@ const Navbar = () => {
 
     return (
       <>
-          <main class="container">
-              <nav class="container-fluid">
-              <ul> 
-                  <li>
-                    <NavLink to='/login'>
-                      <button class="contrast outline">Login</button>
-                    </NavLink>
-                    </li>
-                    <li>
-                    <NavLink to='/signup'>
-                      <button className="button2">Signup</button>
-                    </NavLink>
-                  </li>
-              </ul> 
-              </nav>     
-            </main>
+    
+    <nav>
+  <ul>
+    <li></li>
+  </ul>
+
+  <ul>
+    <li><a href="#" class="secondary">help</a></li>
+  </ul>
+</nav>
+     
       </>
     )
   }

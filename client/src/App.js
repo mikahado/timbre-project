@@ -11,14 +11,18 @@ function App(props) {
 
   return (
     <div className="App">
+      <article data-theme="dark">
 
       <UserProvider>
         <Navbar />
         <Routes>
           <Route exact path="/" element={<Home />}  />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </UserProvider>
-     
+
+      </article>
     </div>
   );
 }

@@ -9,6 +9,8 @@ const UserProvider = ( {children } ) => {
     const [user, setUser] = useState([]) 
     const [loggedIn, setLoggedIn] = useState(false) 
     const [errors, setErrors] = useState([])
+
+    console.log(loggedIn)
   
     useEffect(() => {
         fetch('/me')
@@ -41,7 +43,11 @@ const UserProvider = ( {children } ) => {
   return (
 
     <UserContext.Provider value={{ 
-        signup
+        user,
+        logout,
+        signup,
+        login,
+        loggedIn
       }}>
         {children}
     </UserContext.Provider>

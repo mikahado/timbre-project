@@ -38,26 +38,48 @@ const Login = () => {
 
   return (
     <div>
-   
-    <main class="container" >
-   
-    <br/>
-      <article className="card">
+
+{/* <dialog open>
+
+  <article>
+    <header>
+      <a href="#close" aria-label="Close" class="close"></a>
+      Modal title
+    </header>
+    <p>
+      Nunc nec ligula a tortor sollicitudin dictum in vel enim. 
+      Quisque facilisis turpis vel eros dictum aliquam et nec turpis. 
+      Sed eleifend a dui nec ullamcorper. 
+      Praesent vehicula lacus ac justo accumsan ullamcorper.
+    </p>
+  </article>
+</dialog> */}
+
+   <dialog open>
+    {/* <main class="container" > */}
+    <article className="auth">
+
+    <header className="card">
+    <a href="/" aria-label="Close" class="close"></a>
+    </header>
+
+    <h1><em>SIGN IN</em></h1>
+
+      {/* <article className="auth"> */}
         
         <form onSubmit={handleSubmit}>
-          <label>Username: </label>
           <br />
           <input 
             type="text"
+            placeholder="username"
             id="username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           /> 
-          <br/><br/>
-          <label>Password: </label>
           <br />
           <input 
             type="password"
+            placeholder="password"
             id="password"
             value={password}
             onChange={e => setPassword(e.target.value)}
@@ -70,9 +92,11 @@ const Login = () => {
         <ul>
           {error}
         </ul>
-        </article>
+        {/* </article> */}
        
-    </main>
+    {/* </main> */}
+    </article>
+    </dialog>
    
     </div>
   )

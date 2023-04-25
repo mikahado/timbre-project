@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 const Signup = () => {
 
     const [username, setUsername] = useState("")
+    const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [passwordConfirmation, setPasswordConfirmation] = useState("")
     const [errorsList, setErrorsList] = useState("")
@@ -21,6 +22,7 @@ const Signup = () => {
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
                 username: username,
+                email: email,
                 password: password,
                 password_confirmation: passwordConfirmation
             })
@@ -42,31 +44,46 @@ const Signup = () => {
 
   return (
     <>
-     <main class="container">
-        <article className="card">
+  
+        <dialog open>
+        <article className="auth">
+
+        <header className="card">
+            <a href="/" aria-label="Close" class="close"> </a>
+        </header>
+
+            <h1><em>JOIN TIMBRE</em></h1>
        
         <form onSubmit={handleSubmit}>
-            <label>Username: </label>
             <input 
             type="text"
             id="username"
             value={username}
+            placeholder={"username"}
             onChange={(e) => setUsername(e.target.value)}
             /> < br/>< br/>
 
-        <label>Password: </label>
+            <input 
+            type="email"
+            id="email"
+            value={email}
+            placeholder={"email"}
+            onChange={(e) => setEmail(e.target.value)}
+            /> < br/>< br/>
+
         <input 
         type="password"
         id="password"
         value={password}
+        placeholder={"password"}
         onChange={(e) => setPassword(e.target.value)}
         /> < br/>< br/>
 
-        <label>Confirm Password: </label>
         <input 
         type="password"
         id="password_confirmation"
         value={passwordConfirmation}
+        placeholder={"confirm password"}
         onChange={(e) => setPasswordConfirmation(e.target.value)}
         /> <br />< br/>
 
@@ -76,7 +93,8 @@ const Signup = () => {
             {errorsList}
         </ul>
         </article>
-        </main>
+        </dialog>
+   
     </>
   )
 }
