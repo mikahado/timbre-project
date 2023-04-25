@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :matches
+  resources :preferences
+  resources :profiles
+  resources :match_requests
   resources :matched_users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

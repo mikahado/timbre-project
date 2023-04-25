@@ -1,0 +1,4 @@
+class MatchRequestsController < ApplicationController
+
+
+end

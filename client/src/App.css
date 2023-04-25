@@ -61,12 +61,19 @@ html {
 }
 
 .button1 {
-  background-color: #4B8BBE;
-  border-radius: 10px;
+  background: linear-gradient(45deg, #4B8BBE, #354550);
+  text-transform: uppercase;  
+  border-radius: 30px;
+  border: none;
   margin: auto;
   width: 50%;
-  padding: 10px;
-  opacity: 0.95;
+  padding: 12px, 30px;
+  opacity: 0.9;
+}
+
+.button1:hover {
+  background: linear-gradient(45deg, #354550, #4B8BBE);
+  opacity: 1;
 }
 
 .button2 {
