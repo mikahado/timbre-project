@@ -28,7 +28,7 @@ const Navbar = () => {
 
             <ul>
 
-            <NavLink to='/'>
+            <NavLink to='/my-profile'>
             <li><h3><strong>{user.username}</strong></h3></li>
               </NavLink>
                 
@@ -38,13 +38,13 @@ const Navbar = () => {
 
               <li>
               <NavLink to=''>
-                <button className="button2">A</button>
+                <button className="button2">Browse</button>
               </NavLink>
               </li>
 
               <li>
               <NavLink to=''>
-                <button className="button2">B</button>
+                <button className="button2">Matches</button>
               </NavLink>
               </li>
 
@@ -73,9 +73,9 @@ const Navbar = () => {
     <li></li>
   </ul>
 
-  <ul>
-    <li><a href="#" class="secondary">help</a></li>
-  </ul>
+        <NavLink to='/login'>
+          Sign in ⪢ 
+        </NavLink>
 </nav>
      
       </>

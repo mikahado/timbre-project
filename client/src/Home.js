@@ -36,12 +36,10 @@ const Home = () => {
           
 
               <NavLink to='/signup'>
-                <button className="button2">Join Timbre</button>
+                <button className="primary-button">Join Timbre</button>
               </NavLink>
+              <br/>
 
-              <NavLink to='/login'>
-                <button class="contrast outline">Sign in ⪢ </button>
-              </NavLink>
 
 
          </main>

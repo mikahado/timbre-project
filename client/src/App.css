@@ -60,25 +60,34 @@ html {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); 
 }
 
-.button1 {
-  background: linear-gradient(45deg, #4B8BBE, #354550);
+.primary-button {
+  background: linear-gradient(45deg, #4B8BBE, #5c8cac);
+  text-transform: uppercase;  
+  border-radius: 30px;
+  border: none;
+  margin: auto;
+  width: 30%;
+  padding: 12px, 30px;
+  opacity: .8;
+  text-decoration: none;
+}
+
+.primary-button:hover {
+  background: linear-gradient(45deg, #5c8cac, #5f92bb);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);   transform: translateX(4px);
+  opacity: 1;
+}
+
+.secondary-button {
+  background: none;
+  border: 2px solid #4B8BBE;
   text-transform: uppercase;  
   border-radius: 30px;
   border: none;
   margin: auto;
   width: 50%;
   padding: 12px, 30px;
-  opacity: 0.9;
-}
-
-.button1:hover {
-  background: linear-gradient(45deg, #354550, #4B8BBE);
-  opacity: 1;
-}
-
-.button2 {
-  background-color: #4B8BBE;
-  border-radius: 10px;
+  opacity: 0.8;
 }
 
 .logoutbutton {
