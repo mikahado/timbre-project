@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 
 const PreferencesForm = () => {
 
+  // The following form will be a CREATE request if it does not exist, or a PATCH request if it does exist. 
+
   const [matchPreferences, setMatchPreferences] = useState({
        instruments: '',
        instruments_wanted: '',
@@ -24,7 +26,6 @@ const PreferencesForm = () => {
         <form>
 
         <div class="grid">
-
 
           <label for="my-instruments">
             My Instruments

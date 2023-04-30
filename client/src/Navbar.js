@@ -23,7 +23,7 @@ const Navbar = () => {
       return (
         <>
 
-        
+        <main class="containers">
           <nav class="container-fluid">
 
             <ul>
@@ -37,13 +37,13 @@ const Navbar = () => {
             <ul>
 
               <li>
-              <NavLink to=''>
+              <NavLink to='/users'>
                 <button className="button2">Browse</button>
               </NavLink>
               </li>
 
               <li>
-              <NavLink to=''>
+              <NavLink to='/matches'>
                 <button className="button2">Matches</button>
               </NavLink>
               </li>
@@ -55,7 +55,7 @@ const Navbar = () => {
             <br/><br/>
             </ul>
           </nav>
-
+        </main>
 
           <hr/>   
           
@@ -70,7 +70,7 @@ const Navbar = () => {
     
     <nav>
   <ul>
-    <li></li>
+    <li>Timbre</li>
   </ul>
 
         <NavLink to='/login'>

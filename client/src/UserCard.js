@@ -8,9 +8,11 @@ const { loggedIn} = useContext(UserContext)
     return (
     <>
         <article>
-            <header>Username</header>
+            <header>Username %match</header>
             Photo
             <footer>
+                <button>Yawp</button>
+                <button>Nah</button>
             </footer>
         </article>
     </>

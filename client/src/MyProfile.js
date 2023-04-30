@@ -1,10 +1,21 @@
-import React, { useContext } from 'react'
+import React, { useState, useContext } from 'react'
 import PreferencesForm from './PreferencesForm'
 import { UserContext } from './context/user'
 
 const UserProfile = () => {
 
 const { loggedIn} = useContext(UserContext)
+
+const [profile, setProfile] = useState({
+    username: '',
+    location: '',
+    bio: '',
+    media1: '',
+    media2: '',
+    media3: '',
+    media4: '',
+    link: '',
+})
 
     return (
     <>
@@ -14,6 +25,10 @@ const { loggedIn} = useContext(UserContext)
             <header>Username</header>
             Photo
             <footer>
+                <label for="location">
+                Location
+                    <input type="text" id="location" name="location" placeholder="my location" required />
+                </label>
                 <button className="primary-button">Edit</button>
             </footer>
         </article>

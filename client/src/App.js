@@ -8,6 +8,7 @@ import Login from './Login'
 import UsersGrid from './UsersGrid'
 import UserProfile from './UserProfile' 
 import MyProfile from './MyProfile'
+import Matches from './Matches'
 import { UserProvider } from "./context/user"
 
 function App(props) {
@@ -23,6 +24,7 @@ function App(props) {
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/users" element={<UsersGrid />} />
+          <Route path="/matches" element={<Matches />} />
           <Route path="/users/:id" element={<UserProfile />} />
           <Route path="/my-profile" element={<MyProfile />} />
         </Routes>
