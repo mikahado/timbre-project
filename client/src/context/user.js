@@ -6,11 +6,12 @@ const UserContext = React.createContext()
 
 const UserProvider = ( {children } ) => {
 
-    const [user, setUser] = useState([]) 
+    const [user, setUser] = useState({
+        matches: [],
+    }) 
+    const [allProfiles, setAllProfiles] = useState([])
     const [loggedIn, setLoggedIn] = useState(false) 
     const [errors, setErrors] = useState([])
-
-    console.log(loggedIn)
   
     useEffect(() => {
         fetch('/me')
@@ -23,7 +24,21 @@ const UserProvider = ( {children } ) => {
                 setUser(data)
             }
         }) 
+        getAllProfiles()
     }, [loggedIn])
+
+    const getAllProfiles = () => {
+        fetch('/profiles')
+        .then(resp => resp.json())
+        .then(data => {
+            if (data.errors) {
+                setErrors(data.errors)
+            } else {
+                setAllProfiles(data)
+            }
+        })
+    }
+
 
     const login = (user) => {
         setUser(user)
@@ -44,6 +59,7 @@ const UserProvider = ( {children } ) => {
 
     <UserContext.Provider value={{ 
         user,
+        allProfiles,
         logout,
         signup,
         login,

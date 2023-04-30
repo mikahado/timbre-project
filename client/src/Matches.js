@@ -1,35 +1,26 @@
-import React from 'react'
-import { UserProvider } from "./context/user"
-import UserCard from './UserCard'
+import React, {useContext} from 'react'
+import { UserContext } from "./context/user"
+import MatchRow from "./MatchRow"
 
 const UsersGrid = () => {
 
-    // const allUsers = users.map(u => 
-    //   <div> 
-    //   <UserCard key={u.id} user={u} />
-    //   </div>
-    // )
+    const { user } = useContext(UserContext)
+
+    const match = user.matches.map(m => 
+      <div> 
+        <MatchRow key={m.id} match={m} />
+      </div>
+    )
 
   return (
     <>
     <main class="container"> 
+    <h2>Matches</h2>
     <article>
         <table>
-            <thead>
-                <tr>
-                <th scope="col"></th>
-                <th scope="col"></th>
-                </tr>
-            </thead>
+
             <tbody>
-                <tr>
-                <th scope="row">Match 1</th>
-                <td>Chat</td>
-                </tr>
-                <tr>
-                <th scope="row">Match 2</th>
-                <td>Chat</td>
-                </tr>
+                {match}
             </tbody>
             
         </table>

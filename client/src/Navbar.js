@@ -74,7 +74,7 @@ const Navbar = () => {
   </ul>
 
         <NavLink to='/login'>
-          Sign in ⪢ 
+          Sign in
         </NavLink>
 </nav>
      

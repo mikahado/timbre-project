@@ -8,6 +8,10 @@ class User < ApplicationRecord
 
     has_many :pending_matches, foreign_key: :receiver, class_name: "MatchRequest"
     has_many :sent_matches, foreign_key: :requester, class_name: "MatchRequest"
+
+    has_one :profile
+    has_one :preference
+
 end
 
 

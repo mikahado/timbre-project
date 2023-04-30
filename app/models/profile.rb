@@ -1,3 +1,5 @@
 class Profile < ApplicationRecord
-  belongs_to :user_id
+  has_one :user
+  has_one :preference
+
 end

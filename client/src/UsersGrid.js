@@ -1,10 +1,14 @@
-import React from 'react'
-import { UserProvider } from "./context/user"
+import React, { useContext} from 'react'
+import { UserContext } from "./context/user"
 import UserCard from './UserCard'
 
 const UsersGrid = () => {
 
-    // const allUsers = users.map(u => 
+  const { allProfiles } = useContext(UserContext)
+
+  console.log(allProfiles)
+
+    // const allArists = allProfiles.map(u => 
     //   <div> 
     //   <UserCard key={u.id} user={u} />
     //   </div>

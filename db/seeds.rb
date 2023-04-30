@@ -11,19 +11,44 @@ MatchRequest.destroy_all
 MatchedUser.destroy_all
 User.destroy_all
 
-puts'creates users'
+user_info = ["elvis_presley", "the_beatles", "bob_dylan", "jimi_hendrix", "janis_joplin", "james_brown", "ray_charles", "stevie_wonder", "aretha_franklin", "marvin_gaye", "michael_jackson", "prince", "whitney_houston", "david_bowie", "freddie_mercury", "john_lennon", "paul_mccartney", "george_harrison", "ringo_starr", "mick_jagger", "keith_richards", "bob_marley", "joe_strummer", "bruce_springsteen", "tina_turner", "diana_ross", "neil_young", "brian_wilson", "buddy_holly", "ray_davies", "jerry_lee_lewis", "little_richard", "chet_atkins", "frank_sinatra", "dean_martin", "miles_davis", "duke_ellington", "benny_goodman", "count_basie", "nat_king_cole", "ella_fitzgerald", "billie_holiday", "peggy_lee", "doris_day", "barbra_streisand", "frank_zappa", "johnny_cash", "willie_nelson"]
 
-gogo = User.create(username: "gogo", email: "gogo@aol.com", password: "gogo", password_confirmation: "gogo")
-bizbo = User.create(username: "bizbo", email: "bizbo@aol.com", password: "bizbo", password_confirmation: "bizbo")
-didi = User.create(username: "didi", email: "didi@aol.com", password: "didi", password_confirmation: "didi")
-vladimir = User.create(username: "vladimir", email: "vladimir@aol.com", password: "vladimir", password_confirmation: "vladimir")
+index_counter = 0
+request_index_counter = 0
+match_index_counter = 0
 
-puts 'creates match requests'
+puts 'created user_info'
 
-MatchRequest.create(requester_id: gogo.id, receiver_id: bizbo.id)
-MatchRequest.create(requester_id: bizbo.id, receiver_id: gogo.id)
-MatchRequest.create(requester_id: gogo.id, receiver_id: vladimir.id)
-MatchRequest.create(requester_id: vladimir.id, receiver_id: didi.id)
+puts'created user_var'
+
+40.times do |u|
+    User.create(username: user_info[index_counter], email: user_info[index_counter] + "@gmail.com", password: user_info[index_counter], password_confirmation: user_info[index_counter])
+    
+    index_counter += 1
+end
+
+puts 'created users'
+
+30.times do |m|
+    user = User.find_by(username: user_info[request_index_counter])
+    MatchRequest.create(requester_id: user.id, receiver_id: user.id + rand(1..5))
+    request_index_counter += 1
+end
+
+puts 'created requests'
+
+20.times do |m|
+    user = User.find_by(username: user_info[match_index_counter])
+    MatchedUser.create_mutual_match(user.id, user.id + rand(1..5))
+    match_index_counter += 1
+end
+
+puts 'created matches'
+
+# MatchRequest.create(requester_id: gogo.id, receiver_id: bizbo.id)
+# MatchRequest.create(requester_id: bizbo.id, receiver_id: gogo.id)
+# MatchRequest.create(requester_id: gogo.id, receiver_id: vladimir.id)
+# MatchRequest.create(requester_id: vladimir.id, receiver_id: didi.id)
 
 # MatchedUser.create_mutual_match(gogo.id, bizbo.id)
 # MatchedUser.create_mutual_match(gogo.id, didi.id)
