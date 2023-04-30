@@ -8,11 +8,11 @@ const UsersGrid = () => {
 
   console.log(allProfiles)
 
-    // const allArists = allProfiles.map(u => 
-    //   <div> 
-    //   <UserCard key={u.id} user={u} />
-    //   </div>
-    // )
+    const allUsers = allProfiles.map(u => 
+    
+      <UserCard key={u.id} user={u} />
+    
+    )
 
   return (
     <>
@@ -20,10 +20,13 @@ const UsersGrid = () => {
     <main class="container"> 
       <article>
         <div class="grid">
+          <div>
+          {allUsers}
+          </div>
+            {/* <div><UserCard/></div>
             <div><UserCard/></div>
             <div><UserCard/></div>
-            <div><UserCard/></div>
-            <div><UserCard/></div>
+            <div><UserCard/></div> */}
           </div>
         </article> 
     </main>

@@ -1,20 +1,24 @@
-import React, { useContext } from 'react'
-import { UserContext } from './context/user'
+import React from 'react'
+import { Link } from "react-router-dom"
 
-const UserProfile = () => {
+const UserProfile = ({user}) => {
 
-const { loggedIn} = useContext(UserContext)
 
     return (
     <>
+
         <article>
-            <header>Username %match</header>
+        <Link to={`/users/${user.id}`}>{user.name}
+            <header>{user.username}</header>
             Photo
+        </Link>
             <footer>
-                <button>Yawp</button>
-                <button>Nah</button>
+                <button className="accept-button">Yawp!</button>
+                <br/>
+                <button className="warning-button">Nah</button>
             </footer>
         </article>
+ 
     </>
   )
 }

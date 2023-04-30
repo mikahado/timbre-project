@@ -4,7 +4,7 @@ import { UserContext } from './context/user'
 
 const UserProfile = () => {
 
-const { loggedIn} = useContext(UserContext)
+const { user, loggedIn} = useContext(UserContext)
 
 const [profile, setProfile] = useState({
     username: '',
@@ -22,7 +22,7 @@ const [profile, setProfile] = useState({
     <br/>
 
         <article>
-            <header>Username</header>
+            <header>{user.username}</header>
             Photo
             <footer>
                 <label for="location">
