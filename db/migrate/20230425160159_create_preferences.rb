@@ -8,7 +8,7 @@ class CreatePreferences < ActiveRecord::Migration[7.0]
       t.string :genres
       t.string :goals
       t.string :money
-      t.string :host
+      t.boolean :host
 
       t.timestamps
     end

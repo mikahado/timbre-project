@@ -18,7 +18,7 @@ const PreferencesForm = () => {
   return (
     <>
 
-<body>
+
   <main class="container">
 
         <h2>My Preferences</h2>
@@ -45,7 +45,7 @@ const PreferencesForm = () => {
           <div>
             <label>Skill Level</label>
             <select id="skill" required>
-              <option value="" selected>Skill Level</option>
+              <option defaultValue="" >Skill Level</option>
               <option>Beginner</option>
               <option>Intermediate</option>
               <option>Experienced</option>
@@ -114,7 +114,7 @@ const PreferencesForm = () => {
 
 
         </main>
-</body>
+
     
     </>
   )

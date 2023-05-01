@@ -20,14 +20,10 @@ const UsersGrid = () => {
     <main class="container"> 
       <article>
         <div class="grid">
-          <div>
+          
           {allUsers}
-          </div>
-            {/* <div><UserCard/></div>
-            <div><UserCard/></div>
-            <div><UserCard/></div>
-            <div><UserCard/></div> */}
-          </div>
+          
+        </div>
         </article> 
     </main>
 
