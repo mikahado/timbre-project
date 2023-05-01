@@ -2,7 +2,6 @@ class MatchedUser < ApplicationRecord
   belongs_to :user_1, class_name: 'User'
   belongs_to :user_2, class_name: 'User'
 
-
   # this is the final step of creating a match. the second button of a request would run this code:
 
   def self.create_mutual_match user_1_id, user_2_id

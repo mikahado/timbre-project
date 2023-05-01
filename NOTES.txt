@@ -1,0 +1,2 @@
+prince.create_profile(location: "t", bio: "t", media_1: "t", media_2: "t", media_3: "t", media
+_4: "t")

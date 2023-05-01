@@ -7,11 +7,26 @@
 #   Character.create(name: "Luke", movie: movies.first)
 puts 'starts seeding'
 
+Profile.destroy_all
+Preference.destroy_all
 MatchRequest.destroy_all
 MatchedUser.destroy_all
 User.destroy_all
 
+
 user_info = ["prince",  "michael_jackson",  "madonna",  "whitney_houston",  "george_michael",  "bruce_springsteen",  "janet_jackson",  "beyonce",  "taylor_swift",  "eminem",  "jay-z",  "justin_timberlake",  "adele",  "rihanna",  "pink",  "lady_gaga",  "drake",  "ariana_grande",  "ed_sheeran",  "kendrick_lamar",  "billie_eilish",  "dua_lipa",  "cardi_b",  "halsey",  "ariana_grande",  "taylor_swift",  "rihanna",  "beyonce",  "adele",  "lizzo",  "alicia_keys",  "celine_dion",  "enya",  "shakira",  "mariah_carey",  "christina_aguilera",  "whitney_houston",  "jennifer_lopez",  "sade",  "cyndi_lauper",  "jessie_j",  "tina_turner",  "kylie_minogue",  "gwen_stefani",  "adele",  "amy_winehouse",  "lauryn_hill",  "sheryl_crow",  "chaka_khan",  "fiona_apple",  "bjork",  "sinead_oconnor"]
+
+instruments = [  "Acoustic guitar",  "Electric guitar",  "Piano",  "Drums",  "Bass guitar",  "Violin",  "Cello",  "Flute",  "Saxophone",  "Trumpet",  "Clarinet",  "Harp",  "Banjo",  "Mandolin",  "Ukulele",  "Accordion",  "Harmonica",  "Bagpipes",  "Djembe",  "Maracas"]
+
+skill = [  "Beginner",  "Intermediate",  "Advanced",  "Professional"]
+
+genres = [  "Pop",  "Rock",  "Hip hop / Rap",  "EDM",  "R&B / Soul",  "Country",  "Classical",  "Jazz",  "Reggae",  "Folk"]
+
+goals = [  "Jamming",  "Gigging",  "Recording",  "Songwriting",  "Teaching",  "Learning",  "Networking",  "Collaborating",  "Hanging out",  "Other"]
+
+money = [  "Free",  "Paid",  "Negotiable",  "Other"]
+
+host = [ true, false ]
 
 index_counter = 0
 request_index_counter = 0
@@ -24,23 +39,23 @@ puts'created user_var'
 40.times do |u|
    user =  User.create(username: user_info[index_counter], email: user_info[index_counter] + "@gmail.com", password: user_info[index_counter], password_confirmation: user_info[index_counter])
 
-#    user.Profile.create(
-#         location: "test", 
-#         bio: "test",
-#         media_1: "test", 
-#         media_2: "test", 
-#         media_3:"test", 
-#         media_4:"test")
+   user.create_profile(
+        location: "test", 
+        bio: "test",
+        media_1: "test", 
+        media_2: "test", 
+        media_3:"test", 
+        media_4:"test")
 
-#     user.Preferences.create(
-#         instruments: "test",
-#         instruments_wanted: "test",
-#         genres: "test",
-#         skill: "test",
-#         goals: "test",
-#         money: "test",
-#         host: "test",
-#     )
+    user.create_preference(
+        instruments: instruments.sample,
+        instruments_wanted: instruments.sample,
+        genres: genres.sample,
+        skill: skill.sample,
+        goals: goals.sample,
+        money: money.sample,
+        host: host.sample,
+    )
     
     index_counter += 1
 end
@@ -62,7 +77,5 @@ puts 'created requests'
 end
 
 puts 'created matches'
-
-
 
 puts 'done seeding'
