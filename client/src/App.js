@@ -9,6 +9,7 @@ import UsersGrid from './UsersGrid'
 import UserProfile from './UserProfile' 
 import MyProfile from './MyProfile'
 import Matches from './Matches'
+import PreferencesForm from './PreferencesForm'
 import { UserProvider } from "./context/user"
 
 function App(props) {
@@ -27,6 +28,7 @@ function App(props) {
           <Route path="/matches" element={<Matches />} />
           <Route path="/users/:id" element={<UserProfile />} />
           <Route path="/my-profile" element={<MyProfile />} />
+          <Route path="/my-profile/preferences" element={<PreferencesForm />} />
         </Routes>
       </UserProvider>
 

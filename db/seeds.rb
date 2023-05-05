@@ -30,7 +30,8 @@ host = [ true, false ]
 
 index_counter = 0
 request_index_counter = 0
-match_index_counter = 0
+match_index_counter_1 = 0
+match_index_counter_2 = 0
 
 puts 'created user_info'
 
@@ -40,12 +41,12 @@ puts'created user_var'
    user =  User.create(username: user_info[index_counter], email: user_info[index_counter] + "@gmail.com", password: user_info[index_counter], password_confirmation: user_info[index_counter])
 
    user.create_profile(
-        location: "test", 
-        bio: "test",
-        media_1: "test", 
-        media_2: "test", 
-        media_3:"test", 
-        media_4:"test")
+        location: "location", 
+        bio: "bio",
+        media_1: "photo link", 
+        media_2: "video link", 
+        media_3:"audio link", 
+        media_4:"website link")
 
     user.create_preference(
         instruments: instruments.sample,
@@ -63,18 +64,26 @@ end
 puts 'created users'
 
 30.times do |m|
-    user = User.find_by(username: user_info[request_index_counter])
+    user = User.find_by(username: user_info[request_index_counter_1])
     MatchRequest.create(requester_id: user.id, receiver_id: user.id + rand(1..5))
-    request_index_counter += 1
+    request_index_counter_1 = rand(0..user_info.length)
 end
 
-puts 'created requests'
+puts 'created requests for user_1'
 
-20.times do |m|
-    user = User.find_by(username: user_info[match_index_counter])
-    MatchedUser.create_mutual_match(user.id, user.id + rand(1..5))
-    match_index_counter += 1
+50.times do |m|
+    user = User.find_by(username: user_info[request_index_counter_2])
+    MatchRequest.create(requester_id: user.id + rand(1..5), receiver_id: user.id + rand(6..10))
+    request_index_counter_2 = rand(0..user_info.length)
 end
+
+puts 'created requests for user_2'
+
+# 20.times do |m|
+#     user = User.find_by(username: user_info[match_index_counter])
+#     MatchedUser.create_mutual_match(user.id, user.id + rand(1..5))
+#     match_index_counter += 1
+# end
 
 puts 'created matches'
 

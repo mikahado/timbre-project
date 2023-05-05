@@ -8,9 +8,11 @@ const UserProvider = ({ children }) => {
   const [user, setUser] = useState({
     matches: [],
   });
-  const [allProfiles, setAllProfiles] = useState([]);
-  const [loggedIn, setLoggedIn] = useState(false);
-  const [errors, setErrors] = useState([]);
+  const [allProfiles, setAllProfiles] = useState([])
+  const [loggedIn, setLoggedIn] = useState(false)
+  const [errors, setErrors] = useState([])
+
+  console.log("user", user)
 
   useEffect(() => {
     fetch("/me")

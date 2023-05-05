@@ -19,7 +19,6 @@ html {
   border-radius: 50%;
 }
 
-
 .logo {
   height: auto;
   width: auto;
@@ -83,15 +82,15 @@ html {
 }
 
 .secondary-button {
-  background: none;
-  border: 2px solid #4B8BBE;
+  background: linear-gradient(45deg, #4b8abe17, #5c8cac8c);
   text-transform: uppercase;  
   border-radius: 30px;
   border: none;
   margin: auto;
-  width: 50%;
+  width: 30%;
   padding: 12px, 30px;
-  opacity: 0.8;
+  opacity: .8;
+  text-decoration: none;
 }
 
 .logoutbutton {

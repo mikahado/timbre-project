@@ -1,46 +1,46 @@
 import React, { useState, useContext } from "react";
 import PreferencesForm from "./PreferencesForm";
 import { UserContext } from "./context/user";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const UserProfile = () => {
   const { user, loggedIn } = useContext(UserContext);
 
-  const [profile, setProfile] = useState({
-    username: "",
-    location: "",
-    bio: "",
-    media1: "",
-    media2: "",
-    media3: "",
-    media4: "",
-    link: "",
+  const [myProfile, setMyProfile] = useState({
+    location: user.profile?.location,
+    bio: user.profile?.bio,
+    media_1: user.profile?.media_1,
+    media_2: user.profile?.media_1,
+    media_3: user.profile?.media_1,
+    media_4: user.profile?.media_1,
   });
 
   return (
     <>
-      <br />
+      <br/>
+      <NavLink to="/my-profile/preferences">
+        <p className="secondary-button" >Preferences</p>
+      </NavLink>
 
       <article>
-        <header>{user.username}</header>
-        Photo
+        <header>
+          <h1>{user?.username}</h1>
+          <p>Location: {user.profile?.location}</p>
+          <small>edit</small>
+        </header>
+        <ul>
+          <li>Media 1: {user.profile?.media_1}</li>
+          <li>Media 2: {user.profile?.media_2}</li>
+          <li>Media 3: {user.profile?.media_3}</li>
+          <li>Media 4: {user.profile?.media_4}</li>
+        </ul>
         <footer>
-          <label for="location">
-            Location
-            <input
-              type="text"
-              id="location"
-              name="location"
-              placeholder="my location"
-              required
-            />
-          </label>
-          <button className="primary-button">Edit</button>
+          
+          <li>Bio: {user.profile?.bio}</li>
         </footer>
       </article>
 
-      <article>
-        <PreferencesForm />
-      </article>
+
     </>
   );
 };

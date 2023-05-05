@@ -23,11 +23,10 @@ const Navbar = () => {
           <nav class="container-fluid">
             <ul>
               <NavLink to="/my-profile">
-                <li>
                   <h3>
                     <strong>{user.username}</strong>
                   </h3>
-                </li>
+
               </NavLink>
             </ul>
 
