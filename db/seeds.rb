@@ -16,15 +16,15 @@ User.destroy_all
 
 user_info = ["prince",  "michael_jackson",  "madonna",  "whitney_houston",  "george_michael",  "bruce_springsteen",  "janet_jackson",  "beyonce",  "taylor_swift",  "eminem",  "jay-z",  "justin_timberlake",  "adele",  "rihanna",  "pink",  "lady_gaga",  "drake",  "ariana_grande",  "ed_sheeran",  "kendrick_lamar",  "billie_eilish",  "dua_lipa",  "cardi_b",  "halsey",  "ariana_grande",  "taylor_swift",  "rihanna",  "beyonce",  "adele",  "lizzo",  "alicia_keys",  "celine_dion",  "enya",  "shakira",  "mariah_carey",  "christina_aguilera",  "whitney_houston",  "jennifer_lopez",  "sade",  "cyndi_lauper",  "jessie_j",  "tina_turner",  "kylie_minogue",  "gwen_stefani",  "adele",  "amy_winehouse",  "lauryn_hill",  "sheryl_crow",  "chaka_khan",  "fiona_apple",  "bjork",  "sinead_oconnor"]
 
-instruments = [  "Acoustic guitar",  "Electric guitar",  "Piano",  "Drums",  "Bass guitar",  "Violin",  "Cello",  "Flute",  "Saxophone",  "Trumpet",  "Clarinet",  "Harp",  "Banjo",  "Mandolin",  "Ukulele",  "Accordion",  "Harmonica",  "Bagpipes",  "Djembe",  "Maracas"]
+instruments = ["acoustic_guitar", "electric_guitar", "piano", "drums", "bass_guitar", "violin", "cello", "flute", "saxophone", "trumpet", "clarinet", "harp", "banjo", "mandolin", "ukulele", "accordion", "harmonica", "bagpipes", "djembe", "maracas"]
 
-skill = [  "Beginner",  "Intermediate",  "Advanced",  "Professional"]
+skill = ["beginner", "intermediate", "advanced", "professional"]
 
-genres = [  "Pop",  "Rock",  "Hip hop / Rap",  "EDM",  "R&B / Soul",  "Country",  "Classical",  "Jazz",  "Reggae",  "Folk"]
+genres = ["pop", "rock", "hip_hop_rap", "edm", "rb_soul", "country", "classical", "jazz", "reggae", "folk"]
 
-goals = [  "Jamming",  "Gigging",  "Recording",  "Songwriting",  "Teaching",  "Learning",  "Networking",  "Collaborating",  "Hanging out",  "Other"]
+goals = ["jam", "perform", "record", "compose"]
 
-money = [  "Free",  "Paid",  "Negotiable",  "Other"]
+money = ["split", "paid", "negotiable", "free"]
 
 host = [ true, false ]
 

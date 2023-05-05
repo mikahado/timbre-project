@@ -1,8 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { UserContext } from "./context/user";
 import { NavLink, useNavigate } from "react-router-dom";
 
 const PreferencesForm = () => {
-  // The following form will be a CREATE request if it does not exist, or a PATCH request if it does exist.
+  const { user, loggedIn, preferencesUpdate } = useContext(UserContext);
+
+  const { instruments, instruments_wanted, skill, genres, goals, money, host } =
+    user.preference || {}
+
+  const navigate = useNavigate()
 
   const [matchPreferences, setMatchPreferences] = useState({
     instruments: "",
@@ -11,43 +17,65 @@ const PreferencesForm = () => {
     genres: "",
     goals: "",
     money: "",
-    host: "",
+    host: true,
   });
+
+  useEffect(() => {
+    if (user.preference) {
+      setMatchPreferences({
+        instruments: instruments,
+        instruments_wanted: instruments_wanted,
+        skill: skill,
+        genres: genres,
+        goals: goals,
+        money: money,
+        host: host,
+      });
+    }
+  }, [user]);
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault()
+    preferencesUpdate(matchPreferences)
+  }
+
 
   return (
     <>
       <dialog open>
         <article>
-          
           <NavLink to="/my-profile">
-            <small>
-              Back
-            </small>
+            <small>Back</small>
           </NavLink>
-          
+
           <h2>Preferences</h2>
           <hr />
-          <br/>
+          <br />
 
-          <form>
+          <form onSubmit={handleFormSubmit}>
             <div class="grid">
-              <label for="my-instruments">
-                My Instruments
+              <label htmlFor="my-instruments">
+                My Main Instrument
                 <input
                   type="text"
                   id="instruments"
                   name="instruments"
+                  // write code to make the following value come from state
+                  // a: user.profile.instruments
+                  value={matchPreferences.instruments}
+                  // onChange={setMatchPreferences(e => e.target.value)}
                   placeholder="my instruments"
                   required
                 />
               </label>
 
-              <label for="their-instruments">
-                Their Instruments
+              <label htmlFor="their-instruments">
+                Their Main Instrument
                 <input
                   type="text"
                   id="instruments_wanted"
                   name="instruments_wanted"
+                  value={matchPreferences.instruments_wanted}
                   placeholder="instruments I want to play with"
                   required
                 />
@@ -57,108 +85,180 @@ const PreferencesForm = () => {
             <br />
 
             <div class="grid">
-              <div>
-                <label>Skill Level</label>
-                <select id="skill" required>
-                  <option defaultValue="">Skill Level</option>
-                  <option>Beginner</option>
-                  <option>Intermediate</option>
-                  <option>Experienced</option>
-                  <option>Pro</option>
-                </select>
-              </div>
+              <label>Skill Level</label>
+              <select
+                id="skill"
+                required
+                value={matchPreferences.skill}
+                onChange={(e) =>
+                  setMatchPreferences({
+                    ...matchPreferences,
+                    skill: e.target.value,
+                  })
+                }
+              >
+                <option value="beginner">Beginner</option>
+                <option value="intermediate">Intermediate</option>
+                <option value="experienced">Experienced</option>
+                <option value="pro">Pro</option>
+              </select>
 
               <div>
-                <fieldset>
+                <fieldset id="goals">
                   <legend>What are you looking for?</legend>
-                  <label htmlFor="goals">
+                  <label htmlFor="jam">
                     <input
                       type="radio"
-                      id="goals"
-                      name="goals"
-                      value={matchPreferences.goals}
-                      checked
+                      id="jam"
+                      name="match_preference"
+                      value="jam"
+                      onChange={(e) =>
+                        setMatchPreferences({
+                          ...matchPreferences,
+                          goals: e.target.value,
+                        })
+                      }
                     />
-                    Jam Sessions
+                    Jam
                   </label>
-                  <label htmlFor="recording">
+                  <label htmlFor="perform">
                     <input
                       type="radio"
-                      id="recording"
-                      name="goals"
-                      value={matchPreferences.goals}
+                      id="perform"
+                      name="match_preference"
+                      value="perform"
+                      onChange={(e) =>
+                        setMatchPreferences({
+                          ...matchPreferences,
+                          goals: e.target.value,
+                        })
+                      }
                     />
-                    Recording Sessions
+                    Perform
                   </label>
-                  <label htmlFor="performances">
+                  <label htmlFor="record">
                     <input
                       type="radio"
-                      id="performances"
-                      name="goals"
-                      value={matchPreferences.goals}
+                      id="record"
+                      name="match_preference"
+                      value="record"
+                      onChange={(e) =>
+                        setMatchPreferences({
+                          ...matchPreferences,
+                          goals: e.target.value,
+                        })
+                      }
                     />
-                    Performances
+                    Record
                   </label>
-                  <label htmlFor="long-term">
+                  <label htmlFor="compose">
                     <input
                       type="radio"
-                      id="long-term"
-                      name="goals"
-                      value={matchPreferences.goals}
+                      id="compose"
+                      name="match_preference"
+                      value="compose"
+                      onChange={(e) =>
+                        setMatchPreferences({
+                          ...matchPreferences,
+                          goals: e.target.value,
+                        })
+                      }
                     />
-                    Tours
+                    Compose
                   </label>
                 </fieldset>
+                
               </div>
 
               <div>
                 <fieldset>
                   <legend>Money Goals</legend>
-                  <label htmlFor="gig">
+
+                  <label htmlFor="free">
                     <input
                       type="radio"
-                      id="gig"
+                      id="free"
                       name="money"
-                      value={matchPreferences.money}
-                      checked
+                      value="free"
+                      checked={matchPreferences.money === "free"}
+                      onChange={(e) =>
+                        setMatchPreferences({
+                          ...matchPreferences,
+                          money: e.target.value,
+                        })
+                      }
                     />
-                    Split the gig
+                    Free
                   </label>
-                  <label htmlFor="contract">
+
+                  <label htmlFor="split">
                     <input
                       type="radio"
-                      id="contract"
+                      id="split"
                       name="money"
-                      value={matchPreferences.money}
+                      value="split"
+                      checked={matchPreferences.money === "split"}
+                      onChange={(e) =>
+                        setMatchPreferences({
+                          ...matchPreferences,
+                          money: e.target.value,
+                        })
+                      }
                     />
-                    Sign a contract
+                    Split
                   </label>
-                  <label htmlFor="pay">
+
+                  <label htmlFor="paid">
                     <input
                       type="radio"
-                      id="pay"
+                      id="paid"
                       name="money"
-                      value={matchPreferences.money}
+                      value="paid"
+                      checked={matchPreferences.money === "paid"}
+                      onChange={(e) =>
+                        setMatchPreferences({
+                          ...matchPreferences,
+                          money: e.target.value,
+                        })
+                      }
                     />
-                    I can pay
+                    Paid
                   </label>
-                  <label htmlFor="broke">
+
+                  <label htmlFor="negotiable">
                     <input
                       type="radio"
-                      id="broke"
+                      id="negotiable"
                       name="money"
-                      value={matchPreferences.money}
+                      value="negotiable"
+                      checked={matchPreferences.money === "negotiable"}
+                      onChange={(e) =>
+                        setMatchPreferences({
+                          ...matchPreferences,
+                          money: e.target.value,
+                        })
+                      }
                     />
-                    None
+                    Negotiable
                   </label>
                 </fieldset>
               </div>
 
               <div>
                 <label>Can you host?</label>
-                <select id="host" required>
-                  <option>Yes</option>
-                  <option>No</option>
+                <select
+                  id="host"
+                  required
+                  value={matchPreferences.host}
+                  onChange={(e) =>
+                    setMatchPreferences({
+                      ...matchPreferences,
+                      host: e.target.value === "Yes",
+                    })
+                  }
+                >
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
                 </select>
               </div>
             </div>

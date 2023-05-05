@@ -6,13 +6,14 @@ const UserContext = React.createContext();
 
 const UserProvider = ({ children }) => {
   const [user, setUser] = useState({
-    matches: [],
-  });
+    preference: [],
+    profile: [],
+  })
   const [allProfiles, setAllProfiles] = useState([])
   const [loggedIn, setLoggedIn] = useState(false)
   const [errors, setErrors] = useState([])
 
-  console.log("user", user)
+  const navigate = useNavigate()
 
   useEffect(() => {
     fetch("/me")
@@ -37,8 +38,29 @@ const UserProvider = ({ children }) => {
         } else {
           setAllProfiles(data);
         }
-      });
-  };
+      })
+  }
+
+  const preferencesUpdate = (matchPreferences) => { 
+    fetch(`/preferences/${user.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(matchPreferences),
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        if (data.errors) {
+          setErrors(data.errors)
+        } else {
+          setUser(data)
+          navigate("/my-profile")
+        }
+      })
+  }
+    
+
 
   const login = (user) => {
     setUser(user);
@@ -64,6 +86,7 @@ const UserProvider = ({ children }) => {
         signup,
         login,
         loggedIn,
+        preferencesUpdate
       }}
     >
       {children}
