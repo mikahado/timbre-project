@@ -30,14 +30,14 @@ host = [ true, false ]
 
 index_counter = 0
 request_index_counter = 0
-match_index_counter_1 = 0
-match_index_counter_2 = 0
+request_index_counter_1 = 0
+request_index_counter_2 = 0
 
 puts 'created user_info'
 
 puts'created user_var'
 
-40.times do |u|
+50.times do |u|
    user =  User.create(username: user_info[index_counter], email: user_info[index_counter] + "@gmail.com", password: user_info[index_counter], password_confirmation: user_info[index_counter])
 
    user.create_profile(
@@ -63,28 +63,38 @@ end
 
 puts 'created users'
 
-30.times do |m|
-    user = User.find_by(username: user_info[request_index_counter_1])
-    MatchRequest.create(requester_id: user.id, receiver_id: user.id + rand(1..5))
-    request_index_counter_1 = rand(0..user_info.length)
+user_1 = User.find_by(username: "prince")
+user_2 = User.find_by(username: "madonna")
+MatchRequest.create(requester_id: user_1.id, receiver_id: user_2.id)
+MatchRequest.create(requester_id: user_2.id, receiver_id: user_1.id)
+
+if MatchRequest.check_for_match?(user_1.id, user_2.id)
+    MatchedUser.create_mutual_match(user_1.id, user_2.id)
 end
 
-puts 'created requests for user_1'
+puts MatchRequest.count
+puts MatchedUser.count
+# 30.times do |m|
+#     user = User.find_by(username: user_info[request_index_counter_1])
+#     MatchRequest.create(requester_id: user.id, receiver_id: user.id + rand(1..5))
+#     request_index_counter_1 = rand(0..user_info.length - 6)
+# end
 
-50.times do |m|
-    user = User.find_by(username: user_info[request_index_counter_2])
-    MatchRequest.create(requester_id: user.id + rand(1..5), receiver_id: user.id + rand(6..10))
-    request_index_counter_2 = rand(0..user_info.length)
-end
+# puts 'created requests for user_1'
 
-puts 'created requests for user_2'
+# 30.times do |m|
+#     user = User.find_by(username: user_info[request_index_counter_2])
+#     MatchRequest.create(requester_id: user.id + rand(1..5), receiver_id: user.id + rand(6..10))
+#     request_index_counter_2 = rand(0..user_info.length - 6)
+#     puts request_index_counter_2
+# end
+
+# puts 'created requests for user_2'
 
 # 20.times do |m|
 #     user = User.find_by(username: user_info[match_index_counter])
 #     MatchedUser.create_mutual_match(user.id, user.id + rand(1..5))
 #     match_index_counter += 1
 # end
-
-puts 'created matches'
 
 puts 'done seeding'

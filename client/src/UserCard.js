@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const UserProfile = ({ user }) => {
+
+  
   return (
     <article>
       <Link to={`/users/${user.id}`}>
