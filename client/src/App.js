@@ -12,6 +12,7 @@ import Matches from './Matches'
 import MyRequests from './MyRequests';
 import PreferencesForm from './PreferencesForm'
 import Map from './Map'
+import Geo from './Geo'
 import { UserProvider } from "./context/user"
 
 function App(props) {
@@ -32,7 +33,7 @@ function App(props) {
           <Route path="/users/:id" element={<UserProfile />} />
           <Route path="/my-profile" element={<MyProfile />} />
           <Route path="/preferences/:id" element={<PreferencesForm />} />
-          <Route path="/map" element={<Map />} />
+          <Route path="/geo" element={<Geo />} />
         </Routes>
       </UserProvider>
 

@@ -18,6 +18,30 @@ user_info = ["prince",  "michael_jackson",  "madonna",  "whitney_houston",  "geo
 
 instruments = ["acoustic_guitar", "electric_guitar", "piano", "drums", "bass_guitar", "violin", "cello", "flute", "saxophone", "trumpet", "clarinet", "harp", "banjo", "mandolin", "ukulele", "accordion", "harmonica", "bagpipes", "djembe", "maracas"]
 
+location = [
+  { lat: 37.7749, lng: -122.4194 },
+  { lat: 40.7128, lng: -74.0060 },
+  { lat: 34.0522, lng: -118.2437 },
+  { lat: 41.8781, lng: -87.6298 },
+  { lat: 29.7604, lng: -95.3698 },
+  { lat: 25.7617, lng: -80.1918 },
+  { lat: 47.6062, lng: -122.3321 },
+  { lat: 39.7392, lng: -104.9903 },
+  { lat: 42.3601, lng: -71.0589 },
+  { lat: 38.9072, lng: -77.0369 },
+  { lat: 33.7490, lng: -84.3880 },
+  { lat: 36.1627, lng: -86.7816 },
+  { lat: 44.9778, lng: -93.2650 },
+  { lat: 35.2271, lng: -80.8431 },
+  { lat: 38.2527, lng: -85.7585 },
+  { lat: 43.0389, lng: -87.9065 },
+  { lat: 33.4484, lng: -112.0740 },
+  { lat: 32.7157, lng: -117.1611 },
+  { lat: 30.2672, lng: -97.7431 },
+  { lat: 42.3603, lng: -71.0583 }
+]
+
+
 skill = ["beginner", "intermediate", "advanced", "professional"]
 
 genres = ["pop", "rock", "hip_hop_rap", "edm", "rb_soul", "country", "classical", "jazz", "reggae", "folk"]
@@ -41,7 +65,7 @@ puts'created user_var'
    user =  User.create(username: user_info[index_counter], email: user_info[index_counter] + "@gmail.com", password: user_info[index_counter], password_confirmation: user_info[index_counter])
 
    user.create_profile(
-        location: "location", 
+        location: location.sample, 
         bio: "bio",
         media_1: "photo link", 
         media_2: "video link", 

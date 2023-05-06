@@ -31,7 +31,6 @@ const UserCard = ({ user }) => {
 
       <footer>
         <button className="accept-button" onClick={() => handleMatchRequestClick(user.id)}>✔</button>
-        <br />
         <button className="warning-button">X</button>
       </footer>
 
