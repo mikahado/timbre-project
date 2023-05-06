@@ -1,20 +1,20 @@
-import React, { useContext } from "react";
-import { UserContext } from "./context/user";
-import { NavLink, useNavigate } from "react-router-dom";
+import React, { useContext } from "react"
+import { UserContext } from "./context/user"
+import { NavLink, useNavigate } from "react-router-dom"
 
 const Navbar = () => {
-  const { user, logout, loggedIn } = useContext(UserContext);
-  const navigate = useNavigate();
+  const { user, logout, loggedIn } = useContext(UserContext)
+  const navigate = useNavigate()
 
-  const logoutUser = () => {
-    fetch("/logout", {
-      method: "DELETE",
-      headers: { "Content-Type": "application/json" },
-    }).then(() => {
-      logout();
-      navigate("/");
-    });
-  };
+  // const logoutUser = () => {
+  //   fetch("/logout", {
+  //     method: "DELETE",
+  //     headers: { "Content-Type": "application/json" },
+  //   }).then(() => {
+  //     logout()
+  //     navigate("/")
+  //   })
+  // }
 
   if (loggedIn) {
     return (
@@ -49,11 +49,11 @@ const Navbar = () => {
                 </NavLink>
               </li>
 
-              <li>
+              {/* <li>
                 <button class="outline" onClick={logoutUser}>
                   Logout
                 </button>
-              </li>
+              </li> */}
               <br />
               <br />
             </ul>

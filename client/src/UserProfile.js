@@ -29,17 +29,20 @@ const UserProfile = () => {
 
       <article>
         <header>
-          <h2>What {user?.username} is Looking For</h2>
-
+          <h2>{user?.username}'s Preferences</h2>
         </header>
+
         <ul>
-          <li>{user.profile?.media_1}</li>
-          <li>{user.profile?.media_2}</li>
-          <li>{user.profile?.media_3}</li>
-          <li>{user.profile?.media_4}</li>
+          <li>{user.preference?.instruments}</li>
+          <li>{user.preference?.instruments_wanted}</li>
+          <li>{user.preference?.skill}</li>
+          <li>{user.preference?.genres}</li>
+          <li>{user.preference?.goals}</li>
+          <li>{user.preference?.money}</li>
+          <li>{user.preference?.host}</li>
         </ul>
         <footer>
-          <li>{user.profile?.bio}</li>
+          <li>...</li>
         </footer>
       </article>
 

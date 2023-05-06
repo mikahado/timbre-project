@@ -1,7 +1,5 @@
 class MatchRequestsController < ApplicationController
 
-    # every time user_1 swipes right on user_2, the create needs to check if user_2 also swiped right on user_1
-    # if so, then create a Matched_user\
     skip_before_action :authorize
 
     def index

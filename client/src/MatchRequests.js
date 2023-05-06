@@ -5,14 +5,14 @@ import MatchRow from "./MatchRow";
 const MatchRequests = () => {
   const { user } = useContext(UserContext);
 
-  const match = user.matches.map((m) => <MatchRow key={m.id} match={m} />);
 
   return (
     <>
-      <h2>Matches</h2>
+      <h2>Pending</h2>
+      <small>If they like you, too -- You'll match!</small>
 
       <table>
-        <tbody>{match}</tbody>
+        <tbody>...</tbody>
       </table>
     </>
   );

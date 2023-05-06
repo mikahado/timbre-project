@@ -4,7 +4,7 @@ import { UserContext } from "./context/user"
 import { NavLink, useNavigate } from "react-router-dom"
 
 const UserProfile = () => {
-  const { user, loggedIn } = useContext(UserContext)
+  const { user, loggedIn, logoutUser } = useContext(UserContext)
 
   const [myProfile, setMyProfile] = useState({
     location: user.profile?.location,
@@ -40,6 +40,11 @@ const UserProfile = () => {
         </footer>
       </article>
 
+      <li>
+        <button class="outline" onClick={logoutUser}>
+          Logout
+        </button>
+      </li>
 
     </>
   );

@@ -88,6 +88,16 @@ const UserProvider = ({ children }) => {
         }
       })
   }
+
+  const logoutUser = () => {
+    fetch("/logout", {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+    }).then(() => {
+      logout()
+      navigate("/")
+    })
+  }
     
   const login = (user) => {
     setUser(user);
@@ -114,7 +124,8 @@ const UserProvider = ({ children }) => {
         login,
         loggedIn,
         handleMatchRequest,
-        preferencesUpdate
+        preferencesUpdate,
+        logoutUser,
       }}
     >
       {children}
