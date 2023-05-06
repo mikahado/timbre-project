@@ -2,8 +2,9 @@ import React, { useState, useContext, useEffect } from "react"
 import { UserContext } from "./context/user"
 import { useParams } from "react-router-dom"
 import UserMediaCard from "./UserMediaCard"
+import Map from "./Map"
 
-const UserProfile = () => {
+const UserProfile = ({id}) => {
   const [user, setUser] = useState({
     preference: [],
     profile: [],
@@ -11,7 +12,6 @@ const UserProfile = () => {
   const [errors, setErrors] = useState([])
 
   const { loggedIn } = useContext(UserContext)
-  const { id } = useParams()
 
   useEffect(() => {
       fetch(`/profiles/${id}`)
@@ -28,12 +28,11 @@ const UserProfile = () => {
   
   return (
     <>
-
-      <br />
       <article>
         <header>
-          <h2>{user?.username}</h2>
+          <h4>{user?.username}</h4>
           <p>{user.profile?.location}</p>
+          <Map />
         </header>
 
         <UserMediaCard key={id} media={user.profile} />
@@ -44,10 +43,6 @@ const UserProfile = () => {
       </article>
 
       <article>
-        <header>
-          <h2>{user?.username}'s Preferences</h2>
-        </header>
-
         <ul>
           <li>Instrument: {user.preference?.instruments}</li>
           <li>Wants to play with: {user.preference?.instruments_wanted}</li>

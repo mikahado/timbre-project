@@ -1,23 +1,25 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import MyRequests from "./MyRequests";
 
-const MatchRow = ({ match, id }) => {
+const MyRequestsRow = ({ request }) => {
+
   return (
     <tr>
       <td>
         <img
           src="jimih.png"
-          alt={`${match.username}`}
+          alt={`${request.username}`}
           className="profile-img"
           width="150"
         ></img>
       </td>
-      <th scope="row">{match.username}</th>
+      <th scope="row">{request.username}</th>
       <td>
-        <Link to={`/users/${id}`}>Profile</Link>
+        <Link to={`/users/${request.id}`}>Profile</Link>
       </td>
     </tr>
   );
 };
 
-export default MatchRow;
+export default MyRequestsRow

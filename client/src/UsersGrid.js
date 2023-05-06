@@ -3,25 +3,29 @@ import { UserContext } from "./context/user";
 import UserCard from "./UserCard";
 
 const UsersGrid = () => {
-  const [fourRand, setFourRand] = useState([])
+  const [twoRand, setTwoRand] = useState([])
   const { allProfiles } = useContext(UserContext)
 
   useEffect (() => {
-    fourRandom()
+    twoRandom()
    }, [])
 
-  const fourRandom = () => {
-    const fourRand = allProfiles.sort(() => Math.random() - Math.random()).slice(0, 4)
-    setFourRand(fourRand)
+  const twoRandom = () => {
+    const twoRand = allProfiles.sort(() => Math.random() - Math.random()).slice(0, 2)
+    setTwoRand(twoRand)
   }
 
-  const choiceCards = fourRand.map((u) => <UserCard key={u.id} user={u} />);
+  const choiceCards = twoRand.map((u) => <UserCard key={u.id} user={u} />);
 
   return (
     <>
       <h2>Browse Musicians</h2>
-      <main class="container">{choiceCards}</main>
-      <button onClick={fourRandom}>Next Four</button>
+      <main className="container">
+        <div class="grid" >
+          {choiceCards}
+        </div>
+      </main>
+      <button onClick={twoRandom}>Two More</button>
     </>
   );
 };

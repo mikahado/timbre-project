@@ -1,8 +1,11 @@
-import React, { useContext } from "react"
+import React, { useState, useContext } from "react"
 import { UserContext } from "./context/user"
+import UserProfile from "./UserProfile"
 import { Link } from "react-router-dom"
 
-const UserProfile = ({ user }) => {
+const UserCard = ({ user }) => {
+
+  const [toggle, setToggle] = useState(false)
 
   const { handleMatchRequest  } = useContext(UserContext) 
 
@@ -10,21 +13,30 @@ const UserProfile = ({ user }) => {
     handleMatchRequest(id)
   }
 
-  
+  const handleProfileClick = () => { 
+    setToggle(!toggle)
+  }
+
   return (
     <article>
-      <Link to={`/users/${user.id}`}>
-        {user.name}
+      <header>
+        <h3>{user.username}</h3>
+      <button className="secondary-button" onClick={handleProfileClick}>profile</button>
+      </header>
+      
+      {toggle ? <UserProfile key={user.id} id={user.id} /> : null}
+      {/* <Link to={`/users/${user.id}`}>
         <header>{user.username}</header>
-        
-      </Link>
+      </Link> */}
+
       <footer>
-        <button className="accept-button" onClick={() => handleMatchRequestClick(user.id)}>Yawp!</button>
+        <button className="accept-button" onClick={() => handleMatchRequestClick(user.id)}>✔</button>
         <br />
-        <button className="warning-button">Nah</button>
+        <button className="warning-button">X</button>
       </footer>
+
     </article>
   );
 };
 
-export default UserProfile;
+export default UserCard;

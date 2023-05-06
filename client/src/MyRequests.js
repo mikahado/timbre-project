@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
 import { UserContext } from "./context/user";
-import MatchRow from "./MatchRow";
+import MyRequestsRow from "./MyRequestsRow";
 
-const MatchRequests = () => {
+const MyRequests = () => {
   const { user } = useContext(UserContext);
 
+  const requests = user.matches.map((r) => <MyRequestsRow key={r.id} request={r} />)
 
   return (
     <>
@@ -12,10 +13,10 @@ const MatchRequests = () => {
       <small>If they like you, too -- You'll match!</small>
 
       <table>
-        <tbody>...</tbody>
+        <tbody>{requests}</tbody>
       </table>
     </>
   );
 };
 
-export default MatchRequests;
+export default MyRequests;
