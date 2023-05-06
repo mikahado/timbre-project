@@ -1,18 +1,18 @@
-import React, { useState, useContext } from "react";
-import { UserContext } from "./context/user";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useContext } from "react"
+import { UserContext } from "./context/user"
+import { useNavigate } from "react-router-dom"
 
 const Signup = () => {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordConfirmation, setPasswordConfirmation] = useState("");
-  const [errorsList, setErrorsList] = useState("");
+  const [username, setUsername] = useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [passwordConfirmation, setPasswordConfirmation] = useState("")
+  const [errorsList, setErrorsList] = useState("")
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
-  const { signup } = useContext(UserContext);
-
+  const { signup } = useContext(UserContext)
+  
   const handleSubmit = (e) => {
     e.preventDefault();
 

@@ -44,6 +44,12 @@ const Navbar = () => {
               </li>
 
               <li>
+                <NavLink to="/match_requests">
+                  <button className="button2">You Like</button>
+                </NavLink>
+              </li>
+
+              <li>
                 <button class="outline" onClick={logoutUser}>
                   Logout
                 </button>

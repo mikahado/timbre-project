@@ -41,6 +41,35 @@ const UserProvider = ({ children }) => {
       })
   }
 
+  const handleMatchRequest = (receiver_id) => { 
+    
+    const request = {
+      requester_id: user.id,
+      receiver_id: receiver_id
+    }
+
+    fetch("/match_requests", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(request)
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        if (data.errors) {
+          setErrors(data.errors)
+          console.log(data.errors)
+        } else {
+          setUser(data)
+          console.log(data)
+          // navigate("/my-profile")
+        }
+      })
+
+  
+  }
+
   const preferencesUpdate = (matchPreferences) => { 
     fetch(`/preferences/${user.id}`, {
       method: "PATCH",
@@ -60,8 +89,6 @@ const UserProvider = ({ children }) => {
       })
   }
     
-
-
   const login = (user) => {
     setUser(user);
     setLoggedIn(true);
@@ -86,6 +113,7 @@ const UserProvider = ({ children }) => {
         signup,
         login,
         loggedIn,
+        handleMatchRequest,
         preferencesUpdate
       }}
     >
