@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react"
 import { UserContext } from "./context/user"
 import UserProfile from "./UserProfile"
+import UserMediaCard from "./UserMediaCard"
 import { Link } from "react-router-dom"
 
 const UserCard = ({ user }) => {
@@ -20,14 +21,14 @@ const UserCard = ({ user }) => {
   return (
     <article>
       <header>
-        <h3>{user.username}</h3>
-      <button className="secondary-button" onClick={handleProfileClick}>profile</button>
+        <Link to={`/users/${user.id}`}>
+        <h2>{user.username}</h2>
+      </Link>
+      {/* <button className="secondary-button" onClick={handleProfileClick}>profile</button> */}
       </header>
       
-      {toggle ? <UserProfile key={user.id} id={user.id} /> : null}
-      {/* <Link to={`/users/${user.id}`}>
-        <header>{user.username}</header>
-      </Link> */}
+      {/* {toggle ? <UserProfile key={user.id} id={user.id} /> : null} */}
+   
 
       <footer>
         <button className="accept-button" onClick={() => handleMatchRequestClick(user.id)}>✔</button>

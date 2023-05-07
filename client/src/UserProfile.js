@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom"
 import UserMediaCard from "./UserMediaCard"
 import Geo from "./Geo"
 
-const UserProfile = ({id}) => {
+const UserProfile = () => {
   const [user, setUser] = useState({
     preference: [],
     profile: [],
@@ -12,6 +12,8 @@ const UserProfile = ({id}) => {
   const [errors, setErrors] = useState([])
 
   const { loggedIn } = useContext(UserContext)
+
+  const { id } = useParams()
 
   useEffect(() => {
       fetch(`/profiles/${id}`)
@@ -24,7 +26,7 @@ const UserProfile = ({id}) => {
           }
         })
 
-  }, [id])  
+  }, [loggedIn])  
   
   return (
     <>

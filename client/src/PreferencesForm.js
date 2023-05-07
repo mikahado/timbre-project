@@ -112,6 +112,7 @@ const PreferencesForm = () => {
                       id="jam"
                       name="match_preference"
                       value="jam"
+                      checked={matchPreferences.goals === "jam"}
                       onChange={(e) =>
                         setMatchPreferences({
                           ...matchPreferences,
@@ -121,12 +122,14 @@ const PreferencesForm = () => {
                     />
                     Jam
                   </label>
+
                   <label htmlFor="perform">
                     <input
                       type="radio"
                       id="perform"
                       name="match_preference"
                       value="perform"
+                      checked={matchPreferences.goals === "perform"}
                       onChange={(e) =>
                         setMatchPreferences({
                           ...matchPreferences,
@@ -142,6 +145,7 @@ const PreferencesForm = () => {
                       id="record"
                       name="match_preference"
                       value="record"
+                      checked={matchPreferences.goals === "record"}
                       onChange={(e) =>
                         setMatchPreferences({
                           ...matchPreferences,
@@ -157,6 +161,7 @@ const PreferencesForm = () => {
                       id="compose"
                       name="match_preference"
                       value="compose"
+                      checked={matchPreferences.goals === "compose"}
                       onChange={(e) =>
                         setMatchPreferences({
                           ...matchPreferences,
