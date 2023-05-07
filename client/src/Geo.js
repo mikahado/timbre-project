@@ -1,7 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
 
-const Geo = () => {
+const Geo = ({coordinates}) => {
+
+  // const [coordinates, setCoordinates] = useState({ lat: 90, lng: 135 });
+
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: 'AIzaSyAOxatlfWkJLm9Bl43Og_QiexiY_Z1EitI',
@@ -12,14 +15,14 @@ const Geo = () => {
 
     if (isLoaded) {
       map = new window.google.maps.Map(document.getElementById("map"), {
-        center: { lat: -34.397, lng: 150.644 },
-        zoom: 6,
+        center: { lat: 37.7749, lng: -122.4194 },
+        zoom: 13,
       });
       infoWindow = new window.google.maps.InfoWindow();
 
       const locationButton = document.createElement("button");
 
-      locationButton.textContent = "Pan to Current Location";
+      locationButton.textContent = "Find Current Location";
       locationButton.classList.add("custom-map-control-button");
       map.controls[window.google.maps.ControlPosition.TOP_CENTER].push(locationButton);
       locationButton.addEventListener("click", () => {

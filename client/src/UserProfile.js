@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react"
 import { UserContext } from "./context/user"
 import { useParams } from "react-router-dom"
 import UserMediaCard from "./UserMediaCard"
-import Map from "./Map"
+import Geo from "./Geo"
 
 const UserProfile = ({id}) => {
   const [user, setUser] = useState({
@@ -32,7 +32,7 @@ const UserProfile = ({id}) => {
         <header>
           <h4>{user?.username}</h4>
           <p>{user.profile?.location}</p>
-          <Map />
+          
         </header>
 
         <UserMediaCard key={id} media={user.profile} />

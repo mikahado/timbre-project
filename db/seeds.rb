@@ -16,6 +16,21 @@ User.destroy_all
 
 user_info = ["prince",  "michael_jackson",  "madonna",  "whitney_houston",  "george_michael",  "bruce_springsteen",  "janet_jackson",  "beyonce",  "taylor_swift",  "eminem",  "jay-z",  "justin_timberlake",  "adele",  "rihanna",  "pink",  "lady_gaga",  "drake",  "ariana_grande",  "ed_sheeran",  "kendrick_lamar",  "billie_eilish",  "dua_lipa",  "cardi_b",  "halsey",  "ariana_grande",  "taylor_swift",  "rihanna",  "beyonce",  "adele",  "lizzo",  "alicia_keys",  "celine_dion",  "enya",  "shakira",  "mariah_carey",  "christina_aguilera",  "whitney_houston",  "jennifer_lopez",  "sade",  "cyndi_lauper",  "jessie_j",  "tina_turner",  "kylie_minogue",  "gwen_stefani",  "adele",  "amy_winehouse",  "lauryn_hill",  "sheryl_crow",  "chaka_khan",  "fiona_apple",  "bjork",  "sinead_oconnor"]
 
+bio = [
+  "I was the drummer for The Beatles, but Ringo Starr said I was too obsessed with octopuses. I'm ready to start a new band, with or without a cephalopod fixation.",
+  "I used to play bass for Nirvana, until Kurt Cobain said I was too happy-go-lucky. Ready to find new bandmates who won't judge me for smiling on stage!",
+  "I was the lead guitarist for Metallica, but James Hetfield said my solos were too shreddy. Looking for new musicians who appreciate a good face-melting riff!",
+  "I used to sing backup for The Rolling Stones, until Mick Jagger said I was too flashy. Hey, it's rock and roll, baby! Looking for new bandmates who want to bring some glitz to the stage!",
+  "I was the drummer for Radiohead, but Thom Yorke said my beats were too optimistic. Ready to start a new band and prove that drums can be happy too!",
+  "I used to play keyboard for Arcade Fire, until Win Butler said I was too introverted. But hey, introverts rock too. Looking for new musicians who want to make music that speaks louder than words!",
+  "I was the bassist for Red Hot Chili Peppers, but Flea said my hair was too short. Can you believe that? Ready to start a new band and show off my luscious locks!",
+  "I used to sing lead for Lady Gaga, until she said my outfits were too understated. But hey, I thought I was being tasteful. Looking for new musicians who appreciate a minimalist aesthetic!",
+  "I was the lead guitarist for Twenty One Pilots, but Tyler Joseph said I was too good-looking. Yeah, I didn't get it either. Ready to start a new band and bring some style to the stage!",
+  "I used to play drums for Vampire Weekend, until Ezra Koenig said I was too punctual. Hey, being on time is important! Looking for new bandmates who respect my commitment to the clock!"
+]
+
+
+
 instruments = ["acoustic_guitar", "electric_guitar", "piano", "drums", "bass_guitar", "violin", "cello", "flute", "saxophone", "trumpet", "clarinet", "harp", "banjo", "mandolin", "ukulele", "accordion", "harmonica", "bagpipes", "djembe", "maracas"]
 
 location = [
@@ -52,7 +67,7 @@ money = ["split", "paid", "negotiable", "free"]
 
 host = [ true, false ]
 
-index_counter = 0
+index_counter = 0               
 request_index_counter = 0
 request_index_counter_1 = 0
 request_index_counter_2 = 0
@@ -62,11 +77,15 @@ puts 'created user_info'
 puts'created user_var'
 
 50.times do |u|
+
    user =  User.create(username: user_info[index_counter], email: user_info[index_counter] + "@gmail.com", password: user_info[index_counter], password_confirmation: user_info[index_counter])
 
+   location_index = u % location.length
+
    user.create_profile(
-        location: location.sample, 
-        bio: "bio",
+        lat: location[location_index][:lat],
+        lng: location[location_index][:lng],
+        bio: bio.sample,
         media_1: "photo link", 
         media_2: "video link", 
         media_3:"audio link", 

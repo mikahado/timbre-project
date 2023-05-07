@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react"
 import PreferencesForm from "./PreferencesForm"
+import Geo from "./Geo"
 import { UserContext } from "./context/user"
 import { NavLink, useNavigate } from "react-router-dom"
 
@@ -25,8 +26,9 @@ const UserProfile = () => {
       <article>
         <header>
           <h1>{user?.username}</h1>
-          <p>Location: {user.profile?.location}</p>
-          <small>edit</small>
+          <small>Only you can see your exact location</small>
+          
+          <Geo key={user.id} coordinates={user.profile?.location} />
         </header>
         <ul>
           <li>Media 1: {user.profile?.media_1}</li>
