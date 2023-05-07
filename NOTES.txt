@@ -1,3 +1,14 @@
 GoogleMaps API Key
 
 AIzaSyAOxatlfWkJLm9Bl43Og_QiexiY_Z1EitI
+
+"AIzaSyAOxatlfWkJLm9Bl43Og_QiexiY_Z1EitI"
+
+
+COMET CHAT CONVERSATION LIST component, this is commented out:
+
+// componentWillUnmount() {
+	// 	this._isMounted = false;
+	// 	this.ConversationListManager.removeListeners();
+	// 	this.ConversationListManager = null;
+	// }
