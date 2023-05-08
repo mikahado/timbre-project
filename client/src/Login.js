@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { UserContext } from "./context/user";
 import { useNavigate } from "react-router-dom";
+import { CometChat } from '@cometchat-pro/chat'
 import "./App.css";
 
 const Login = () => {
@@ -27,6 +28,22 @@ const Login = () => {
         if (!user.error) {
           login(user);
           navigate("/");
+
+          const authKey = process.env.REACT_APP_COMETCHAT_KEY
+          const uid = user.id.toString()
+      
+          CometChat.login(uid, authKey).then(
+            user => {
+              console.log("Login Successful:", { user })
+            },
+            error => {
+              console.log("Login failed with exception:", { error })   
+            }
+          )
+
+
+
+
         } else {
           setPassword("");
           const errorLi = <li>{user.error}</li>;

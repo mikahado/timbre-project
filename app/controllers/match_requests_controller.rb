@@ -13,6 +13,8 @@ class MatchRequestsController < ApplicationController
         if MatchRequest.check_for_match?(match_request.requester_id, match_request.receiver_id)
            MatchedUser.create_mutual_match(match_request.requester_id, match_request.receiver_id)
         end
+
+        render json: match_request, status: :created
         
     end
 

@@ -68,7 +68,7 @@ const PreferencesForm = () => {
                   required
                 />
               </label>
-
+           
               <label htmlFor="their-instruments">
                 Their Main Instrument
                 <input
@@ -102,7 +102,6 @@ const PreferencesForm = () => {
                 <option value="experienced">Experienced</option>
                 <option value="pro">Pro</option>
               </select>
-
               <div>
                 <fieldset id="goals">
                   <legend>What are you looking for?</legend>

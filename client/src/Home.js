@@ -4,7 +4,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 // import shindyLogo from './imgs/shindyLogo.png'
 
 const Home = () => {
-  const { user, login, loggedIn } = useContext(UserContext);
+  const { user, login, loggedIn } = useContext(UserContext)
   const navigate = useNavigate();
 
   if (loggedIn) {

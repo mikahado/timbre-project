@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react"
+import { CometChat } from '@cometchat-pro/chat'
 import { UserContext } from "./context/user"
 import { useNavigate } from "react-router-dom"
 
@@ -31,13 +32,30 @@ const Signup = () => {
         if (!user.errors) {
           signup(user);
           navigate("/");
+
+          const authKey = process.env.REACT_APP_COMETCHAT_KEY;
+          const uid = user.id.toString();
+          const name = user.username.toString();
+
+          var cc_user = new CometChat.User(uid)
+          cc_user.setName(name)
+
+          CometChat.createUser(cc_user, authKey).then(
+            cc_user => {
+                  console.log("user created", cc_user);
+              },error => {
+                  console.log("error", error);
+              }
+      )
+
         } else {
           setUsername("");
           const errorLis = user.errors.map((e) => <li>{e}</li>);
           setErrorsList(errorLis);
-        }
-      });
-  };
+          }
+        })
+    }
+  
 
   return (
     <>

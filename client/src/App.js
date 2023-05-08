@@ -11,7 +11,6 @@ import MyProfile from './MyProfile'
 import Matches from './Matches'
 import MyRequests from './MyRequests';
 import PreferencesForm from './PreferencesForm'
-import Map from './Map'
 import ChatMain from './ChatMain'
 import Geo from './Geo'
 import { UserProvider } from "./context/user"
