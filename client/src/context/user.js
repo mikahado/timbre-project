@@ -8,8 +8,7 @@ const UserProvider = ({ children }) => {
   const [user, setUser] = useState({
     preference: [],
     profile: [],
-    matches: [],
-    sent_matches: [],
+    matches: []
   })
 
   console.log("universal user", user)
@@ -67,12 +66,13 @@ const UserProvider = ({ children }) => {
           setErrors(data.errors)
           console.log(data.errors)
         } else {
-          setUser(prevState => ({
-            ...prevState,
-            sent_matches: [...prevState.sent_matches, data]
-          }))
-          console.log("data", data)
+          // setUser(prevState => ({
+          //   ...prevState,
+          //   sent_matches: [...prevState.sent_matches, data]
+          // }))
+          // console.log("data", data)
           // navigate("/my-profile")
+          alert(`Request Sent!`)
         }
       })
   }

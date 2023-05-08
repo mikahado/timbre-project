@@ -9,14 +9,16 @@ class MatchRequestsController < ApplicationController
 
     def create
         match_request = MatchRequest.create(match_request_params)
-        
+
         if MatchRequest.check_for_match?(match_request.requester_id, match_request.receiver_id)
-           MatchedUser.create_mutual_match(match_request.requester_id, match_request.receiver_id)
+            
+          matched_user = MatchedUser.create_mutual_match(match_request.requester_id, match_request.receiver_id)
+          render json: matched_user, status: :created
+        else
+         render json: match_request, status: :created
         end
 
-        render json: match_request, status: :created
-    end
-
+      end
     private 
 
     def match_request_params

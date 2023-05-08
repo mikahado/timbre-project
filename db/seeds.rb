@@ -14,7 +14,7 @@ MatchedUser.destroy_all
 User.destroy_all
 
 
-user_info = ["prince",  "michael_jackson",  "madonna",  "whitney_houston",  "george_michael",  "bruce_springsteen",  "janet_jackson",  "beyonce",  "taylor_swift",  "eminem",  "jay-z",  "justin_timberlake",  "adele",  "rihanna",  "pink",  "lady_gaga",  "drake",  "ariana_grande",  "ed_sheeran",  "kendrick_lamar",  "billie_eilish",  "dua_lipa",  "cardi_b",  "halsey",  "ariana_grande",  "taylor_swift",  "rihanna",  "beyonce",  "adele",  "lizzo",  "alicia_keys",  "celine_dion",  "enya",  "shakira",  "mariah_carey",  "christina_aguilera",  "whitney_houston",  "jennifer_lopez",  "sade",  "cyndi_lauper",  "jessie_j",  "tina_turner",  "kylie_minogue",  "gwen_stefani",  "adele",  "amy_winehouse",  "lauryn_hill",  "sheryl_crow",  "chaka_khan",  "fiona_apple",  "bjork",  "sinead_oconnor"]
+user_info = ["prince",  "madonna",  "whitney_houston",  "janet_jackson", "kendrick_lamar",  "billie_eilish",  "dua_lipa", "jennifer_lopez", "tina_turner", "chaka_khan", "bjork"]
 
 bio = [
   "I was the drummer for The Beatles, but Ringo Starr said I was too obsessed with octopuses. I'm ready to start a new band, with or without a cephalopod fixation.",
@@ -29,32 +29,12 @@ bio = [
   "I used to play drums for Vampire Weekend, until Ezra Koenig said I was too punctual. Hey, being on time is important! Looking for new bandmates who respect my commitment to the clock!"
 ]
 
-
-
 instruments = ["acoustic_guitar", "electric_guitar", "piano", "drums", "bass_guitar", "violin", "cello", "flute", "saxophone", "trumpet", "clarinet", "harp", "banjo", "mandolin", "ukulele", "accordion", "harmonica", "bagpipes", "djembe", "maracas"]
 
-location = [
-  { lat: 37.7749, lng: -122.4194 },
-  { lat: 40.7128, lng: -74.0060 },
-  { lat: 34.0522, lng: -118.2437 },
-  { lat: 41.8781, lng: -87.6298 },
-  { lat: 29.7604, lng: -95.3698 },
-  { lat: 25.7617, lng: -80.1918 },
-  { lat: 47.6062, lng: -122.3321 },
-  { lat: 39.7392, lng: -104.9903 },
-  { lat: 42.3601, lng: -71.0589 },
-  { lat: 38.9072, lng: -77.0369 },
-  { lat: 33.7490, lng: -84.3880 },
-  { lat: 36.1627, lng: -86.7816 },
-  { lat: 44.9778, lng: -93.2650 },
-  { lat: 35.2271, lng: -80.8431 },
-  { lat: 38.2527, lng: -85.7585 },
-  { lat: 43.0389, lng: -87.9065 },
-  { lat: 33.4484, lng: -112.0740 },
-  { lat: 32.7157, lng: -117.1611 },
-  { lat: 30.2672, lng: -97.7431 },
-  { lat: 42.3603, lng: -71.0583 }
-]
+
+lat = [37.7749, 40.7128, 34.0522, 41.8781, 29.7604, 25.7617, 47.6062, 39.7392, 42.3601, 38.9072, 33.7490, 36.1627, 44.9778, 35.2271, 38.2527, 43.0389, 33.4484, 32.7157, 30.2672, 42.3603]
+
+lng = [-122.4194, -74.0060, -118.2437, -87.6298, -95.3698, -80.1918, -122.3321, -104.9903, -71.0589, -77.0369, -84.3880, -86.7816, -93.2650, -80.8431, -85.7585, -87.9065, -112.0740, -117.1611, -97.7431, -71.0583]
 
 
 skill = ["beginner", "intermediate", "advanced", "professional"]
@@ -76,20 +56,18 @@ puts 'created user_info'
 
 puts'created user_var'
 
-50.times do |u|
+11.times do |u|
 
    user =  User.create(username: user_info[index_counter], email: user_info[index_counter] + "@gmail.com", password: user_info[index_counter], password_confirmation: user_info[index_counter])
 
-   location_index = u % location.length
-
    user.create_profile(
-        lat: location[location_index][:lat],
-        lng: location[location_index][:lng],
+        lat: lat[index_counter],
+        lng: lng[index_counter],
         bio: bio.sample,
-        media_1: "photo link", 
-        media_2: "video link", 
-        media_3:"audio link", 
-        media_4:"website link")
+        media_1: "photo_url", 
+        media_2: "video_url", 
+        media_3: "audio_url", 
+        media_4: "photo_url")
 
     user.create_preference(
         instruments: instruments.sample,
@@ -105,6 +83,19 @@ puts'created user_var'
 end
 
 puts 'created users'
+
+20.times do |m|
+  user_1 = User.find_by(username: user_info.sample)
+  user_2 = User.find_by(username: user_info.sample)
+  MatchRequest.create(requester_id: user_1.id, receiver_id: user_2.id)
+  MatchRequest.create(requester_id: user_2.id, receiver_id: user_1.id)
+
+  if MatchRequest.check_for_match?(user_1.id, user_2.id)
+    MatchedUser.create_mutual_match(user_1.id, user_2.id)
+  end
+
+end
+
 
 user_1 = User.find_by(username: "prince")
 user_2 = User.find_by(username: "madonna")
