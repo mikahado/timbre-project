@@ -15,6 +15,7 @@ const MatchRow = ({ match, id }) => {
       <th scope="row">{match.username}</th>
       <td>
         <Link to={`/users/${id}`}>Profile</Link>
+        <Link to={`/chat/${id}`}>Profile</Link>
       </td>
     </tr>
   );

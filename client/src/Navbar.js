@@ -38,16 +38,16 @@ const Navbar = () => {
               </li>
 
               <li>
-                <NavLink to="/chat">
+                <NavLink to="/matches">
                   <button className="button2">Matches</button>
                 </NavLink>
               </li>
 
-              <li>
+              {/* <li>
                 <NavLink to="/match_requests">
                   <button className="button2">You Like</button>
                 </NavLink>
-              </li>
+              </li> */}
 
               {/* <li>
                 <button class="outline" onClick={logoutUser}>

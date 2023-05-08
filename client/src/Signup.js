@@ -33,9 +33,9 @@ const Signup = () => {
           signup(user);
           navigate("/");
 
-          const authKey = process.env.REACT_APP_COMETCHAT_KEY;
-          const uid = user.id.toString();
-          const name = user.username.toString();
+          const authKey = process.env.REACT_APP_COMETCHAT_KEY
+          const uid = user.id.toString()
+          const name = user.username.toString()
 
           var cc_user = new CometChat.User(uid)
           cc_user.setName(name)

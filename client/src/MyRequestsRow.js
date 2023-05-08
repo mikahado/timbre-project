@@ -4,6 +4,8 @@ import MyRequests from "./MyRequests";
 
 const MyRequestsRow = ({ request }) => {
 
+  console.log('myrequestsrow', request)
+
   return (
     <tr>
       <td>

@@ -8,13 +8,18 @@ const UserProvider = ({ children }) => {
   const [user, setUser] = useState({
     preference: [],
     profile: [],
+    matches: [],
+    sent_matches: [],
   })
+
+  console.log("universal user", user)
+
   const [allProfiles, setAllProfiles] = useState([])
+  const [matchRequests, setMatchRequests] = useState([])
   const [loggedIn, setLoggedIn] = useState(false)
   const [errors, setErrors] = useState([])
 
-
-  const navigate = useNavigate()
+   const navigate = useNavigate()
 
   useEffect(() => {
     fetch("/me")
@@ -62,14 +67,17 @@ const UserProvider = ({ children }) => {
           setErrors(data.errors)
           console.log(data.errors)
         } else {
-          setUser(data)
-          console.log(data)
+          setUser(prevState => ({
+            ...prevState,
+            sent_matches: [...prevState.sent_matches, data]
+          }))
+          console.log("data", data)
           // navigate("/my-profile")
         }
       })
-
-  
   }
+
+  // console.log("user", user)
 
   const preferencesUpdate = (matchPreferences) => { 
     fetch(`/preferences/${user.id}`, {
@@ -84,7 +92,10 @@ const UserProvider = ({ children }) => {
         if (data.errors) {
           setErrors(data.errors)
         } else {
-          setUser(data)
+          setUser(prevState => ({
+            ...prevState,
+            preference: [...prevState.preference, data]
+          }))
           navigate("/my-profile")
         }
       })

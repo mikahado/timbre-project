@@ -5,7 +5,7 @@ import MyRequestsRow from "./MyRequestsRow";
 const MyRequests = () => {
   const { user } = useContext(UserContext);
 
-  const requests = user.matches.map((r) => <MyRequestsRow key={r.id} request={r} />)
+  const requests = user.sent_matches.map((r) => <MyRequestsRow key={r.id} request={r} />)
 
   return (
     <>

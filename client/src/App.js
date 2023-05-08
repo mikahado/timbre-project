@@ -34,7 +34,7 @@ function App(props) {
           <Route path="/my-profile" element={<MyProfile />} />
           <Route path="/preferences/:id" element={<PreferencesForm />} />
           <Route path="/geo" element={<Geo />} />
-          <Route path="/chat" element={<ChatMain />} />
+          <Route path="/chat/:id" element={<ChatMain />} />
         </Routes>
       </UserProvider>
 

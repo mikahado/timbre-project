@@ -15,7 +15,6 @@ class MatchRequestsController < ApplicationController
         end
 
         render json: match_request, status: :created
-        
     end
 
     private 
