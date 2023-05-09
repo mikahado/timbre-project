@@ -1,9 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
+import { UserContext } from "./context/user";
 
-const Geo = ({coordinates}) => {
+const Geo = () => {
 
-  // const [coordinates, setCoordinates] = useState({ lat: 90, lng: 135 });
+  const { user, updateLocation } = useContext(UserContext)
+  const [position, setPosition] = useState({ lat: 0, lng: 0 })
+  
+  console.log(position)
 
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
@@ -15,7 +19,7 @@ const Geo = ({coordinates}) => {
 
     if (isLoaded) {
       map = new window.google.maps.Map(document.getElementById("map"), {
-        center: { lat: 37.7749, lng: -122.4194 },
+        center: { lat: user.profile.lat, lng: user.profile.lng },
         zoom: 13,
       });
       infoWindow = new window.google.maps.InfoWindow();
@@ -35,8 +39,10 @@ const Geo = ({coordinates}) => {
                 lng: position.coords.longitude,
               };
 
-              infoWindow.setPosition(pos);
-              infoWindow.setContent("Location found.");
+              setPosition(pos)
+
+              // infoWindow.setPosition(pos);
+              // infoWindow.setContent("Location found.");
               infoWindow.open(map);
               map.setCenter(pos);
             },
@@ -62,10 +68,25 @@ const Geo = ({coordinates}) => {
     }
   }, [isLoaded]);
 
+  const handleUpdateLocation = () => {
+      updateLocation(position)
+   }
+
   return (
-    <div>
-      <div id="map" style={{ height: '400px', width: '100%' }}></div>
-    </div>
+    <>
+      <article>      
+        <div>
+         <p>Select a General Location</p>
+          <p className="accept-button" onClick={handleUpdateLocation}>Save</p>
+          <br />
+          <div id="map" style={{ height: '400px', width: '100%' }}>
+          </div>
+          <small>Only you can see your location. Other users will </small>
+        </div>
+        
+      </article>
+
+    </>
   );
 };
 

@@ -13,7 +13,7 @@ const Home = () => {
         <h3>
           <br />
           <h1>
-            <strong> Home component</strong>
+            {/* <strong> Home </strong> */}
           </h1>
           <br />
         </h3>

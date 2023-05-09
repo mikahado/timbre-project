@@ -77,8 +77,6 @@ const UserProvider = ({ children }) => {
       })
   }
 
-  // console.log("user", user)
-
   const preferencesUpdate = (matchPreferences) => { 
     fetch(`/preferences/${user.id}`, {
       method: "PATCH",
@@ -100,6 +98,32 @@ const UserProvider = ({ children }) => {
         }
       })
   }
+
+
+  const updateLocation = (location) => {
+    console.log("location", location)
+
+    fetch(`/profiles/${user.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(location),
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        if (data.errors) {
+          setErrors(data.errors)
+        } else {
+          setUser(prevState => ({
+            ...prevState,
+            profile: [...prevState.profile, data]
+          }))
+          navigate("/my-profile")
+        }
+      })
+    }
+
 
   const logoutUser = () => {
     fetch("/logout", {
@@ -138,6 +162,7 @@ const UserProvider = ({ children }) => {
         handleMatchRequest,
         preferencesUpdate,
         logoutUser,
+        updateLocation,
       }}
     >
       {children}

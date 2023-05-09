@@ -82,14 +82,14 @@ html {
 }
 
 .secondary-button {
-  background: linear-gradient(45deg, #4b8abe17, #5c8cac8c);
-  text-transform: uppercase;  
+  background: linear-gradient(0deg, #4b8abe17, #5c8cac8c);
+  /* text-transform: uppercase;   */
   border-radius: 30px;
   border: none;
   margin: auto;
   width: 30%;
-  padding: 12px, 30px;
-  opacity: .8;
+  padding: 10px, 30px;
+  opacity: .9;
   text-decoration: none;
 }
 
@@ -153,3 +153,7 @@ html {
   grid-column-gap: 0px;
   grid-row-gap: 0px;
   }
+
+.map {
+  width: 300px;
+}

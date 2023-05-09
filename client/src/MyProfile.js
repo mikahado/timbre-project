@@ -6,6 +6,8 @@ import { NavLink, useNavigate } from "react-router-dom"
 
 const UserProfile = () => {
   const { user, loggedIn, logoutUser } = useContext(UserContext)
+  const [ toggleGeo, setToggleGeo ] = useState(false)
+  const [ toggleEditBio, setToggleEditBio ] = useState(false)
 
   const [myProfile, setMyProfile] = useState({
     location: user.profile?.location,
@@ -19,26 +21,51 @@ const UserProfile = () => {
   return (
     <>
       <br/>
-      <NavLink to={`/preferences/${user.id}`}>
-        <p className="secondary-button">Preferences</p>
-      </NavLink>
+   
 
       <article>
         <header>
           <h1>{user?.username}</h1>
-          <small>Only you can see your exact location</small>
-          
-          <Geo key={user.id} coordinates={user.profile?.location} />
+
+          {toggleEditBio ? 
+            <form>
+              <textarea
+                className="textarea"
+                type="text"
+                name="bio"
+                value={myProfile.bio}
+                onChange={(e) => setMyProfile({ ...myProfile, bio: e.target.value })}
+              />
+              <href type="submit" onClick={c => setToggleEditBio(!toggleEditBio)}>save</href>
+            </form>
+           : 
+           <li>{user.profile?.bio}</li>}
+
+          <br/>
+
+          <href onClick={c => setToggleEditBio(!toggleEditBio)}><small>{toggleEditBio ? null : "edit bio"}</small></href>
+
         </header>
         <ul>
-          <li>Media 1: {user.profile?.media_1}</li>
-          <li>Media 2: {user.profile?.media_2}</li>
-          <li>Media 3: {user.profile?.media_3}</li>
-          <li>Media 4: {user.profile?.media_4}</li>
+          <li>Media 1: {user.profile?.media_1}<small> edit</small></li>
+
+          <li>Media 2: {user.profile?.media_2}<small> edit</small></li>
+
+          <li>Media 3: {user.profile?.media_3}<small> edit</small></li>
+
+          <li>Media 4: {user.profile?.media_4}<small> edit</small></li>
+          
         </ul>
         <footer>
+        <NavLink to={`/preferences/${user.id}`}>
+              <button className="secondary-button">Preferences</button>
+        </NavLink>
+        {/* <NavLink to={`/geo`}>
+            <button className="secondary-button">Location</button>
+        </NavLink> */}
+        <button className="secondary-button" onClick={c => setToggleGeo(!toggleGeo)}>Location</button>
+        {toggleGeo ? <Geo key={user.id} coordinates={user.profile?.location} /> : null}
           
-          <li>Bio: {user.profile?.bio}</li>
         </footer>
       </article>
 
