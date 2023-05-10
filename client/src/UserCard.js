@@ -8,15 +8,18 @@ const UserCard = ({ user }) => {
 
   const [toggle, setToggle] = useState(false)
 
-  const { handleMatchRequest  } = useContext(UserContext) 
+  const { handleMatchRequest, handleRemoveUser  } = useContext(UserContext) 
 
   const handleMatchRequestClick = (id) => {   
     handleMatchRequest(id)
+    handleRemoveUser(id)
   }
 
-  const handleProfileClick = () => { 
-    setToggle(!toggle)
+  const handleMatchRejectClick = (id) => {   
+    handleRemoveUser(id)
+    console.log(id)
   }
+
 
   return (
     <article>
@@ -31,11 +34,11 @@ const UserCard = ({ user }) => {
 
       <footer>
         <button className="accept-button" onClick={() => handleMatchRequestClick(user.id)}>✔</button>
-        <button className="warning-button">X</button>
+        <button className="warning-button" onClick={() => handleMatchRejectClick(user.id)}>X</button>
       </footer>
 
     </article>
-  );
-};
+  )
+}
 
-export default UserCard;
+export default UserCard

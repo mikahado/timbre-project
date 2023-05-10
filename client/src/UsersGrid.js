@@ -4,6 +4,7 @@ import UserCard from "./UserCard";
 
 const UsersGrid = () => {
   const [twoRand, setTwoRand] = useState([])
+  
   const { allProfiles } = useContext(UserContext)
 
   useEffect (() => {

@@ -7,6 +7,7 @@ class User < ApplicationRecord
     has_many :matches, through: :matched_users, foreign_key: :user_1, source: :user_2
 
     has_many :pending_matches, foreign_key: :receiver, class_name: "MatchRequest"
+    
     has_many :sent_matches, foreign_key: :requester, class_name: "MatchRequest"
 
     has_one :profile

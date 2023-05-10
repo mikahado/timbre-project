@@ -12,7 +12,9 @@ const UsersGrid = () => {
       <h2>Matches</h2>
 
       <table>
-        <tbody>{match}</tbody>
+        <tbody>
+          {match}
+        </tbody>
       </table>
     </>
   );

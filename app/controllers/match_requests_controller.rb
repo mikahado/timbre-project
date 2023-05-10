@@ -2,10 +2,10 @@ class MatchRequestsController < ApplicationController
 
     skip_before_action :authorize
 
-    def index
-        requests = MatchRequest.all
-        render json: requests
-    end
+    # def index
+    #     requests = MatchRequest.all
+    #     render json: requests
+    # end
 
     def create
         match_request = MatchRequest.create(match_request_params)

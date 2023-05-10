@@ -13,6 +13,8 @@ const UserProfile = () => {
   const [ toggleEditMedia3, setToggleEditMedia3 ] = useState(false)
   const [ toggleEditMedia4, setToggleEditMedia4 ] = useState(false)
 
+
+
   const [myProfile, setMyProfile] = useState({
     lat: "",
     lng: "",
@@ -46,7 +48,7 @@ const UserProfile = () => {
   return (
     <>
       <br/>
-   
+     
       <article>
         <header>
           <h1>{user?.username}</h1>

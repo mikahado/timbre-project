@@ -14,7 +14,7 @@ const UserProvider = ({ children }) => {
   console.log("ContextUserData", user)
 
   const [allProfiles, setAllProfiles] = useState([])
-  const [matchRequests, setMatchRequests] = useState([])
+  // const [matchRequests, setMatchRequests] = useState([])
   const [loggedIn, setLoggedIn] = useState(false)
   const [errors, setErrors] = useState([])
 
@@ -117,6 +117,12 @@ const UserProvider = ({ children }) => {
       })
   }
 
+  const handleRemoveUser = (id) => {
+    const updatedProfiles = allProfiles.filter(p => p.id !== id)
+    console.log(updatedProfiles)
+    setAllProfiles(u => updatedProfiles)
+  }
+
 
   const logoutUser = () => {
     fetch("/logout", {
@@ -154,6 +160,7 @@ const UserProvider = ({ children }) => {
         login,
         loggedIn,
         handleMatchRequest,
+        handleRemoveUser,
         updateMyPreferences,
         logoutUser,
         // updateLocation,

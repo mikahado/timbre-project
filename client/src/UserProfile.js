@@ -1,19 +1,22 @@
 import React, { useState, useContext, useEffect } from "react"
 import { UserContext } from "./context/user"
 import { useParams } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
+import { GoogleMap, useJsApiLoader } from "@react-google-maps/api"
 import UserMediaCard from "./UserMediaCard"
 
 const UserProfile = () => {
 
-  const [user, setUser] = useState({
+  const [user_2, setUser_2] = useState({
     preference: [],
     profile: [],
   })
   const [errors, setErrors] = useState([])
 
-  const { loggedIn } = useContext(UserContext)
-
+  const { user, loggedIn } = useContext(UserContext)
   const { id } = useParams()
+
+  const navigate = useNavigate()
 
   useEffect(() => {
       fetch(`/profiles/${id}`)
@@ -22,11 +25,12 @@ const UserProfile = () => {
           if (data.errors) {
             setErrors(data.errors)
           } else {
-            setUser(data)
+            setUser_2(data)
           }
         })
 
   }, [loggedIn])  
+
 
 // computeDistanceBetween(from, to[, radius])
 // Parameters: 
@@ -38,30 +42,31 @@ const UserProfile = () => {
   
   return (
     <>
+      
       <article>
         <header>
-          <h4>{user?.username}</h4>
-          <p>{user.profile?.lat}</p>
-          <p>{user.profile?.lng}</p>
-          
+          <h4>{user_2?.username}</h4>
+          <p>{user_2.profile?.lat}</p>
+          <p>{user_2.profile?.lng}</p>
+          <p>{user_2.profile?.bio}</p>          
         </header>
 
-        <UserMediaCard key={id} media={user.profile} />
+        <UserMediaCard key={id} media={user_2.profile} />
 
         <footer>
-          <li>{user.profile?.bio}</li>
+          
         </footer>
       </article>
 
       <article>
         <ul>
-          <li>Instrument: {user.preference?.instruments}</li>
-          <li>Wants to play with: {user.preference?.instruments_wanted}</li>
-          <li>Skill level: {user.preference?.skill}</li>
-          <li>Main Genre: {user.preference?.genres}</li>
-          <li>Music Goals: {user.preference?.goals}</li>
-          <li>Pay: {user.preference?.money}</li>
-          <li>Can host: {user.preference?.host}</li>
+          <li>Instrument: {user_2.preference?.instruments}</li>
+          <li>Wants to play with: {user_2.preference?.instruments_wanted}</li>
+          <li>Skill level: {user_2.preference?.skill}</li>
+          <li>Main Genre: {user_2.preference?.genres}</li>
+          <li>Music Goals: {user_2.preference?.goals}</li>
+          <li>Pay: {user_2.preference?.money}</li>
+          <li>Can host: {user_2.preference?.host}</li>
         </ul>
         <footer>
           <li>...</li>
