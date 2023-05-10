@@ -3,7 +3,7 @@ import { UserContext } from "./context/user";
 import { NavLink, useNavigate } from "react-router-dom";
 
 const PreferencesForm = () => {
-  const { user, loggedIn, preferencesUpdate } = useContext(UserContext);
+  const { user, loggedIn, updateMyPreferences } = useContext(UserContext);
 
   const { instruments, instruments_wanted, skill, genres, goals, money, host } =
     user.preference || {}
@@ -17,26 +17,28 @@ const PreferencesForm = () => {
     genres: "",
     goals: "",
     money: "",
-    host: true,
-  });
+    host: false,
+  })
+
+  console.log("matchPreferences", matchPreferences);
 
   useEffect(() => {
     if (user.preference) {
       setMatchPreferences({
-        instruments: instruments,
-        instruments_wanted: instruments_wanted,
-        skill: skill,
-        genres: genres,
-        goals: goals,
-        money: money,
-        host: host,
-      });
+        instruments,
+        instruments_wanted,
+        skill,
+        genres,
+        goals,
+        money,
+        host,
+      })
     }
-  }, [user]);
+  }, [user])
 
   const handleFormSubmit = (e) => {
     e.preventDefault()
-    preferencesUpdate(matchPreferences)
+    updateMyPreferences(matchPreferences)
   }
 
 
@@ -60,10 +62,13 @@ const PreferencesForm = () => {
                   type="text"
                   id="instruments"
                   name="instruments"
-                  // write code to make the following value come from state
-                  // a: user.profile.instruments
                   value={matchPreferences.instruments}
-                  // onChange={setMatchPreferences(e => e.target.value)}
+                  onChange={(e) =>
+                    setMatchPreferences({
+                      ...matchPreferences,
+                      instruments: e.target.value,
+                    })
+                  }                  
                   placeholder="my instruments"
                   required
                 />
@@ -76,6 +81,12 @@ const PreferencesForm = () => {
                   id="instruments_wanted"
                   name="instruments_wanted"
                   value={matchPreferences.instruments_wanted}
+                  onChange={(e) =>
+                    setMatchPreferences({
+                      ...matchPreferences,
+                      instruments_wanted: e.target.value,
+                    })
+                  }
                   placeholder="instruments I want to play with"
                   required
                 />
@@ -257,12 +268,12 @@ const PreferencesForm = () => {
                   onChange={(e) =>
                     setMatchPreferences({
                       ...matchPreferences,
-                      host: e.target.value === "Yes",
+                      host: e.target.value === "true",
                     })
                   }
                 >
-                  <option value="Yes">Yes</option>
-                  <option value="No">No</option>
+                  <option value={"true"}>Yes</option>
+                  <option value={"false"}>No</option>
                 </select>
               </div>
             </div>

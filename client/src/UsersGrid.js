@@ -6,9 +6,9 @@ const UsersGrid = () => {
   const [twoRand, setTwoRand] = useState([])
   const { allProfiles } = useContext(UserContext)
 
-  // useEffect (() => {
-  //   twoRandom()
-  //  }, [])
+  useEffect (() => {
+    twoRandom()
+   }, [])
 
   const twoRandom = () => {
     const twoRand = allProfiles.sort(() => Math.random() - Math.random()).slice(0, 2)

@@ -5,22 +5,27 @@ const MatchRow = ({ match, id }) => {
   return (
     <tr>
       <td>
+        
+      <Link to={`/users/${id}`}>
         <img
           src="jimih.png"
           alt={`${match.username}`}
           className="profile-img"
           width="150"
         ></img>
+        </Link>
       </td>
-      <th scope="row">{match.username}</th>
-      <td>
-        <Link to={`/users/${id}`}>Profile</Link>
 
+      <td>
+      <Link to={`/users/${id}`}>{match.username}
+      </Link>
       </td>
+
       <td>        
         <Link to={`/chat/${id}`}>Chat</Link>
       </td>
     </tr>
+
   );
 };
 

@@ -2,9 +2,9 @@ import React, { useState, useContext, useEffect } from "react"
 import { UserContext } from "./context/user"
 import { useParams } from "react-router-dom"
 import UserMediaCard from "./UserMediaCard"
-import Geo from "./Geo"
 
 const UserProfile = () => {
+
   const [user, setUser] = useState({
     preference: [],
     profile: [],
@@ -27,13 +27,22 @@ const UserProfile = () => {
         })
 
   }, [loggedIn])  
+
+// computeDistanceBetween(from, to[, radius])
+// Parameters: 
+// from:  LatLng|LatLngLiteral
+// to:  LatLng|LatLngLiteral
+// radius:  number optional
+// Return Value:  number
+// Returns the distance, in meters, between two LatLngs. You can optionally specify a custom radius. The radius defaults to the radius of the Earth.
   
   return (
     <>
       <article>
         <header>
           <h4>{user?.username}</h4>
-          <p>{user.profile?.location}</p>
+          <p>{user.profile?.lat}</p>
+          <p>{user.profile?.lng}</p>
           
         </header>
 

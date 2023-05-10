@@ -1,28 +1,52 @@
-import React, { useState, useContext } from "react"
+import React, { useState, useContext, useEffect } from "react"
 import PreferencesForm from "./PreferencesForm"
 import Geo from "./Geo"
 import { UserContext } from "./context/user"
 import { NavLink, useNavigate } from "react-router-dom"
 
 const UserProfile = () => {
-  const { user, loggedIn, logoutUser } = useContext(UserContext)
+  const { user, loggedIn, logoutUser, updateMyProfile } = useContext(UserContext)
   const [ toggleGeo, setToggleGeo ] = useState(false)
   const [ toggleEditBio, setToggleEditBio ] = useState(false)
+  const [ toggleEditMedia1, setToggleEditMedia1 ] = useState(false)
+  const [ toggleEditMedia2, setToggleEditMedia2 ] = useState(false)
+  const [ toggleEditMedia3, setToggleEditMedia3 ] = useState(false)
+  const [ toggleEditMedia4, setToggleEditMedia4 ] = useState(false)
 
   const [myProfile, setMyProfile] = useState({
-    location: user.profile?.location,
-    bio: user.profile?.bio,
-    media_1: user.profile?.media_1,
-    media_2: user.profile?.media_1,
-    media_3: user.profile?.media_1,
-    media_4: user.profile?.media_1,
-  });
+    lat: "",
+    lng: "",
+    bio: "",
+    media_1: "",
+    media_2: "",
+    media_3: "",
+    media_4: "",
+  })
+
+  useEffect(() => {
+    if (user.profile) {
+      setMyProfile({
+        lat: user.profile.lat,
+        lng: user.profile.lng,
+        bio: user.profile.bio,
+        media_1: user.profile.media_1,
+        media_2: user.profile.media_2,
+        media_3: user.profile.media_3,
+        media_4: user.profile.media_4,
+      })
+    }
+  }, [user])
+
+  const handleUpdateMyProfile = (e) => {
+    e.preventDefault()
+    updateMyProfile(myProfile)
+    setToggleEditBio(!toggleEditBio)
+  }
 
   return (
     <>
       <br/>
    
-
       <article>
         <header>
           <h1>{user?.username}</h1>
@@ -36,7 +60,7 @@ const UserProfile = () => {
                 value={myProfile.bio}
                 onChange={(e) => setMyProfile({ ...myProfile, bio: e.target.value })}
               />
-              <href type="submit" onClick={c => setToggleEditBio(!toggleEditBio)}>save</href>
+              <href type="submit" onClick={handleUpdateMyProfile}>save</href>
             </form>
            : 
            <li>{user.profile?.bio}</li>}

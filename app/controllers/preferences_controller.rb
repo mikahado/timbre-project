@@ -8,7 +8,7 @@ class PreferencesController < ApplicationController
     private 
 
     def preference_params
-        params.require(:user).permit(:instruments, :instruments_wanted, :skill, :genres, :goals, :money, :host)
+        params.require(:preference).permit(:instruments, :instruments_wanted, :skill, :genres, :goals, :money, :host)
     end
 
 end

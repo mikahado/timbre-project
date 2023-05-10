@@ -4,7 +4,7 @@ import { UserContext } from "./context/user";
 
 const Geo = () => {
 
-  const { user, updateLocation } = useContext(UserContext)
+  const { user, updateLocation, updateMyProfile } = useContext(UserContext)
   const [position, setPosition] = useState({ lat: 0, lng: 0 })
   
   console.log(position)
@@ -12,22 +12,22 @@ const Geo = () => {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: 'AIzaSyAOxatlfWkJLm9Bl43Og_QiexiY_Z1EitI',
-  });
+  })
 
   useEffect(() => {
-    let map, infoWindow;
+    let map, infoWindow
 
     if (isLoaded) {
       map = new window.google.maps.Map(document.getElementById("map"), {
         center: { lat: user.profile.lat, lng: user.profile.lng },
         zoom: 13,
       });
-      infoWindow = new window.google.maps.InfoWindow();
+      infoWindow = new window.google.maps.InfoWindow()
 
-      const locationButton = document.createElement("button");
+      const locationButton = document.createElement("button")
 
-      locationButton.textContent = "Find Current Location";
-      locationButton.classList.add("custom-map-control-button");
+      locationButton.textContent = "Find Me"
+      locationButton.classList.add("custom-map-control-button")
       map.controls[window.google.maps.ControlPosition.TOP_CENTER].push(locationButton);
       locationButton.addEventListener("click", () => {
         // Try HTML5 geolocation.
@@ -37,9 +37,10 @@ const Geo = () => {
               const pos = {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude,
-              };
+              }
 
               setPosition(pos)
+              
 
               // infoWindow.setPosition(pos);
               // infoWindow.setContent("Location found.");
@@ -69,19 +70,20 @@ const Geo = () => {
   }, [isLoaded]);
 
   const handleUpdateLocation = () => {
-      updateLocation(position)
+      updateMyProfile(position)
    }
 
   return (
     <>
       <article>      
         <div>
-         <p>Select a General Location</p>
-          <p className="accept-button" onClick={handleUpdateLocation}>Save</p>
+         {/* <p>Location</p> */}
           <br />
           <div id="map" style={{ height: '400px', width: '100%' }}>
           </div>
-          <small>Only you can see your location. Other users will </small>
+          <br/>
+          <p className="primary-button" onClick={handleUpdateLocation}> Save Location </p>
+          <small>Only you can see your location. </small>
         </div>
         
       </article>

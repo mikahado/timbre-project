@@ -1,7 +1,5 @@
 class ProfilesController < ApplicationController
 
-    skip_before_action :authorize
-
     def index
         users = User.all
         render json: users, include: [:profile, :preference]
@@ -12,8 +10,16 @@ class ProfilesController < ApplicationController
         render json: user, include: [:profile, :preference]
     end
 
+    def update 
+        @current_user.profile.update!(profile_params)
+        render json: @current_user, status: :accepted
+    end
+
     private 
 
+    def profile_params
+        params.require(:profile).permit(:lat, :lng, :bio, :media_1, :media_2, :media_3, :media_4)
+    end
 
 
 end

@@ -22,12 +22,11 @@ const UserCard = ({ user }) => {
     <article>
       <header>
         <Link to={`/users/${user.id}`}>
-        <h2>{user.username}</h2>
+        <p>{user.username}</p>
       </Link>
-      {/* <button className="secondary-button" onClick={handleProfileClick}>profile</button> */}
       </header>
       
-      {/* {toggle ? <UserProfile key={user.id} id={user.id} /> : null} */}
+      <img src={user.profile?.media_1}></img>
    
 
       <footer>

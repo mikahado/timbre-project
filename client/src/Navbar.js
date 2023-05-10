@@ -6,16 +6,6 @@ const Navbar = () => {
   const { user, logout, loggedIn } = useContext(UserContext)
   const navigate = useNavigate()
 
-  // const logoutUser = () => {
-  //   fetch("/logout", {
-  //     method: "DELETE",
-  //     headers: { "Content-Type": "application/json" },
-  //   }).then(() => {
-  //     logout()
-  //     navigate("/")
-  //   })
-  // }
-
   if (loggedIn) {
     return (
       <>
@@ -24,7 +14,7 @@ const Navbar = () => {
             <ul>
               <NavLink to="/my-profile">
                   <h3>
-                    <strong>{user.username}</strong>
+                    <img src={user.profile?.media_1}></img>
                   </h3>
 
               </NavLink>

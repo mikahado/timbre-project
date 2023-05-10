@@ -11,7 +11,7 @@ const UserProvider = ({ children }) => {
     matches: []
   })
 
-  console.log("universal user", user)
+  console.log("ContextUserData", user)
 
   const [allProfiles, setAllProfiles] = useState([])
   const [matchRequests, setMatchRequests] = useState([])
@@ -46,6 +46,27 @@ const UserProvider = ({ children }) => {
       })
   }
 
+  const updateMyProfile = (updatedData) => {
+
+    fetch(`/profiles/${user.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedData),
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        if (data.errors) {
+          console.log(data.errors)
+        } else {
+          console.log("updatedDATA", data)
+          setUser(data)
+        }
+      })
+  }
+
+
   const handleMatchRequest = (receiver_id) => { 
     
     const request = {
@@ -77,7 +98,7 @@ const UserProvider = ({ children }) => {
       })
   }
 
-  const preferencesUpdate = (matchPreferences) => { 
+  const updateMyPreferences = (matchPreferences) => { 
     fetch(`/preferences/${user.id}`, {
       method: "PATCH",
       headers: {
@@ -90,39 +111,11 @@ const UserProvider = ({ children }) => {
         if (data.errors) {
           setErrors(data.errors)
         } else {
-          setUser(prevState => ({
-            ...prevState,
-            preference: [...prevState.preference, data]
-          }))
-          navigate("/my-profile")
+          setUser(data)
+          alert("Preferences updated!")
         }
       })
   }
-
-
-  const updateLocation = (location) => {
-    console.log("location", location)
-
-    fetch(`/profiles/${user.id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(location),
-    })
-      .then((resp) => resp.json())
-      .then((data) => {
-        if (data.errors) {
-          setErrors(data.errors)
-        } else {
-          setUser(prevState => ({
-            ...prevState,
-            profile: [...prevState.profile, data]
-          }))
-          navigate("/my-profile")
-        }
-      })
-    }
 
 
   const logoutUser = () => {
@@ -154,15 +147,16 @@ const UserProvider = ({ children }) => {
     <UserContext.Provider
       value={{
         user,
+        updateMyProfile,
         allProfiles,
         logout,
         signup,
         login,
         loggedIn,
         handleMatchRequest,
-        preferencesUpdate,
+        updateMyPreferences,
         logoutUser,
-        updateLocation,
+        // updateLocation,
       }}
     >
       {children}
