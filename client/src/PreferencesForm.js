@@ -6,9 +6,9 @@ const PreferencesForm = () => {
   const { user, loggedIn, updateMyPreferences } = useContext(UserContext);
 
   const { instruments, instruments_wanted, skill, genres, goals, money, host } =
-    user.preference || {}
+    user.preference || {};
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const [matchPreferences, setMatchPreferences] = useState({
     instruments: "",
@@ -18,7 +18,7 @@ const PreferencesForm = () => {
     goals: "",
     money: "",
     host: false,
-  })
+  });
 
   console.log("matchPreferences", matchPreferences);
 
@@ -32,30 +32,30 @@ const PreferencesForm = () => {
         goals,
         money,
         host,
-      })
+      });
     }
-  }, [user])
+  }, [user]);
 
   const handleFormSubmit = (e) => {
-    e.preventDefault()
-    updateMyPreferences(matchPreferences)
-  }
-
+    e.preventDefault();
+    updateMyPreferences(matchPreferences);
+  };
 
   return (
     <>
       <dialog open>
-        <article>
-          <NavLink to="/my-profile">
-            <small>Back</small>
-          </NavLink>
-
+        <article className="dialog">
+          <header>
+            <NavLink to="/my-profile" class="close">
+              <p>Back</p>
+            </NavLink>
+          </header>
           <h2>Preferences</h2>
           <hr />
           <br />
 
           <form onSubmit={handleFormSubmit}>
-            <div class="grid">
+            <div>
               <label htmlFor="my-instruments">
                 My Main Instrument
                 <input
@@ -68,12 +68,12 @@ const PreferencesForm = () => {
                       ...matchPreferences,
                       instruments: e.target.value,
                     })
-                  }                  
+                  }
                   placeholder="my instruments"
                   required
                 />
               </label>
-           
+
               <label htmlFor="their-instruments">
                 Their Main Instrument
                 <input
@@ -95,7 +95,7 @@ const PreferencesForm = () => {
 
             <br />
 
-            <div class="grid">
+            <div >
               <label>Skill Level</label>
               <select
                 id="skill"
@@ -182,7 +182,6 @@ const PreferencesForm = () => {
                     Compose
                   </label>
                 </fieldset>
-                
               </div>
 
               <div>
@@ -280,11 +279,19 @@ const PreferencesForm = () => {
             <button type="submit" className="primary-button">
               Save
             </button>
+            <br />
+
           </form>
+                      
+          <footer>
+            <NavLink to="/my-profile" class="close">
+              <p>Close</p>
+            </NavLink>
+            </footer>
         </article>
       </dialog>
     </>
-  );
-};
+  )
+}
 
 export default PreferencesForm;

@@ -1,8 +1,9 @@
 class PreferencesController < ApplicationController
 
     def update
-        preferences = @current_user.preference.update!(preference_params)
-        render json: preferences, status: :created
+        preferences = @current_user.preference
+        preferences.update(preference_params)
+        render json: preferences
       end
 
     private 

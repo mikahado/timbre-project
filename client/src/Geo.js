@@ -4,11 +4,9 @@ import { UserContext } from "./context/user";
 
 const Geo = () => {
 
-  const { user, updateLocation, updateMyProfile } = useContext(UserContext)
+  const { user, updateLocation, updateMyProfile, setToggleGeo, toggleGeo } = useContext(UserContext)
   const [position, setPosition] = useState({ lat: 0, lng: 0 })
   
-  console.log(position)
-
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
@@ -40,7 +38,6 @@ const Geo = () => {
               }
 
               setPosition(pos)
-              
 
               // infoWindow.setPosition(pos);
               // infoWindow.setContent("Location found.");
@@ -75,14 +72,16 @@ const Geo = () => {
 
   return (
     <>
-      <article>      
+    
+      <article>     
+      <p className="primary-button" onClick={handleUpdateLocation}> Save Location </p> 
         <div>
          {/* <p>Location</p> */}
           <br />
           <div id="map" style={{ height: '400px', width: '100%' }}>
           </div>
           <br/>
-          <p className="primary-button" onClick={handleUpdateLocation}> Save Location </p>
+          
           <small>Only you can see your location. </small>
         </div>
         

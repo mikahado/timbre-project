@@ -9,14 +9,14 @@ const UsersGrid = () => {
 
   useEffect (() => {
     twoRandom()
-   }, [])
+   }, [allProfiles])
 
   const twoRandom = () => {
     const twoRand = allProfiles.sort(() => Math.random() - Math.random()).slice(0, 2)
     setTwoRand(twoRand)
   }
 
-  const choiceCards = twoRand.map((u) => <UserCard key={u.id} user={u} />);
+  const choiceCards = twoRand.map((u) => <UserCard key={u.id} user={u} />)
 
   return (
     <>

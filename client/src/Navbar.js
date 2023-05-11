@@ -14,7 +14,8 @@ const Navbar = () => {
             <ul>
               <NavLink to="/my-profile">
                   <h3>
-                    <img src={user.profile?.media_1}></img>
+                    <img src={user?.profile?.media_1} alt="profile_pic" className="profile-img"></img>
+                    <p>{user.username}</p>
                   </h3>
 
               </NavLink>

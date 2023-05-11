@@ -1,13 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const MatchRow = ({ match, id }) => {
+const MatchRow = ({  match, id }) => {
+
   return (
     <tr>
       <td>
       <Link to={`/chat/${id}`}>
         <img
-          src="jimih.png"
+          // src={`${match.profile.media_1}`}
           alt={`${match.username}`}
           className="profile-img"
           width="150"
@@ -16,7 +17,7 @@ const MatchRow = ({ match, id }) => {
       </td>
 
       <td>
-      <Link to={`/users/${id}`}>
+      <Link to={`/users/${match.id}`}>
         {match.username}
       </Link>
       </td>

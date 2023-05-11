@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import "@picocss/pico/css/pico.min.css";
+import React, { useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
+import "@picocss/pico/css/pico.min.css"
 
-const UserContext = React.createContext();
+const UserContext = React.createContext()
 
 const UserProvider = ({ children }) => {
   const [user, setUser] = useState({
@@ -11,7 +11,7 @@ const UserProvider = ({ children }) => {
     matches: []
   })
 
-  console.log("ContextUserData", user)
+  console.log("UserData", user)
 
   const [allProfiles, setAllProfiles] = useState([])
   // const [matchRequests, setMatchRequests] = useState([])
@@ -39,9 +39,9 @@ const UserProvider = ({ children }) => {
       .then((resp) => resp.json())
       .then((data) => {
         if (data.errors) {
-          setErrors(data.errors);
+          setErrors(data.errors)
         } else {
-          setAllProfiles(data);
+          setAllProfiles(data)
         }
       })
   }
@@ -60,7 +60,6 @@ const UserProvider = ({ children }) => {
         if (data.errors) {
           console.log(data.errors)
         } else {
-          console.log("updatedDATA", data)
           setUser(data)
         }
       })
@@ -87,12 +86,6 @@ const UserProvider = ({ children }) => {
           setErrors(data.errors)
           console.log(data.errors)
         } else {
-          // setUser(prevState => ({
-          //   ...prevState,
-          //   sent_matches: [...prevState.sent_matches, data]
-          // }))
-          // console.log("data", data)
-          // navigate("/my-profile")
           alert(`Request Sent!`)
         }
       })
@@ -111,8 +104,9 @@ const UserProvider = ({ children }) => {
         if (data.errors) {
           setErrors(data.errors)
         } else {
-          setUser(data)
+          setUser({ ...user, preference: data.preference })
           alert("Preferences updated!")
+          navigate("/my-profile")
         }
       })
   }
@@ -162,7 +156,7 @@ const UserProvider = ({ children }) => {
         handleMatchRequest,
         handleRemoveUser,
         updateMyPreferences,
-        logoutUser,
+        logoutUser
         // updateLocation,
       }}
     >

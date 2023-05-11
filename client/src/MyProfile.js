@@ -13,8 +13,6 @@ const UserProfile = () => {
   const [ toggleEditMedia3, setToggleEditMedia3 ] = useState(false)
   const [ toggleEditMedia4, setToggleEditMedia4 ] = useState(false)
 
-
-
   const [myProfile, setMyProfile] = useState({
     lat: "",
     lng: "",
@@ -47,11 +45,7 @@ const UserProfile = () => {
 
   return (
     <>
-      <br/>
-     
-      <article>
-        <header>
-          <h1>{user?.username}</h1>
+               <h1>{user?.username}</h1>
 
           {toggleEditBio ? 
             <form>
@@ -71,30 +65,54 @@ const UserProfile = () => {
 
           <href onClick={c => setToggleEditBio(!toggleEditBio)}><small>{toggleEditBio ? null : "edit bio"}</small></href>
 
-        </header>
-        <ul>
-          <li>Media 1: {user.profile?.media_1}<small> edit</small></li>
+       
 
-          <li>Media 2: {user.profile?.media_2}<small> edit</small></li>
+      <section className="card-list">
 
-          <li>Media 3: {user.profile?.media_3}<small> edit</small></li>
+          <article className="card-article">
+            <header className="card-header">
+            <img src={user.profile?.media_1} alt="media"></img>
+            </header>
+           
+          </article>
 
-          <li>Media 4: {user.profile?.media_4}<small> edit</small></li>
-          
-        </ul>
-        <footer>
+          <article className="card-article">
+            <header class="card-header">
+              <img src={user.profile?.media_2} alt="media"></img>
+            </header>
+            
+          </article>
+
+          <article className="card-article">
+            <header class="card-header">
+              <img src={user.profile?.media_3} alt="media"></img>
+            </header>
+            
+          </article>
+
+          <article className="card-article">
+            <header class="card-header">
+              <img src={user.profile?.media_4} alt="media"></img>
+              
+            </header>
+            
+          </article>
+
+      </section>
+
+      <h3>Settings</h3>
+
+
         <NavLink to={`/preferences/${user.id}`}>
               <button className="secondary-button">Preferences</button>
         </NavLink>
-        {/* <NavLink to={`/geo`}>
-            <button className="secondary-button">Location</button>
-        </NavLink> */}
-        <button className="secondary-button" onClick={c => setToggleGeo(!toggleGeo)}>Location</button>
-        {toggleGeo ? <Geo key={user.id} coordinates={user.profile?.location} /> : null}
-          
-        </footer>
-      </article>
 
+        {toggleGeo ? <Geo key={user.id} coordinates={user.profile?.location} setToggleGeo={setToggleGeo} toggleGeo={toggleGeo} /> : null}
+         <button className="secondary-button" onClick={c => setToggleGeo(!toggleGeo)}>Location</button>
+        
+      <br/> 
+      <hr />
+      <br/>
       <li>
         <button class="outline" onClick={logoutUser}>
           Logout

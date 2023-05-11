@@ -5,6 +5,7 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+require "faker"
 puts 'starts seeding'
 
 Profile.destroy_all
@@ -56,19 +57,22 @@ puts 'created user_info'
 
 puts'created user_var'
 
+Faker::Config.random = Random.new(42)
+
 11.times do |u|
 
    user =  User.create(username: user_info[index_counter], email: user_info[index_counter] + "@gmail.com", password: user_info[index_counter], password_confirmation: user_info[index_counter])
 
    user.create_profile(
+
         lat: lat[index_counter],
         lng: lng[index_counter],
         bio: bio.sample,
-        media_1: "photo_url", 
-        media_2: "video_url", 
-        media_3: "audio_url", 
-        media_4: "photo_url")
-
+        media_1: Faker::Placeholdit.image(size: '600x600', format: 'jpg', background_color: '4076a2'), 
+        media_2: Faker::Placeholdit.image(size: '600x600', format: 'jpg', background_color: '323330'), 
+        media_3: Faker::Placeholdit.image(size: '600x600', format: 'jpg', background_color: '820C02'), 
+        media_4: Faker::Placeholdit.image(size: '600x600', format: 'jpg', background_color: '337283'))
+  
     user.create_preference(
         instruments: instruments.sample,
         instruments_wanted: instruments.sample,

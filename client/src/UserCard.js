@@ -22,10 +22,13 @@ const UserCard = ({ user }) => {
 
 
   return (
-    <article>
+  <>
+  <body>
+  <main class="container-fluid">
+    <article className="card-browse" >
       <header>
         <Link to={`/users/${user.id}`}>
-        <p>{user.username}</p>
+        <h3>{user.username}</h3>
       </Link>
       </header>
       
@@ -38,6 +41,11 @@ const UserCard = ({ user }) => {
       </footer>
 
     </article>
+
+      </main>
+    </body>
+
+  </>
   )
 }
 
