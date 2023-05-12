@@ -45,6 +45,13 @@ html {
   box-shadow: -1rem 0 3rem #000;
 }
 
+.profile-img-2 {
+  width: 150px;
+  border-radius: 50%;
+  box-shadow: -1rem 0 3rem #000;
+}
+
+
 .logo {
   height: auto;
   width: auto;

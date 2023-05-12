@@ -2,8 +2,8 @@ import React, { useState, useEffect, useContext } from "react";
 import { UserContext } from "./context/user";
 import { NavLink, useNavigate } from "react-router-dom";
 
-const PreferencesForm = () => {
-  const { user, loggedIn, updateMyPreferences } = useContext(UserContext);
+const OnboardPref = () => {
+  const { user, loggedIn, createMyPreferences } = useContext(UserContext);
 
   const { instruments = '', instruments_wanted = '', skill = '', genres = '', goals = '', money = '', host = false } =
   user.preference || {};
@@ -34,7 +34,7 @@ const PreferencesForm = () => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault()
-    updateMyPreferences(matchPreferences)
+    createMyPreferences(matchPreferences)
   }
 
   return (
@@ -290,4 +290,4 @@ const PreferencesForm = () => {
   )
 }
 
-export default PreferencesForm;
+export default OnboardPref;

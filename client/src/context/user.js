@@ -11,8 +11,6 @@ const UserProvider = ({ children }) => {
     matches: []
   })
 
-  console.log("UserData", user)
-
   const [allProfiles, setAllProfiles] = useState([])
   // const [matchRequests, setMatchRequests] = useState([])
   const [loggedIn, setLoggedIn] = useState(false)
@@ -42,6 +40,25 @@ const UserProvider = ({ children }) => {
           setErrors(data.errors)
         } else {
           setAllProfiles(data)
+        }
+      })
+  }
+
+  const createMyProfile = (profile) => {
+
+    fetch(`/profiles/${user.id}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(profile),
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        if (data.errors) {
+          console.log(data.errors)
+        } else {
+          setUser(data)
         }
       })
   }
@@ -91,20 +108,40 @@ const UserProvider = ({ children }) => {
       })
   }
 
-  const updateMyPreferences = (matchPreferences) => { 
+  const createMyPreferences = (preferences) => { 
     fetch(`/preferences/${user.id}`, {
-      method: "PATCH",
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(matchPreferences),
+      body: JSON.stringify(preferences),
     })
       .then((resp) => resp.json())
       .then((data) => {
         if (data.errors) {
           setErrors(data.errors)
         } else {
-          setUser({ ...user, preference: data.preference })
+          setUser({...user, preference: data})
+          alert("Preferences updated!")
+          navigate("/my-profile")
+        }
+      })
+  }
+
+  const updateMyPreferences = (preferences) => { 
+    fetch(`/preferences/${user.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(preferences),
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        if (data.errors) {
+          setErrors(data.errors)
+        } else {
+          setUser({...user, preference: data})
           alert("Preferences updated!")
           navigate("/my-profile")
         }
@@ -147,8 +184,10 @@ const UserProvider = ({ children }) => {
     <UserContext.Provider
       value={{
         user,
+        createMyPreferences,
         updateMyProfile,
         allProfiles,
+        createMyProfile,
         logout,
         signup,
         login,

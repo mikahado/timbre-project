@@ -31,7 +31,7 @@ const Signup = () => {
       .then((user) => {
         if (!user.errors) {
           signup(user);
-          navigate("/");
+          navigate("/onboarding");
 
           const authKey = process.env.REACT_APP_COMETCHAT_KEY
           const uid = user.id.toString()

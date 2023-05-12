@@ -5,8 +5,6 @@ import MatchRow from "./MatchRow";
 const UsersGrid = () => {
   const { user } = useContext(UserContext)
 
-  console.log(user.matches)
-
   const match = user.matches.map((m) => <MatchRow key={m.id} id={m.id} match={m} />)
 
   return (

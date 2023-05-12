@@ -10,6 +10,8 @@ class ProfilesController < ApplicationController
         render json: user, include: [:profile, :preference]
     end
 
+    
+
     def update 
         @current_user.profile.update!(profile_params)
         render json: @current_user, status: :accepted

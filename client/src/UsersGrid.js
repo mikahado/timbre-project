@@ -7,14 +7,14 @@ const UsersGrid = () => {
   
   const { allProfiles } = useContext(UserContext)
 
-  useEffect (() => {
-    twoRandom()
-   }, [allProfiles])
+  // useEffect (() => {
+  //   twoRandom()
+  //  }, [allProfiles])
 
-  const twoRandom = () => {
-    const twoRand = allProfiles.sort(() => Math.random() - Math.random()).slice(0, 2)
-    setTwoRand(twoRand)
-  }
+  // const twoRandom = () => {
+  //   const twoRand = allProfiles.sort(() => Math.random() - Math.random()).slice(0, 1)
+  //   setTwoRand(twoRand)
+  // }
 
   const choiceCards = twoRand.map((u) => <UserCard key={u.id} user={u} />)
 
@@ -26,7 +26,6 @@ const UsersGrid = () => {
           {choiceCards}
         </div>
       </main>
-      <button onClick={twoRandom}>More</button>
     </>
   );
 };
