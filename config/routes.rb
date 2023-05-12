@@ -11,5 +11,6 @@ Rails.application.routes.draw do
   resources :profiles
   resources :match_requests
   resources :matched_users
+  resources :users
   
 end

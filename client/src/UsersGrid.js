@@ -5,14 +5,14 @@ import UserCard from "./UserCard";
 const UsersGrid = () => {
   const [twoRand, setTwoRand] = useState([])
   
-  const { allProfiles } = useContext(UserContext)
+  const { allUsers } = useContext(UserContext)
 
   // useEffect (() => {
-  //   twoRandom()
-  //  }, [allProfiles])
+  //   randomProfile()
+  //  }, [allUsers])
 
-  // const twoRandom = () => {
-  //   const twoRand = allProfiles.sort(() => Math.random() - Math.random()).slice(0, 1)
+  // const randomProfile = () => {
+  //   const twoRand = allUsers?.sort(() => Math.random() - Math.random()).slice(0, 1)
   //   setTwoRand(twoRand)
   // }
 

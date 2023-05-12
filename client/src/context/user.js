@@ -11,7 +11,8 @@ const UserProvider = ({ children }) => {
     matches: []
   })
 
-  const [allProfiles, setAllProfiles] = useState([])
+  const [allUsers, setAllUsers] = useState([])
+  console.log(allUsers)
   // const [matchRequests, setMatchRequests] = useState([])
   const [loggedIn, setLoggedIn] = useState(false)
   const [errors, setErrors] = useState([])
@@ -29,17 +30,17 @@ const UserProvider = ({ children }) => {
           setUser(data);
         }
       });
-    getAllProfiles();
+    getAllUsers();
   }, [loggedIn]);
 
-  const getAllProfiles = () => {
-    fetch("/profiles")
+  const getAllUsers = () => {
+    fetch("/users")
       .then((resp) => resp.json())
       .then((data) => {
         if (data.errors) {
           setErrors(data.errors)
         } else {
-          setAllProfiles(data)
+          setAllUsers(data)
         }
       })
   }
@@ -149,9 +150,8 @@ const UserProvider = ({ children }) => {
   }
 
   const handleRemoveUser = (id) => {
-    const updatedProfiles = allProfiles.filter(p => p.id !== id)
-    console.log(updatedProfiles)
-    setAllProfiles(u => updatedProfiles)
+    const updatedUsers = allUsers.filter(p => p.id !== id)
+    setAllUsers(u => updatedUsers)
   }
 
 
@@ -186,7 +186,7 @@ const UserProvider = ({ children }) => {
         user,
         createMyPreferences,
         updateMyProfile,
-        allProfiles,
+        allUsers,
         createMyProfile,
         logout,
         signup,
