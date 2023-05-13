@@ -3,31 +3,32 @@ import { UserContext } from "./context/user";
 import UserCard from "./UserCard";
 
 const UsersGrid = () => {
-  const [twoRand, setTwoRand] = useState([])
-  
+  const [randomUser, setRandomUser] = useState([])
+
   const { allUsers } = useContext(UserContext)
 
-  // useEffect (() => {
-  //   randomProfile()
-  //  }, [allUsers])
+  useEffect(() => {
+    if (allUsers.length > 0) {
+      const randomIndex = Math.floor(Math.random() * allUsers.length);
+      setRandomUser(allUsers[randomIndex]);
+    } 
+  }, [allUsers])
 
-  // const randomProfile = () => {
-  //   const twoRand = allUsers?.sort(() => Math.random() - Math.random()).slice(0, 1)
-  //   setTwoRand(twoRand)
-  // }
-
-  const choiceCards = twoRand.map((u) => <UserCard key={u.id} user={u} />)
 
   return (
     <>
       <h2>Browse Musicians</h2>
       <main className="container">
-        <div class="grid" >
-          {choiceCards}
+        <article>
+          
+        <div >
+        <UserCard key={randomUser.id} user={randomUser} />
         </div>
+        </article>
       </main>
     </>
   );
 };
+
 
 export default UsersGrid;

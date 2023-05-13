@@ -17,7 +17,7 @@ const Geo = () => {
 
     if (isLoaded) {
       map = new window.google.maps.Map(document.getElementById("map"), {
-        center: { lat: user.profile.lat, lng: user.profile.lng },
+        center: { lat: 0, lng: 0 },
         zoom: 13,
       });
       infoWindow = new window.google.maps.InfoWindow()
@@ -74,12 +74,13 @@ const Geo = () => {
     <>
     
       <article>     
-      <p className="primary-button" onClick={handleUpdateLocation}> Save Location </p> 
+     
         <div>
          {/* <p>Location</p> */}
           <br />
           <div id="map" style={{ height: '400px', width: '100%' }}>
           </div>
+          <button className="primary-button" onClick={handleUpdateLocation}> Save Location </button> 
           <br/>
           
           <small>Only you can see your location. </small>

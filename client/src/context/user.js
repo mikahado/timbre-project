@@ -46,8 +46,8 @@ const UserProvider = ({ children }) => {
   }
 
   const createMyProfile = (profile) => {
-
-    fetch(`/profiles/${user.id}`, {
+    console.log(profile)
+    fetch(`/profiles`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -60,6 +60,7 @@ const UserProvider = ({ children }) => {
           console.log(data.errors)
         } else {
           setUser(data)
+          navigate("/onboarding/preference")
         }
       })
   }
@@ -110,7 +111,7 @@ const UserProvider = ({ children }) => {
   }
 
   const createMyPreferences = (preferences) => { 
-    fetch(`/preferences/${user.id}`, {
+    fetch(`/preferences`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -124,7 +125,7 @@ const UserProvider = ({ children }) => {
         } else {
           setUser({...user, preference: data})
           alert("Preferences updated!")
-          navigate("/my-profile")
+          navigate("/onboard/geo")
         }
       })
   }

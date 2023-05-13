@@ -54,7 +54,7 @@ const Login = () => {
       <dialog open>
         <article className="auth">
           <header className="card">
-            <a href="/" aria-label="Close" class="close"></a>
+            <a href="/users" aria-label="Close" class="close"></a>
           </header>
 
           <h1>

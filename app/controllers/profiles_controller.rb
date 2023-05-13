@@ -10,7 +10,13 @@ class ProfilesController < ApplicationController
         render json: user, include: [:profile, :preference]
     end
 
-    
+    def create
+        profile = @current_user.profile || @current_user.build_profile
+            profile.update(profile_params)
+          
+            render json: profile, status: :created
+
+    end
 
     def update 
         @current_user.profile.update!(profile_params)
@@ -20,8 +26,7 @@ class ProfilesController < ApplicationController
     private 
 
     def profile_params
-        params.require(:profile).permit(:lat, :lng, :bio, :media_1, :media_2, :media_3, :media_4)
+        params.require(:profile).permit(:lat, :lng, :name, :bio, :media_1, :media_2, :media_3, :media_4)
     end
-
 
 end

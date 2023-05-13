@@ -15,6 +15,7 @@ import ChatMain from './ChatMain'
 import Geo from './Geo'
 import OnboardProfile from './OnboardProfile'
 import OnboardPref from './OnboardPref'
+import OnboardGeo from './OnboardGeo'
 import { UserProvider } from "./context/user"
 
 function App(props) {
@@ -27,8 +28,9 @@ function App(props) {
         <Navbar />
         <Routes>
           <Route exact path="/" element={<Home />}  />
-          <Route path ="/onboarding/pg1" element={<OnboardProfile />} />
-          <Route path ="/onboarding/pg2" element={<OnboardPref />} />
+          <Route path ="/onboard/geo" element={<OnboardGeo />} />
+          <Route path ="/onboard/profile" element={<OnboardProfile />} />
+          <Route path ="/onboard/preference" element={<OnboardPref />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/users" element={<UsersGrid />} />

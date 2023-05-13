@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_07_031523) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_13_212535) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -54,7 +54,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_07_031523) do
 
   create_table "profiles", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.string "location"
     t.text "bio"
     t.string "media_1"
     t.string "media_2"
@@ -64,6 +63,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_07_031523) do
     t.datetime "updated_at", null: false
     t.float "lat"
     t.float "lng"
+    t.string "name"
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 

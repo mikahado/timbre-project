@@ -3,7 +3,7 @@ import { UserContext } from "./context/user";
 import { NavLink, useNavigate } from "react-router-dom";
 
 const OnboardPref = () => {
-  const { user, loggedIn, createMyPreferences } = useContext(UserContext);
+  const { user, createMyPreferences } = useContext(UserContext);
 
   const { instruments = '', instruments_wanted = '', skill = '', genres = '', goals = '', money = '', host = false } =
   user.preference || {};
@@ -18,19 +18,7 @@ const OnboardPref = () => {
     host: false,
   })
 
-  useEffect(() => {
-    if (user.preference) {
-      setMatchPreferences({
-        instruments,
-        instruments_wanted,
-        skill,
-        genres,
-        goals,
-        money,
-        host,
-      });
-    }
-  }, [user]);
+  console.log(matchPreferences)
 
   const handleFormSubmit = (e) => {
     e.preventDefault()
@@ -42,13 +30,10 @@ const OnboardPref = () => {
       <dialog open>
         <article className="dialog">
           <header>
-            <NavLink to="/my-profile" class="close">
-              <p>Back</p>
-            </NavLink>
+           
+            <h2>Preferences</h2>
+           
           </header>
-          <h2>Preferences</h2>
-          <hr />
-          <br />
 
           <form onSubmit={handleFormSubmit}>
             <div>
@@ -71,7 +56,7 @@ const OnboardPref = () => {
               </label>
 
               <label htmlFor="their-instruments">
-                Their Main Instrument
+                Their Main Role/Instrument
                 <input
                   type="text"
                   id="instruments_wanted"
@@ -275,15 +260,9 @@ const OnboardPref = () => {
             <button type="submit" className="primary-button">
               Save
             </button>
-            <br />
 
           </form>
-                      
-          <footer>
-            <NavLink to="/my-profile" class="close">
-              <p>Close</p>
-            </NavLink>
-            </footer>
+
         </article>
       </dialog>
     </>

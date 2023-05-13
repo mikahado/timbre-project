@@ -1,52 +1,88 @@
-import React, { useState, useContext } from "react"
-import { UserContext } from "./context/user"
-import UserProfile from "./UserProfile"
-import UserMediaCard from "./UserMediaCard"
-import { Link } from "react-router-dom"
+import React, { useState, useContext } from "react";
+import { UserContext } from "./context/user";
+import UserProfile from "./UserProfile";
+import UserProfilePreview from "./UserProfilePreview";
+import UserMediaCard from "./UserMediaCard";
+import { Link } from "react-router-dom";
 
 const UserCard = ({ user }) => {
+  const [toggle, setToggle] = useState(false);
 
-  const [toggle, setToggle] = useState(false)
+  const { handleMatchRequest, handleRemoveUser } = useContext(UserContext)
 
-  const { handleMatchRequest, handleRemoveUser  } = useContext(UserContext) 
-
-  const handleMatchRequestClick = (id) => {   
+  const handleMatchRequestClick = (id) => {
     handleMatchRequest(id)
     handleRemoveUser(id)
-  }
+  };
 
-  const handleMatchRejectClick = (id) => {   
+  const handleMatchRejectClick = (id) => {
     handleRemoveUser(id)
-    console.log(id)
-  }
+  };
 
+  const handleProfilePreviewClick = () => {
+    setToggle(!toggle)
+  };
 
   return (
-  <>
-  <body>
-  <main class="container-fluid">
-    <article className="card-browse" >
-      <header>
-        <Link to={`/users/${user.id}`}>
-        <h3>{user.username}</h3>
-      </Link>
-      </header>
-      
-      <img src={user.profile?.media_1}></img>
-   
+    <>
+      <body>
+        <main class="container-fluid">
+          <article className="card-browse">
+            <header>
+              <button
+                className="secondary-button"
+                onClick={handleProfilePreviewClick}
+              >
+                {user.username}
+              </button>
+            </header>
 
-      <footer>
-        <button className="accept-button" onClick={() => handleMatchRequestClick(user.id)}>✔</button>
-        <button className="warning-button" onClick={() => handleMatchRejectClick(user.id)}>X</button>
-      </footer>
+            {/* <UserMediaCard key={user.id} media={user} id={user.id} /> */}
+            <img src={user.profile_pic} />
 
-    </article>
+            <footer>
+              <button
+                className="accept-button"
+                onClick={() => handleMatchRequestClick(user.id)}
+              >
+                ✔
+              </button>
+              <button
+                className="warning-button"
+                onClick={() => handleMatchRejectClick(user.id)}
+              >
+                X
+              </button>
+            </footer>
 
-      </main>
-    </body>
+            {toggle ? (
+              <dialog open>
+                <article>
+                  <button
+                    className="primary-button"
+                    onClick={handleProfilePreviewClick}
+                  >
+                    {" "}
+                    Back{" "}
+                  </button>
 
-  </>
-  )
-}
+                  <UserProfilePreview user_2={user} id={user.id} />
 
-export default UserCard
+                  <button
+                    className="primary-button"
+                    onClick={handleProfilePreviewClick}
+                  >
+                    {" "}
+                    Close{" "}
+                  </button>
+                </article>
+              </dialog>
+            ) : null}
+          </article>
+        </main>
+      </body>
+    </>
+  );
+};
+
+export default UserCard;

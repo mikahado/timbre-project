@@ -1,124 +1,162 @@
-import React, { useState, useContext, useEffect } from "react"
-import PreferencesForm from "./PreferencesForm"
-import Geo from "./Geo"
-import { UserContext } from "./context/user"
-import { NavLink, useNavigate } from "react-router-dom"
+import React, { useState, useContext, useEffect } from "react";
+import PreferencesForm from "./PreferencesForm";
+import Geo from "./Geo";
+import { UserContext } from "./context/user";
+import { NavLink, useNavigate } from "react-router-dom";
+import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
 
 const OnboardProfile = () => {
-  const { user, loggedIn, logoutUser, createMyProfile } = useContext(UserContext)
-  const [ toggleGeo, setToggleGeo ] = useState(false)
-  const [ toggleEditBio, setToggleEditBio ] = useState(false)
-  const [ toggleEditMedia1, setToggleEditMedia1 ] = useState(false)
-  const [ toggleEditMedia2, setToggleEditMedia2 ] = useState(false)
-  const [ toggleEditMedia3, setToggleEditMedia3 ] = useState(false)
-  const [ toggleEditMedia4, setToggleEditMedia4 ] = useState(false)
+  const { createMyProfile } = useContext(UserContext);
 
   const [myProfile, setMyProfile] = useState({
-    lat: "",
-    lng: "",
+    name: "",
+    // lat: 0,
+    // lng: 0,
     bio: "",
     media_1: "",
     media_2: "",
     media_3: "",
     media_4: "",
-  })
+  });
 
-  useEffect(() => {
-    if (user.profile) {
-      setMyProfile({
-        lat: user.profile.lat,
-        lng: user.profile.lng,
-        bio: user.profile.bio,
-        media_1: user.profile.media_1,
-        media_2: user.profile.media_2,
-        media_3: user.profile.media_3,
-        media_4: user.profile.media_4,
-      })
-    }
-  }, [user])
+  console.log(myProfile);
 
-  const handleUpdateMyProfile = (e) => {
-    e.preventDefault()
-    createMyProfile(myProfile)
-    setToggleEditBio(!toggleEditBio)
-  }
+  const handleCreateMyProfile = (e) => {
+    e.preventDefault();
+    createMyProfile(myProfile);
+  };
+
+  // const { isLoaded } = useJsApiLoader({
+  //   id: 'google-map-script',
+  //   googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
+  // })
+
+  // useEffect(() => {
+  //   let map, infoWindow
+
+  //   if (isLoaded) {
+  //     map = new window.google.maps.Map(document.getElementById("map"), {
+  //       center: { lat: 0, lng: 0 },
+  //       zoom: 1,
+  //       // disableDefaultUI: true,
+  //       mapTypeControl: false,
+  //       streetViewControl: false,
+  //     })
+  //     infoWindow = new window.google.maps.InfoWindow()
+  //     // map.setLocked(true)
+
+  //     infoWindow.open(map);
+  //       // Configure the click listener.
+
+  //     const locationButton = document.createElement("button")
+
+  //     locationButton.textContent = "Find Me"
+  //     locationButton.classList.add("custom-map-control-button")
+  //     map.controls[window.google.maps.ControlPosition.TOP_CENTER].push(locationButton);
+  //     locationButton.addEventListener("click", () => {
+  //       // Try HTML5 geolocation.
+  //       if (navigator.geolocation) {
+  //         navigator.geolocation.getCurrentPosition(
+  //           (position) => {
+  //             const pos = {
+  //               lat: position.coords.latitude,
+  //               lng: position.coords.longitude,
+  //             }
+
+  //             setMyProfile({...myProfile, lat: pos.lat, lng: pos.lng})
+
+  //             // infoWindow.setPosition(pos);
+  //             // infoWindow.open(map)
+  //             map.setCenter(pos)
+  //             map.setZoom(12)
+  //           },
+  //           () => {
+  //             handleLocationError(true, infoWindow, map.getCenter());
+  //           }
+  //         );
+  //       } else {
+  //         // Browser doesn't support Geolocation
+  //         handleLocationError(false, infoWindow, map.getCenter());
+  //       }
+
+  //     });
+
+  //     function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+  //       infoWindow.setPosition(pos);
+  //       infoWindow.setContent(
+  //         browserHasGeolocation
+  //           ? "Error: The Geolocation service failed."
+  //           : "Error: Your browser doesn't support geolocation."
+  //       );
+  //       infoWindow.open(map)
+  //     }
+  //   }
+  // }, [isLoaded])
 
   return (
     <>
-               <h1>{user?.username}</h1>
+      <dialog open>
+        <article>
+          <header>
+            <a href="/users" aria-label="Close" class="close"></a>
+          </header>
 
-          {toggleEditBio ? 
-            <form>
-              <textarea
-                className="textarea"
-                type="text"
-                name="bio"
-                value={myProfile.bio}
-                onChange={(e) => setMyProfile({ ...myProfile, bio: e.target.value })}
-              />
-              <href type="submit" onClick={handleUpdateMyProfile}>save</href>
-            </form>
-           : 
-           <li>{user.profile?.bio}</li>}
+          <h1>Create Your Profile</h1>
+
+          <form onSubmit={handleCreateMyProfile}>
+            <label>Arist Name</label>
+            <input
+              type="text"
+              name="name"
+              value={myProfile.name}
+              onChange={(e) =>
+                setMyProfile({ ...myProfile, name: e.target.value })
+              }
+            />
+
+            <label>Link Profile Pic</label>
+            <input
+              type="text"
+              name="media_1"
+              value={myProfile.media_1}
+              onChange={(e) =>
+                setMyProfile({ ...myProfile, media_1: e.target.value })
+              }
+            />
+
+            <label>Write a Bio</label>
+            <textarea
+              className="textarea"
+              type="text"
+              name="bio"
+              value={myProfile.bio}
+              onChange={(e) =>
+                setMyProfile({ ...myProfile, bio: e.target.value })
+              }
+            />
+{/* 
+            <label>Location</label> */}
+
+{/* 
+          <div id="map" style={{ height: '400px', width: '100%' }}>
+            <Geo setMyProfile={setMyProfile} myProfile={myProfile} />
+          </div> */}
+
 
           <br/>
-
-          <href onClick={c => setToggleEditBio(!toggleEditBio)}><small>{toggleEditBio ? null : "edit bio"}</small></href>
-
-       
-
-      <section className="card-list">
-
-          <article className="card-article">
-            <header className="card-header">
-            <img src={user.profile?.media_1} alt="media"></img>
-            </header>
-           
-          </article>
-
-          <article className="card-article">
-            <header class="card-header">
-              <img src={user.profile?.media_2} alt="media"></img>
-            </header>
             
-          </article>
-
-          <article className="card-article">
-            <header class="card-header">
-              <img src={user.profile?.media_3} alt="media"></img>
-            </header>
-            
-          </article>
-
-          <article className="card-article">
-            <header class="card-header">
-              <img src={user.profile?.media_4} alt="media"></img>
-              
-            </header>
-            
-          </article>
-
-      </section>
-
-      <h3>Settings</h3>
-
-
-        <NavLink to={`/preferences/${user.id}`}>
-              <button className="secondary-button">Preferences</button>
-        </NavLink>
-
-        {toggleGeo ? <Geo key={user.id} coordinates={user.profile?.location} setToggleGeo={setToggleGeo} toggleGeo={toggleGeo} /> : null}
-         <button className="secondary-button" onClick={c => setToggleGeo(!toggleGeo)}>Location</button>
-        
-      <br/> 
-      <hr />
-      <br/>
-      <li>
-        <button class="outline" onClick={logoutUser}>
-          Logout
-        </button>
-      </li>
-
+              <button
+                type="submit"
+                className="accept-button"
+                onSubmit={handleCreateMyProfile}
+              >
+                {" "}
+                Save
+              </button>
+          
+          </form>
+        </article>
+      </dialog>
     </>
   );
 };
