@@ -46,7 +46,8 @@ const UserProfile = () => {
 
   return (
     <>
-               <h1>{user?.username}</h1>
+          <h1>{user?.username}</h1>
+       
 
           {toggleEditBio ? 
             <form>
@@ -66,9 +67,7 @@ const UserProfile = () => {
 
           <href onClick={c => setToggleEditBio(!toggleEditBio)}><small>{toggleEditBio ? null : "edit bio"}</small></href>
 
-       
-
-      <UserMediaCard media={user.profile} />
+      <UserMediaCard key={user.id} media={user.profile} />
 
       <h3>Settings</h3>
 

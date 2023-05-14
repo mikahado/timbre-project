@@ -19,8 +19,6 @@ const OnboardProfile = () => {
     media_4: "",
   });
 
-  console.log(myProfile);
-
   const handleCreateMyProfile = (e) => {
     e.preventDefault();
     createMyProfile(myProfile);

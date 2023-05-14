@@ -1,8 +1,6 @@
 import React, { useState, useContext } from "react";
 import { UserContext } from "./context/user";
-import UserProfile from "./UserProfile";
 import UserProfilePreview from "./UserProfilePreview";
-import UserMediaCard from "./UserMediaCard";
 import { Link } from "react-router-dom";
 
 const UserCard = ({ user }) => {
@@ -25,19 +23,17 @@ const UserCard = ({ user }) => {
 
   return (
     <>
-      <body>
-        <main class="container-fluid">
+      
           <article className="card-browse">
             <header>
               <button
                 className="secondary-button"
                 onClick={handleProfilePreviewClick}
               >
-                {user.username}
+                {user?.profile?.name}
               </button>
             </header>
 
-            {/* <UserMediaCard key={user.id} media={user} id={user.id} /> */}
             <img src={user.profile_pic} />
 
             <footer>
@@ -78,9 +74,10 @@ const UserCard = ({ user }) => {
                 </article>
               </dialog>
             ) : null}
+            
           </article>
-        </main>
-      </body>
+     
+      
     </>
   );
 };

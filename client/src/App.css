@@ -40,11 +40,10 @@ html {
 }
 
 .profile-img {
-  width: 200px;
-  height: 200px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   object-fit: cover;
-  zoom: 1;
   box-shadow: -1rem 0 3rem #000;
 }
 
@@ -262,10 +261,11 @@ html {
 }
 
 .card-browse {
+  width: 75%;
   border-radius: 30px;
   background: #354550;
   box-shadow: -1rem 0 3rem #000;
-  margin: 0;
+  margin: auto;
   position: relative;
 }
 
@@ -290,4 +290,22 @@ html {
 
 .errors {
   color: #FF4136;
+}
+
+.placeholder {
+  display: block;
+  margin: auto;
+  width: 60%;
+  opacity: 0.3;
+  mix-blend-mode: screen;
+}
+
+.browser-card {
+  width: 100%;
+  border-radius: 30px;
+  background: #354550;
+  box-shadow: -1rem 0 3rem #000;
+  margin: 0;
+  position: relative;
+
 }

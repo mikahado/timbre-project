@@ -4,7 +4,6 @@ import { UserContext } from "./context/user";
 
 const Geo = () => {
   const {
-    user,
     errors,
     updateMyProfile,
   } = useContext(UserContext);
@@ -77,7 +76,6 @@ const Geo = () => {
     updateMyProfile(position);
   };
 
-  if (user.profile) {
     return (
       <>
         <dialog open>
@@ -109,9 +107,7 @@ const Geo = () => {
         </dialog>
       </>
     );
-  } else {
-    <h2>Not authorized.</h2>;
-  }
-};
+  } 
+
 
 export default Geo;

@@ -7,6 +7,8 @@ const UsersGrid = () => {
 
   const match = user.matches.map((m) => <MatchRow key={m.id} id={m.id} match={m} />)
 
+
+  if (match.length > 0) {
   return (
     <>
       <h2>Matches</h2>
@@ -18,6 +20,14 @@ const UsersGrid = () => {
       </table>
     </>
   );
-};
+} else {
+  return (
+    <>
+      <h2>Matches</h2>
+      <p>No matches yet</p>
+    </>
+  )
+}
+}
 
 export default UsersGrid;

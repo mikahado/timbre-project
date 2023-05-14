@@ -111,7 +111,7 @@ const UserProvider = ({ children }) => {
           const errorsLis = data.errors.map( e => <li>{e}</li>)
           setErrors(errorsLis)
         } else {
-          alert(`Request Sent!`)
+          setErrors([])
         }
       })
   }

@@ -17,6 +17,9 @@ User.destroy_all
 
 user_info = ["prince",  "madonna",  "whitney_houston",  "janet_jackson", "kendrick_lamar",  "billie_eilish",  "dua_lipa", "jennifer_lopez", "tina_turner", "chaka_khan", "bjork"]
 
+name = ["Midnight Shadows", "Sunny Side Upbeat", "Blue River Blues", "Flow State", "Neon Visions", "Soul Serenade", "Blackened Sun", "Dream State Symphony", "Electric Graveyard", "Broken Records"]
+
+
 bio = [
   "I was the drummer for The Beatles, but Ringo Starr said I was too obsessed with octopuses. I'm ready to start a new band, with or without a cephalopod fixation.",
   "I used to play bass for Nirvana, until Kurt Cobain said I was too happy-go-lucky. Ready to find new bandmates who won't judge me for smiling on stage!",
@@ -67,6 +70,7 @@ Faker::Config.random = Random.new(42)
 
         lat: lat[index_counter],
         lng: lng[index_counter],
+        name: Faker::Music::RockBand.name,
         bio: bio.sample,
         media_1: Faker::Placeholdit.image(size: '600x600', format: 'jpg', background_color: '4076a2'), 
         media_2: Faker::Placeholdit.image(size: '600x600', format: 'jpg', background_color: '323330'), 

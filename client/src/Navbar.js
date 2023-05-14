@@ -13,10 +13,10 @@ const Navbar = () => {
           <nav class="container-fluid">
             <ul>
               <NavLink to="/my-profile">
-                  <h3>
+
                     <img src={user?.profile?.media_1} alt="profile_pic" className="profile-img"></img>
-                    <p>{user.username}</p>
-                  </h3>
+ 
+                    <small>{user?.profile?.name}</small>
 
               </NavLink>
             </ul>
