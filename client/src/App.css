@@ -309,3 +309,12 @@ html {
   position: relative;
 
 }
+
+.chatbox {
+  width: 100%;
+  border-radius: 30px;
+  background: #f8f8f8;
+  box-shadow: -1rem 0 3rem #000;
+  margin: auto;
+  position: block;
+}

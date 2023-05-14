@@ -12,8 +12,7 @@ const UserProvider = ({ children }) => {
   })
 
   const [allUsers, setAllUsers] = useState([])
-  console.log(allUsers)
-  // const [matchRequests, setMatchRequests] = useState([])
+
   const [loggedIn, setLoggedIn] = useState(false)
   const [errors, setErrors] = useState([])
 

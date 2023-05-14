@@ -11,8 +11,9 @@ const UsersGrid = () => {
     if (allUsers.length > 0) {
       const randomIndex = Math.floor(Math.random() * allUsers.length);
       setRandomUser(allUsers[randomIndex]);
-    }
+    } 
   }, [allUsers]);
+
 
   return (
     <>
@@ -23,6 +24,7 @@ const UsersGrid = () => {
       </article>
     </>
   );
-};
+} 
+
 
 export default UsersGrid;

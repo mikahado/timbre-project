@@ -67,7 +67,6 @@ Faker::Config.random = Random.new(42)
    user =  User.create(username: user_info[index_counter], email: user_info[index_counter] + "@gmail.com", password: user_info[index_counter], password_confirmation: user_info[index_counter])
 
    user.create_profile(
-
         lat: lat[index_counter],
         lng: lng[index_counter],
         name: Faker::Music::RockBand.name,
@@ -75,7 +74,8 @@ Faker::Config.random = Random.new(42)
         media_1: Faker::Placeholdit.image(size: '600x600', format: 'jpg', background_color: '4076a2'), 
         media_2: Faker::Placeholdit.image(size: '600x600', format: 'jpg', background_color: '323330'), 
         media_3: Faker::Placeholdit.image(size: '600x600', format: 'jpg', background_color: '820C02'), 
-        media_4: Faker::Placeholdit.image(size: '600x600', format: 'jpg', background_color: '337283'))
+        media_4: Faker::Placeholdit.image(size: '600x600', format: 'jpg', background_color: '337283')
+        )
   
     user.create_preference(
         instruments: instruments.sample,

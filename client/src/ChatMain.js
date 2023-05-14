@@ -17,13 +17,16 @@ useEffect(() => {
 }, [])
 
   return (
-    <div style={{width: '100%', height: '800px'}}>
-    {/* <CometChatUI key={user.id}/> */}
-     {/* <CometChatConversationListWithMessages  />  */}
-     <div style={{width: '800px', height:'800px' }}>
+    <>
+  <article className="chatbox">
+
+       <div style={{height:'800px' }}>
         <CometChatUserListWithMessages chatWithUser={id}/>
        </div>
-    </div>
+
+   </article>
+    
+    </>
   )
 }
 
