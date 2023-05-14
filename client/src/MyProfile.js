@@ -3,6 +3,7 @@ import PreferencesForm from "./PreferencesForm"
 import Geo from "./Geo"
 import { UserContext } from "./context/user"
 import { NavLink, useNavigate } from "react-router-dom"
+import UserMediaCard from "./UserMediaCard"
 
 const UserProfile = () => {
   const { user, loggedIn, logoutUser, updateMyProfile } = useContext(UserContext)
@@ -67,38 +68,7 @@ const UserProfile = () => {
 
        
 
-      <section className="card-list">
-
-          <article className="card-article">
-            <header className="card-header">
-            <img src={user.profile?.media_1} alt="media"></img>
-            </header>
-           
-          </article>
-
-          <article className="card-article">
-            <header class="card-header">
-              <img src={user.profile?.media_2} alt="media"></img>
-            </header>
-            
-          </article>
-
-          <article className="card-article">
-            <header class="card-header">
-              <img src={user.profile?.media_3} alt="media"></img>
-            </header>
-            
-          </article>
-
-          <article className="card-article">
-            <header class="card-header">
-              <img src={user.profile?.media_4} alt="media"></img>
-              
-            </header>
-            
-          </article>
-
-      </section>
+      <UserMediaCard media={user.profile} />
 
       <h3>Settings</h3>
 

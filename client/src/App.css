@@ -41,13 +41,18 @@ html {
 
 .profile-img {
   width: 200px;
+  height: 200px;
   border-radius: 50%;
+  object-fit: cover;
+  zoom: 1;
   box-shadow: -1rem 0 3rem #000;
 }
 
 .profile-img-2 {
-  width: 200px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
+  object-fit: cover;  
   box-shadow: -1rem 0 3rem #000;
 }
 
@@ -220,16 +225,18 @@ html {
   display: flex;
   position: relative;
   flex-direction: column;
-  height: 350px;
   width: 400px;
+  height: 300px;
+  border-radius: 50%;
+  object-fit: cover;
   min-width: 250px;
-  padding: 1.5rem;
+  padding: 0rem;
 
   border-radius: 16px;
   background: #354550;
   box-shadow: -1rem 0 3rem #000;
 
-  transition: .2s;
+  transition: .3s;
 
   margin: 0;
   scroll-snap-align: start;

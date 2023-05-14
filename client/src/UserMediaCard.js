@@ -4,13 +4,44 @@ const UserMediaCard = ({media}) => {
 
     const {media_1, media_2, media_3, media_4} = media
 
-    const mediaArray = [media_1, media_2, media_3, media_4]
-    const showMedia = mediaArray.map(m => <img src={m} /> )
+
+
     
   return (
     <div class="grid">
       <article>
-        {showMedia}
+      <section className="card-list">
+        
+        <article className="card-article">
+         
+          <img src={media_1} alt="media"></img>
+          
+        
+        </article>
+
+        <article className="card-article">
+        
+            <img src={media_2} alt="media"></img>
+       
+          
+        </article>
+
+        <article className="card-article">
+        
+            <img src={media_3} alt="media"></img>
+
+          
+        </article>
+
+        <article className="card-article">
+          {/* <header class="card-header"> */}
+            <img src={media_4} alt="media"></img>
+            
+          {/* </header> */}
+          
+        </article>
+
+        </section>
       </article>
     </div>
   )

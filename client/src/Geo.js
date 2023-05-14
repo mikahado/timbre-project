@@ -19,6 +19,7 @@ const Geo = () => {
       map = new window.google.maps.Map(document.getElementById("map"), {
         center: { lat: user.profile.lat, lng: user.profile.lng },
         zoom: 13,
+        disableDefaultUI: true,
       });
       infoWindow = new window.google.maps.InfoWindow()
 
@@ -26,7 +27,7 @@ const Geo = () => {
 
       locationButton.textContent = "Find Me"
       locationButton.classList.add("custom-map-control-button")
-      map.controls[window.google.maps.ControlPosition.TOP_CENTER].push(locationButton);
+      map.controls[window.google.maps.ControlPosition.TOP_LEFT].push(locationButton);
       locationButton.addEventListener("click", () => {
         // Try HTML5 geolocation.
         if (navigator.geolocation) {
