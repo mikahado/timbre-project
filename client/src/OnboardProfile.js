@@ -6,7 +6,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
 
 const OnboardProfile = () => {
-  const { createMyProfile } = useContext(UserContext);
+  const { user, createMyProfile, errors } = useContext(UserContext);
 
   const [myProfile, setMyProfile] = useState({
     name: "",
@@ -93,72 +93,81 @@ const OnboardProfile = () => {
   //   }
   // }, [isLoaded])
 
-  return (
-    <>
-      <dialog open>
-        <article>
+  if (!user.profile) {
+    return (
+      <>
+        <dialog open>
+          <article>
           <header>
-            <a href="/users" aria-label="Close" class="close"></a>
-          </header>
+              <h2>Create Your Profile</h2>
+            </header>
 
-          <h1>Create Your Profile</h1>
+            <form onSubmit={handleCreateMyProfile}>
+              <label>Arist Name</label>
+              <input
+                type="text"
+                name="name"
+                value={myProfile.name}
+                onChange={(e) =>
+                  setMyProfile({ ...myProfile, name: e.target.value })
+                }
+              />
 
-          <form onSubmit={handleCreateMyProfile}>
-            <label>Arist Name</label>
-            <input
-              type="text"
-              name="name"
-              value={myProfile.name}
-              onChange={(e) =>
-                setMyProfile({ ...myProfile, name: e.target.value })
-              }
-            />
+              <label>Link Profile Pic</label>
+              <input
+                type="text"
+                name="media_1"
+                value={myProfile.media_1}
+                onChange={(e) =>
+                  setMyProfile({ ...myProfile, media_1: e.target.value })
+                }
+              />
 
-            <label>Link Profile Pic</label>
-            <input
-              type="text"
-              name="media_1"
-              value={myProfile.media_1}
-              onChange={(e) =>
-                setMyProfile({ ...myProfile, media_1: e.target.value })
-              }
-            />
-
-            <label>Write a Bio</label>
-            <textarea
-              className="textarea"
-              type="text"
-              name="bio"
-              value={myProfile.bio}
-              onChange={(e) =>
-                setMyProfile({ ...myProfile, bio: e.target.value })
-              }
-            />
-{/* 
+              <label>Write a Bio</label>
+              <textarea
+                className="textarea"
+                type="text"
+                name="bio"
+                value={myProfile.bio}
+                onChange={(e) =>
+                  setMyProfile({ ...myProfile, bio: e.target.value })
+                }
+              />
+              {/* 
             <label>Location</label> */}
 
-{/* 
+              {/* 
           <div id="map" style={{ height: '400px', width: '100%' }}>
             <Geo setMyProfile={setMyProfile} myProfile={myProfile} />
           </div> */}
 
+              <br />
 
-          <br/>
-            
+              {errors.map((error, index) => (
+                <small key={index} className="errors">
+                  {error}
+                </small>
+              ))}
+              <br />
+
               <button
                 type="submit"
                 className="accept-button"
                 onSubmit={handleCreateMyProfile}
               >
-                {" "}
                 Save
               </button>
-          
-          </form>
-        </article>
-      </dialog>
-    </>
-  );
-};
-
+            </form>
+          </article>
+        </dialog>
+      </>
+    );
+  } else {
+    return (
+      <h2>
+        Not authorized. 
+      </h2>
+    )
+  }
+}
 export default OnboardProfile;

@@ -24,10 +24,11 @@ const UserProvider = ({ children }) => {
       .then((resp) => resp.json())
       .then((data) => {
         if (data.errors) {
-          setLoggedIn(false);
+          setLoggedIn(false)
         } else {
-          setLoggedIn(true);
-          setUser(data);
+          setLoggedIn(true)
+          setUser(data)
+          setErrors([])
         }
       });
     getAllUsers();
@@ -38,7 +39,8 @@ const UserProvider = ({ children }) => {
       .then((resp) => resp.json())
       .then((data) => {
         if (data.errors) {
-          setErrors(data.errors)
+          const errorLis = data.errors.map( e => <li>{e}</li>)
+            setErrors(errorLis)
         } else {
           setAllUsers(data)
         }
@@ -46,7 +48,6 @@ const UserProvider = ({ children }) => {
   }
 
   const createMyProfile = (profile) => {
-    console.log(profile)
     fetch(`/profiles`, {
       method: "POST",
       headers: {
@@ -57,10 +58,12 @@ const UserProvider = ({ children }) => {
       .then((resp) => resp.json())
       .then((data) => {
         if (data.errors) {
-          console.log(data.errors)
+          const errorsLis = data.errors.map( e => <li>{e}</li>)
+          setErrors(errorsLis)
         } else {
           setUser(data)
-          navigate("/onboarding/preference")
+          navigate("/onboard/preference")
+          setErrors([])
         }
       })
   }
@@ -77,9 +80,12 @@ const UserProvider = ({ children }) => {
       .then((resp) => resp.json())
       .then((data) => {
         if (data.errors) {
-          console.log(data.errors)
+          const errorsLis = data.errors.map( e => <li>{e}</li>)
+          setErrors(errorsLis)
         } else {
           setUser(data)
+          setErrors([])
+          navigate("/my-profile") 
         }
       })
   }
@@ -102,8 +108,8 @@ const UserProvider = ({ children }) => {
       .then((resp) => resp.json())
       .then((data) => {
         if (data.errors) {
-          setErrors(data.errors)
-          console.log(data.errors)
+          const errorsLis = data.errors.map( e => <li>{e}</li>)
+          setErrors(errorsLis)
         } else {
           alert(`Request Sent!`)
         }
@@ -121,10 +127,11 @@ const UserProvider = ({ children }) => {
       .then((resp) => resp.json())
       .then((data) => {
         if (data.errors) {
-          setErrors(data.errors)
+          const errorsLis = data.errors.map( e => <li>{e}</li>)
+          setErrors(errorsLis)
         } else {
           setUser({...user, preference: data})
-          alert("Preferences updated!")
+          setErrors([])
           navigate("/onboard/geo")
         }
       })
@@ -141,11 +148,13 @@ const UserProvider = ({ children }) => {
       .then((resp) => resp.json())
       .then((data) => {
         if (data.errors) {
-          setErrors(data.errors)
+          const errorsLis = data.errors.map( e => <li>{e}</li>)
+          setErrors(errorsLis)
         } else {
           setUser({...user, preference: data})
           alert("Preferences updated!")
           navigate("/my-profile")
+          setErrors([])
         }
       })
   }
@@ -167,18 +176,19 @@ const UserProvider = ({ children }) => {
   }
     
   const login = (user) => {
-    setUser(user);
-    setLoggedIn(true);
+    setUser(user)
+    setLoggedIn(true)
   };
 
   const logout = () => {
-    setUser([]);
-    setLoggedIn(false);
+    setUser([])
+    setErrors([])
+    setLoggedIn(false)
   };
 
   const signup = (user) => {
-    setUser(user);
-    setLoggedIn(true);
+    setUser(user)
+    setLoggedIn(true)
   };
 
   return (
@@ -196,7 +206,8 @@ const UserProvider = ({ children }) => {
         handleMatchRequest,
         handleRemoveUser,
         updateMyPreferences,
-        logoutUser
+        logoutUser,
+        errors
         // updateLocation,
       }}
     >
