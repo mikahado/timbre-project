@@ -29,6 +29,8 @@ const UserProfile = () => {
 
   }, [loggedIn])  
   
+
+  if (loggedIn) {
   return (
     <>
     <br/>
@@ -84,6 +86,11 @@ const UserProfile = () => {
 
     </>
   );
-};
+} else {
+  return (
+    <h2>Sign in to view this page.</h2>
+  )
+}
+}
 
 export default UserProfile;

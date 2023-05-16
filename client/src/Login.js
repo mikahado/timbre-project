@@ -1,13 +1,13 @@
 import React, { useState, useContext } from "react";
 import { UserContext } from "./context/user";
 import { useNavigate } from "react-router-dom";
-import { CometChat } from '@cometchat-pro/chat'
+import { CometChat } from "@cometchat-pro/chat";
 import "./App.css";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [errors, setErrors] = useState([]);
 
   const navigate = useNavigate();
 
@@ -27,24 +27,24 @@ const Login = () => {
       .then((user) => {
         if (!user.error) {
           login(user);
-          navigate("/");
+          navigate("/users");
 
-          const authKey = process.env.REACT_APP_COMETCHAT_KEY
-          const uid = user.id.toString()
-      
+          const authKey = process.env.REACT_APP_COMETCHAT_KEY;
+          const uid = user.id.toString();
+
           CometChat.login(uid, authKey).then(
-            user => {
-              console.log("Login Successful:", { user })
+            (user) => {
+              console.log("Login Successful:", { user });
             },
-            error => {
-              console.log("Login failed with exception:", { error })   
+            (error) => {
+              console.log("Login failed with exception:", { error });
             }
-          )
-
+          );
         } else {
           setPassword("");
           const errorLi = <li>{user.error}</li>;
-          setError(errorLi);
+          console.log(errorLi);
+          setErrors(errorLi);
         }
       });
   };
@@ -54,7 +54,7 @@ const Login = () => {
       <dialog open>
         <article className="auth">
           <header className="card">
-            <a href="/users" aria-label="Close" class="close"></a>
+            <a href="/" aria-label="Close" class="close"></a>
           </header>
 
           <h1>
@@ -85,7 +85,7 @@ const Login = () => {
             </button>
           </form>
 
-          <ul>{error}</ul>
+          <small className="errors">{errors}</small>
         </article>
       </dialog>
     </div>

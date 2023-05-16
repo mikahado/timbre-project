@@ -33,6 +33,8 @@ bio = [
   "I used to play drums for Vampire Weekend, until Ezra Koenig said I was too punctual. Hey, being on time is important! Looking for new bandmates who respect my commitment to the clock!"
 ]
 
+profile_pic = [""]
+
 instruments = ["acoustic_guitar", "electric_guitar", "piano", "drums", "bass_guitar", "violin", "cello", "flute", "saxophone", "trumpet", "clarinet", "harp", "banjo", "mandolin", "ukulele", "accordion", "harmonica", "bagpipes", "djembe", "maracas"]
 
 

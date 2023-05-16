@@ -3,12 +3,12 @@ import { UserContext } from "./context/user";
 import MatchRow from "./MatchRow";
 
 const UsersGrid = () => {
-  const { user } = useContext(UserContext)
+  const { user, loggedIn } = useContext(UserContext)
 
   const match = user.matches.map((m) => <MatchRow key={m.id} id={m.id} match={m} />)
 
 
-  if (match.length > 0) {
+  if (loggedIn && match.length > 0) {
   return (
     <>
       <h2>Matches</h2>

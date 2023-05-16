@@ -9,10 +9,8 @@ import UsersGrid from './UsersGrid'
 import UserProfile from './UserProfile' 
 import MyProfile from './MyProfile'
 import Matches from './Matches'
-import MyRequests from './MyRequests';
 import PreferencesForm from './PreferencesForm'
 import ChatMain from './ChatMain'
-import Geo from './Geo'
 import OnboardProfile from './OnboardProfile'
 import OnboardPref from './OnboardPref'
 import OnboardGeo from './OnboardGeo'
@@ -28,18 +26,19 @@ function App(props) {
         <Navbar />
         <Routes>
           <Route exact path="/" element={<Home />}  />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
+
           <Route path ="/onboard/geo" element={<OnboardGeo />} />
           <Route path ="/onboard/profile" element={<OnboardProfile />} />
           <Route path ="/onboard/preference" element={<OnboardPref />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/login" element={<Login />} />
+
           <Route path="/users" element={<UsersGrid />} />
           <Route path="/matches" element={<Matches />} />
-          <Route path="/match_requests" element={<MyRequests />} />
           <Route path="/users/:id" element={<UserProfile />} />
           <Route path="/my-profile" element={<MyProfile />} />
           <Route path="/preferences/:id" element={<PreferencesForm />} />
-          <Route path="/geo" element={<Geo />} />
+          {/* <Route path="/geo" element={<Geo />} /> */}
           <Route path="/chat/:id" element={<ChatMain />} />
         </Routes>
       </UserProvider>

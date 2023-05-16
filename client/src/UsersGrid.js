@@ -5,7 +5,7 @@ import UserCard from "./UserCard";
 const UsersGrid = () => {
   const [randomUser, setRandomUser] = useState([]);
 
-  const { allUsers } = useContext(UserContext);
+  const { loggedIn, allUsers } = useContext(UserContext);
 
   useEffect(() => {
     if (allUsers.length > 0) {
@@ -15,6 +15,7 @@ const UsersGrid = () => {
   }, [allUsers]);
 
 
+  if (loggedIn) {
   return (
     <>
       <article >
@@ -24,7 +25,10 @@ const UsersGrid = () => {
       </article>
     </>
   );
-} 
+} else {
+  <h2>Not authorized</h2>
+}
+}
 
 
 export default UsersGrid;

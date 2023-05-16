@@ -1,10 +1,9 @@
-import React, { useContext } from "react"
-import { UserContext } from "./context/user"
-import { NavLink, useNavigate } from "react-router-dom"
+import React, { useContext } from "react";
+import { UserContext } from "./context/user";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
-  const { user, logout, loggedIn } = useContext(UserContext)
-  const navigate = useNavigate()
+  const { user, loggedIn } = useContext(UserContext);
 
   if (loggedIn) {
     return (
@@ -13,11 +12,13 @@ const Navbar = () => {
           <nav class="container-fluid">
             <ul>
               <NavLink to="/my-profile">
+                <img
+                  src={user?.profile?.media_1}
+                  alt="profile_pic"
+                  className="profile-img"
+                ></img>
 
-                    <img src={user?.profile?.media_1} alt="profile_pic" className="profile-img"></img>
- 
-                    <small>{user?.profile?.name}</small>
-
+                <small>{user?.profile?.name}</small>
               </NavLink>
             </ul>
 
@@ -34,17 +35,6 @@ const Navbar = () => {
                 </NavLink>
               </li>
 
-              {/* <li>
-                <NavLink to="/match_requests">
-                  <button className="button2">You Like</button>
-                </NavLink>
-              </li> */}
-
-              {/* <li>
-                <button class="outline" onClick={logoutUser}>
-                  Logout
-                </button>
-              </li> */}
               <br />
               <br />
             </ul>

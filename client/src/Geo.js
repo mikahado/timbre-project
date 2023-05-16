@@ -77,7 +77,6 @@ const Geo = () => {
       <article>     
       <p className="primary-button" onClick={handleUpdateLocation}> Save Location </p> 
         <div>
-         {/* <p>Location</p> */}
           <br />
           <div id="map" style={{ height: '400px', width: '100%' }}>
           </div>

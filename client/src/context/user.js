@@ -1,33 +1,31 @@
-import React, { useState, useEffect } from "react"
-import { useNavigate } from "react-router-dom"
-import "@picocss/pico/css/pico.min.css"
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import "@picocss/pico/css/pico.min.css";
 
-const UserContext = React.createContext()
+const UserContext = React.createContext();
 
 const UserProvider = ({ children }) => {
   const [user, setUser] = useState({
     preference: [],
     profile: [],
-    matches: []
-  })
+    matches: [],
+  });
 
-  const [allUsers, setAllUsers] = useState([])
-
-  const [loggedIn, setLoggedIn] = useState(false)
-  const [errors, setErrors] = useState([])
-
-   const navigate = useNavigate()
+  const [allUsers, setAllUsers] = useState([]);
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [errors, setErrors] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch("/me")
       .then((resp) => resp.json())
       .then((data) => {
         if (data.errors) {
-          setLoggedIn(false)
+          setLoggedIn(false);
         } else {
-          setLoggedIn(true)
-          setUser(data)
-          setErrors([])
+          setLoggedIn(true);
+          setUser(data);
+          setErrors([]);
         }
       });
     getAllUsers();
@@ -38,13 +36,13 @@ const UserProvider = ({ children }) => {
       .then((resp) => resp.json())
       .then((data) => {
         if (data.errors) {
-          const errorLis = data.errors.map( e => <li>{e}</li>)
-            setErrors(errorLis)
+          const errorLis = data.errors.map((e) => <li>{e}</li>);
+          setErrors(errorLis);
         } else {
-          setAllUsers(data)
+          setAllUsers(data);
         }
-      })
-  }
+      });
+  };
 
   const createMyProfile = (profile) => {
     fetch(`/profiles`, {
@@ -57,18 +55,17 @@ const UserProvider = ({ children }) => {
       .then((resp) => resp.json())
       .then((data) => {
         if (data.errors) {
-          const errorsLis = data.errors.map( e => <li>{e}</li>)
-          setErrors(errorsLis)
+          const errorsLis = data.errors.map((e) => <li>{e}</li>);
+          setErrors(errorsLis);
         } else {
-          setUser(data)
-          navigate("/onboard/preference")
-          setErrors([])
+          setUser(data);
+          navigate("/onboard/preference");
+          setErrors([]);
         }
-      })
-  }
+      });
+  };
 
   const updateMyProfile = (updatedData) => {
-
     fetch(`/profiles/${user.id}`, {
       method: "PATCH",
       headers: {
@@ -79,23 +76,21 @@ const UserProvider = ({ children }) => {
       .then((resp) => resp.json())
       .then((data) => {
         if (data.errors) {
-          const errorsLis = data.errors.map( e => <li>{e}</li>)
-          setErrors(errorsLis)
+          const errorsLis = data.errors.map((e) => <li>{e}</li>);
+          setErrors(errorsLis);
         } else {
-          setUser(data)
-          setErrors([])
-          navigate("/my-profile") 
+          setUser(data);
+          setErrors([]);
+          navigate("/my-profile");
         }
-      })
-  }
+      });
+  };
 
-
-  const handleMatchRequest = (receiver_id) => { 
-    
+  const handleMatchRequest = (receiver_id) => {
     const request = {
       requester_id: user.id,
-      receiver_id: receiver_id
-    }
+      receiver_id: receiver_id,
+    };
 
     fetch("/match_requests", {
       method: "POST",
@@ -107,15 +102,15 @@ const UserProvider = ({ children }) => {
       .then((resp) => resp.json())
       .then((data) => {
         if (data.errors) {
-          const errorsLis = data.errors.map( e => <li>{e}</li>)
-          setErrors(errorsLis)
+          const errorsLis = data.errors.map((e) => <li>{e}</li>);
+          setErrors(errorsLis);
         } else {
-          setErrors([])
+          setErrors([]);
         }
-      })
-  }
+      });
+  };
 
-  const createMyPreferences = (preferences) => { 
+  const createMyPreferences = (preferences) => {
     fetch(`/preferences`, {
       method: "POST",
       headers: {
@@ -126,17 +121,17 @@ const UserProvider = ({ children }) => {
       .then((resp) => resp.json())
       .then((data) => {
         if (data.errors) {
-          const errorsLis = data.errors.map( e => <li>{e}</li>)
-          setErrors(errorsLis)
+          const errorsLis = data.errors.map((e) => <li>{e}</li>);
+          setErrors(errorsLis);
         } else {
-          setUser({...user, preference: data})
-          setErrors([])
-          navigate("/onboard/geo")
+          setUser({ ...user, preference: data });
+          setErrors([]);
+          navigate("/onboard/geo");
         }
-      })
-  }
+      });
+  };
 
-  const updateMyPreferences = (preferences) => { 
+  const updateMyPreferences = (preferences) => {
     fetch(`/preferences/${user.id}`, {
       method: "PATCH",
       headers: {
@@ -147,47 +142,46 @@ const UserProvider = ({ children }) => {
       .then((resp) => resp.json())
       .then((data) => {
         if (data.errors) {
-          const errorsLis = data.errors.map( e => <li>{e}</li>)
-          setErrors(errorsLis)
+          const errorsLis = data.errors.map((e) => <li>{e}</li>);
+          setErrors(errorsLis);
         } else {
-          setUser({...user, preference: data})
-          alert("Preferences updated!")
-          navigate("/my-profile")
-          setErrors([])
+          setUser({ ...user, preference: data });
+          alert("Preferences updated!");
+          navigate("/my-profile");
+          setErrors([]);
         }
-      })
-  }
+      });
+  };
 
   const handleRemoveUser = (id) => {
-    const updatedUsers = allUsers.filter(p => p.id !== id)
-    setAllUsers(u => updatedUsers)
-  }
-
+    const updatedUsers = allUsers.filter((p) => p.id !== id);
+    setAllUsers((u) => updatedUsers);
+  };
 
   const logoutUser = () => {
     fetch("/logout", {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
     }).then(() => {
-      logout()
-      navigate("/")
-    })
-  }
-    
+      logout();
+      navigate("/");
+    });
+  };
+
   const login = (user) => {
-    setUser(user)
-    setLoggedIn(true)
+    setUser(user);
+    setLoggedIn(true);
   };
 
   const logout = () => {
-    setUser([])
-    setErrors([])
-    setLoggedIn(false)
+    setUser([]);
+    setErrors([]);
+    setLoggedIn(false);
   };
 
   const signup = (user) => {
-    setUser(user)
-    setLoggedIn(true)
+    setUser(user);
+    setLoggedIn(true);
   };
 
   return (
@@ -206,7 +200,7 @@ const UserProvider = ({ children }) => {
         handleRemoveUser,
         updateMyPreferences,
         logoutUser,
-        errors
+        errors,
         // updateLocation,
       }}
     >

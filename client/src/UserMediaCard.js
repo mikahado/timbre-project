@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const UserMediaCard = ({ media, updateMyProfile }) => {
+const UserMediaCard = ({ media }) => {
   const [myMedia, setMyMedia] = useState({
     media_1: "",
     media_2: "",

@@ -3,10 +3,7 @@ import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
 import { UserContext } from "./context/user";
 
 const Geo = () => {
-  const {
-    errors,
-    updateMyProfile,
-  } = useContext(UserContext);
+  const { user, errors, updateMyProfile } = useContext(UserContext);
 
   const [position, setPosition] = useState({ lat: 0, lng: 0 });
 
@@ -21,7 +18,7 @@ const Geo = () => {
     if (isLoaded) {
       map = new window.google.maps.Map(document.getElementById("map"), {
         center: { lat: 0, lng: 0 },
-        zoom: 13,
+        zoom: 1,
         disableDefaultUI: true,
       });
       infoWindow = new window.google.maps.InfoWindow();
@@ -45,10 +42,10 @@ const Geo = () => {
 
               setPosition(pos);
 
-              // infoWindow.setPosition(pos);
-              // infoWindow.setContent("Location found.");
               infoWindow.open(map);
+              map.setZoom(12)
               map.setCenter(pos);
+
             },
             () => {
               handleLocationError(true, infoWindow, map.getCenter());
@@ -76,38 +73,37 @@ const Geo = () => {
     updateMyProfile(position);
   };
 
-    return (
-      <>
-        <dialog open>
-          <article className="dialog">
-            <header>
-              <h2>Location</h2>
-            </header>
-            <div>
-              <small>Only you can see your location. </small>
-              <div id="map" style={{ height: "400px", width: "100%" }}></div>
-              <br />
-              <button
-                type="submit"
-                className="primary-button"
-                onClick={handleUpdateLocation}
-              >
-                Save
-              </button>
-              <br />
-              {errors.map((error, index) => (
-                <small key={index} className="errors">
-                  {error}
-                </small>
-              ))}
-              <br />
-              <br />
-            </div>
-          </article>
-        </dialog>
-      </>
-    );
-  } 
-
+  return (
+    <>
+      <dialog open>
+        <article className="dialog">
+          <header>
+            <h2>Location</h2>
+          </header>
+          <div>
+            <small>Only you can see your location. </small>
+            <div id="map" style={{ height: "400px", width: "100%" }}></div>
+            <br />
+            <button
+              type="submit"
+              className="primary-button"
+              onClick={handleUpdateLocation}
+            >
+              Save
+            </button>
+            <br />
+            {errors.map((error, index) => (
+              <small key={index} className="errors">
+                {error}
+              </small>
+            ))}
+            <br />
+            <br />
+          </div>
+        </article>
+      </dialog>
+    </>
+  );
+};
 
 export default Geo;

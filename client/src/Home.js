@@ -11,11 +11,7 @@ const Home = () => {
     return (
       <div>
         <h3>
-          <br />
-          <h1>
-            {/* <strong> Home </strong> */}
-          </h1>
-          <br />
+          Welcome back!
         </h3>
       </div>
     );
@@ -26,7 +22,7 @@ const Home = () => {
           <article className="card2">
             <h2>Timbre</h2>
             <h4>
-              <p>Match w musicians with you.</p>
+              <p>Match w musicians near you.</p>
             </h4>
           </article>
 

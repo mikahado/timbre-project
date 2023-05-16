@@ -37,6 +37,7 @@ const PreferencesForm = () => {
     updateMyPreferences(matchPreferences)
   }
 
+  if (loggedIn) {
   return (
     <>
       <dialog open>
@@ -288,6 +289,11 @@ const PreferencesForm = () => {
       </dialog>
     </>
   )
+} else {
+  return (
+    <h2>Not authorized.</h2>
+  )
+}
 }
 
 export default PreferencesForm;
