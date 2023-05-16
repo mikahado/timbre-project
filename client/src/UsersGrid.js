@@ -5,13 +5,18 @@ import UserCard from "./UserCard";
 const UsersGrid = () => {
   const [randomUser, setRandomUser] = useState([]);
 
-  const { loggedIn, allUsers } = useContext(UserContext);
+  const { loggedIn, user, allUsers } = useContext(UserContext);
+
+  const match = user?.matches?.map((m) => m.id) || [];
+  const availableUsers = allUsers.filter((u) => u.id !== user.id).filter((u) => !match.includes(u.id)) 
 
   useEffect(() => {
     if (allUsers.length > 0) {
-      const randomIndex = Math.floor(Math.random() * allUsers.length);
-      setRandomUser(allUsers[randomIndex]);
-    } 
+      const randomIndex = Math.floor(Math.random() * availableUsers.length);
+      setRandomUser(availableUsers[randomIndex]);
+    } else {
+      setRandomUser([]);
+    }
   }, [allUsers]);
 
 

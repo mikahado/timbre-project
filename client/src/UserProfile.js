@@ -70,7 +70,7 @@ const UserProfile = () => {
       </section>
       
       <article>
-          <h3>{user_2?.name?.toUpperCase()}'S PREFERENCES</h3>
+          <h3>{user_2?.profile?.name?.toUpperCase()}'S PREFERENCES</h3>
           <p><strong>Instrument</strong> <br/> {user_2.preference?.instruments}</p>
           <p><strong>Wants to play with</strong><br/>{user_2.preference?.instruments_wanted}</p>
           <p><strong>Skill level</strong> <br/>{user_2.preference?.skill}</p>

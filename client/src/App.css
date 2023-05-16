@@ -144,7 +144,7 @@ html {
 }
 
 .accept-button {
-  background: linear-gradient(45deg, #5c8cac, #4297a3 );
+  background: linear-gradient(45deg, #5c8cac, #8cbe4b );
   text-transform: uppercase;  
   border-radius: 30px;
   border: none;
@@ -159,6 +159,7 @@ html {
 .accept-button:hover {
   background: linear-gradient(45deg, #5c8cac, #8cbe4b);
   box-shadow: -1rem 0 3rem #000;
+  transform: translateX(4px);
   opacity: 1;
 }
 
@@ -176,7 +177,8 @@ html {
 
 .warning-button:hover {
   background: linear-gradient(45deg, #be4b53, #7b3035);
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);   transform: translateX(-4px);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);   
+  transform: translateX(-4px);
   opacity: 1;
 }
 

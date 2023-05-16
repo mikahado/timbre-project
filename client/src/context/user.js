@@ -11,6 +11,8 @@ const UserProvider = ({ children }) => {
     matches: [],
   });
 
+  console.log("matches", user.matches)
+
   const [allUsers, setAllUsers] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false);
   const [errors, setErrors] = useState([]);
@@ -86,12 +88,39 @@ const UserProvider = ({ children }) => {
       });
   };
 
+  // const handleMatchRequest = (receiver_id) => {
+  //   const request = {
+  //     requester_id: user.id,
+  //     receiver_id: receiver_id,
+  //   };
+
+  //   fetch("/match_requests", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(request),
+  //   })
+  //     .then((resp) => resp.json())
+  //     .then((data) => {
+  //       if (data.errors) {
+  //         const errorsLis = data.errors.map((e) => <li>{e}</li>);
+  //         setErrors(errorsLis);
+  //       } else {
+  //         console.log(data)
+  //         // setUser({...user, matches: data});
+
+  //         setErrors([]);
+  //       }
+  //     });
+  // };
+
   const handleMatchRequest = (receiver_id) => {
     const request = {
       requester_id: user.id,
       receiver_id: receiver_id,
     };
-
+  
     fetch("/match_requests", {
       method: "POST",
       headers: {
@@ -105,10 +134,20 @@ const UserProvider = ({ children }) => {
           const errorsLis = data.errors.map((e) => <li>{e}</li>);
           setErrors(errorsLis);
         } else {
-          setErrors([]);
+          if (data.matched_user) {
+            alert("You got a match!")
+            const updatedUser = {
+              ...user,
+              matches: [...user.matches, data.matched_user],
+            };
+            setUser(updatedUser);
+          } else {
+            setErrors([]);
+          }
         }
-      });
-  };
+      })
+  }
+  
 
   const createMyPreferences = (preferences) => {
     fetch(`/preferences`, {

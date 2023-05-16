@@ -2,10 +2,11 @@ import React, { useContext } from "react";
 import { UserContext } from "./context/user";
 import MatchRow from "./MatchRow";
 
-const UsersGrid = () => {
+const Matches = () => {
   const { user, loggedIn } = useContext(UserContext)
 
-  const match = user.matches.map((m) => <MatchRow key={m.id} id={m.id} match={m} />)
+  const match = user.matches?.map((m) => <MatchRow key={m.id} id={m.id} match={m} />)
+ 
 
 
   if (loggedIn && match.length > 0) {
@@ -39,4 +40,4 @@ const UsersGrid = () => {
 }
 }
 
-export default UsersGrid;
+export default Matches;

@@ -102,12 +102,15 @@ const UserProfile = () => {
 
         <br />
         <hr />
+  
         <br />
         <li>
           <button class="outline" onClick={logoutUser}>
             Logout
           </button>
         </li>
+        <br/>
+        <img src={require("../src/img/timbrelogo.png")} alt="timbre_logo" className="logo2" />
       </>
     );
   } else {
