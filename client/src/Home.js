@@ -18,16 +18,17 @@ const Home = () => {
   } else {
     return (
       <div>
+        <br/><br/>
         <main class="container">
-          <article className="card2">
-            <h2>Timbre</h2>
+          {/* <article className="card2"> */}
+            <img src={require("../src/img/timbrelogo.png")} alt="timbre_logo" className="logo1" />
             <h4>
-              <p>Match w musicians near you.</p>
+              Match w musicians near you.
             </h4>
-          </article>
-
+          {/* </article> */}
+<br/><br/>
           <NavLink to="/signup">
-            <button className="primary-button">Join Timbre</button>
+            <button className="warning-button">Join Timbre</button>
           </NavLink>
           <br />
         </main>

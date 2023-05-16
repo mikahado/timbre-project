@@ -44,8 +44,8 @@ html {
 }
 
 .profile-img {
-  width: 100px;
-  height: 100px;
+  width: 130px;
+  height: 130px;
   border-radius: 50%;
   object-fit: cover;
   box-shadow: -1rem 0 3rem #000;
@@ -321,4 +321,16 @@ html {
   box-shadow: -1rem 0 3rem #000;
   margin: auto;
   position: block;
+}
+
+.logo1 {
+  width: 55%;
+}
+
+.logo2 {
+  width: 25%;
+}
+
+.logo3 {
+  width: 15%;
 }

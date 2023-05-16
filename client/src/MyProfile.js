@@ -48,7 +48,7 @@ const UserProfile = () => {
   if (loggedIn) {
     return (
       <>
-        <h1>{user?.username}</h1>
+      <h3>{user?.profile?.name}</h3>        <br/>
 
         {toggleEditBio ? (
           <form>
@@ -66,7 +66,9 @@ const UserProfile = () => {
             </href>
           </form>
         ) : (
+          
           <li>{user.profile?.bio}</li>
+        
         )}
 
         <br />

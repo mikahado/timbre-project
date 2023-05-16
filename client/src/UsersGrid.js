@@ -18,11 +18,17 @@ const UsersGrid = () => {
   if (loggedIn) {
   return (
     <>
+    <br/>
+   <img src={require("../src/img/timbrelogo.png")} alt="timbre_logo" className="logo2" />
       <article >
-        <div>
+      
+       
           <UserCard key={randomUser.id} user={randomUser} />
-        </div>
+       
       </article>
+
+     
+
     </>
   );
 } else {

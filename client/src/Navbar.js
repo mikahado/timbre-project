@@ -8,9 +8,10 @@ const Navbar = () => {
   if (loggedIn) {
     return (
       <>
-        <main class="containers">
-          <nav class="container-fluid">
+        
+          <nav >
             <ul>
+              <li>
               <NavLink to="/my-profile">
                 <img
                   src={user?.profile?.media_1}
@@ -18,9 +19,12 @@ const Navbar = () => {
                   className="profile-img"
                 ></img>
 
-                <small>{user?.profile?.name}</small>
+                {/* <small>{user?.profile?.name}</small> */}
               </NavLink>
+              </li>
             </ul>
+
+          
 
             <ul>
               <li>
@@ -34,12 +38,11 @@ const Navbar = () => {
                   <button className="button2">Matches</button>
                 </NavLink>
               </li>
-
-              <br />
-              <br />
             </ul>
+
+      
           </nav>
-        </main>
+        
 
         <hr />
       </>
@@ -49,7 +52,7 @@ const Navbar = () => {
       <>
         <nav>
           <ul>
-            <li>Timbre</li>
+         
           </ul>
 
           <NavLink to="/login">Sign in</NavLink>
