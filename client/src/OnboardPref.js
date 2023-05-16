@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import { UserContext } from "./context/user";
+import  OnboardGeo  from './OnboardGeo'
 import { NavLink, useNavigate } from "react-router-dom";
 
 const OnboardPref = () => {
-  const { user, errors, createMyPreferences } = useContext(UserContext);
+  const { loggedIn, user, errors, createMyPreferences } = useContext(UserContext);
 
   const [matchPreferences, setMatchPreferences] = useState({
     instruments: "",
@@ -15,12 +16,16 @@ const OnboardPref = () => {
     host: false,
   })
 
+  // const [hasRendered, setHasRendered] = useState(false)
+
+  const navigate = useNavigate()
+
   const handleFormSubmit = (e) => {
     e.preventDefault();
     createMyPreferences(matchPreferences);
   }
 
-  if (!user.preference) {
+if (!user.preference && loggedIn) {
     return (
       <>
         <dialog open>
@@ -268,9 +273,9 @@ const OnboardPref = () => {
     )
   } else {
     return (
-      <h2>
-        Not authorized. 
-      </h2>
+    
+        <h2>Not authorized</h2>
+      
     );
   }
 };

@@ -3,6 +3,7 @@ import Geo from "./Geo";
 import { UserContext } from "./context/user";
 import { NavLink, useNavigate } from "react-router-dom";
 import UserMediaCard from "./UserMediaCard";
+import OnboardProfile from "./OnboardProfile"
 import UserMediaCard2 from "./UserMediaCard2";
 import Home from "./Home";
 
@@ -52,7 +53,17 @@ const UserProfile = () => {
     });
   }
 
-  if (loggedIn) {
+  const handleDeleteAccount = () => {
+    fetch(`/users/${user.id}`, {
+      method: "DELETE",
+    }).then((resp) => {
+      if (resp.ok) {
+        logoutUser();
+      }
+    });
+  }
+
+  if (loggedIn && user.profile) {
     return (
       <>
         <h3>{user?.profile?.name}</h3> <br />
@@ -100,7 +111,7 @@ const UserProfile = () => {
         <br />
         <hr />
         <button class="secondary outline" onClick={handleDeleteProfileClick}>
-            Delete Profile
+            Erase Profile
           </button>
         <br />
         <li>
@@ -108,16 +119,23 @@ const UserProfile = () => {
             Logout
           </button>
         </li>
+
         <br />
         <img
           src={require("../src/img/timbrelogo.png")}
           alt="timbre_logo"
           className="logo2"
         />
+        <br/><br/>
+                {/* <li>
+          <button class="secondary outline" onClick={handleDeleteAccount}>
+            Delete Account
+          </button>
+        </li> */}
       </>
     );
   } else {
-    return <Home />;
+    return <OnboardProfile />;
   }
 };
 

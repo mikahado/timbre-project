@@ -5,7 +5,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
 
 const OnboardProfile = () => {
-  const { user, createMyProfile, errors } = useContext(UserContext);
+  const { user, createMyProfile, errors, loggedIn } = useContext(UserContext);
 
   const [myProfile, setMyProfile] = useState({
     name: "",
@@ -21,7 +21,8 @@ const OnboardProfile = () => {
     createMyProfile(myProfile);
   };
 
-  if (!user.profile) {
+
+  if (loggedIn && !user.profile) {
     return (
       <>
         <dialog open>

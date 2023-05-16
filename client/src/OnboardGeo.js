@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
 import { UserContext } from "./context/user";
 
-const Geo = () => {
+const OnboardGeo = () => {
   const { user, errors, updateMyProfile } = useContext(UserContext);
 
   const [position, setPosition] = useState({ lat: 0, lng: 0 });
@@ -106,4 +106,4 @@ const Geo = () => {
   );
 };
 
-export default Geo;
+export default OnboardGeo;

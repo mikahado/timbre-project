@@ -3,12 +3,11 @@ import { UserContext } from "./context/user";
 import { NavLink, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
-  const { user, loggedIn } = useContext(UserContext);
+  const { user, loggedIn, logoutUser } = useContext(UserContext);
 
   if (loggedIn) {
     return (
       <>
-        
           <nav >
             <ul>
               <li>
@@ -24,6 +23,11 @@ const Navbar = () => {
               </li>
             </ul>
 
+            {/* <li>
+          <button class="outline" onClick={logoutUser}>
+            Logout
+          </button>
+        </li> */}
           
 
             <ul>
@@ -39,11 +43,8 @@ const Navbar = () => {
                 </NavLink>
               </li>
             </ul>
-
-      
           </nav>
-        
-
+    
         <hr />
       </>
     );

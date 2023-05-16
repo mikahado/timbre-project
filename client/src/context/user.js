@@ -11,7 +11,6 @@ const UserProvider = ({ children }) => {
     matches: [],
   });
 
-  console.log("matches", user.matches)
 
   const [allUsers, setAllUsers] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false);
@@ -213,7 +212,7 @@ const UserProvider = ({ children }) => {
   };
 
   const logout = () => {
-    setUser([]);
+    setUser({});
     setErrors([]);
     setLoggedIn(false);
   };
