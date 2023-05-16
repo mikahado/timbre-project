@@ -3,6 +3,7 @@ import Geo from "./Geo";
 import { UserContext } from "./context/user";
 import { NavLink, useNavigate } from "react-router-dom";
 import UserMediaCard from "./UserMediaCard";
+import UserMediaCard2 from "./UserMediaCard2";
 import Home from "./Home";
 
 const UserProfile = () => {
@@ -10,10 +11,6 @@ const UserProfile = () => {
     useContext(UserContext);
   const [toggleGeo, setToggleGeo] = useState(false);
   const [toggleEditBio, setToggleEditBio] = useState(false);
-  const [toggleEditMedia1, setToggleEditMedia1] = useState(false);
-  const [toggleEditMedia2, setToggleEditMedia2] = useState(false);
-  const [toggleEditMedia3, setToggleEditMedia3] = useState(false);
-  const [toggleEditMedia4, setToggleEditMedia4] = useState(false);
 
   const [myProfile, setMyProfile] = useState({
     lat: "",
@@ -48,8 +45,7 @@ const UserProfile = () => {
   if (loggedIn) {
     return (
       <>
-      <h3>{user?.profile?.name}</h3>        <br/>
-
+        <h3>{user?.profile?.name}</h3> <br />
         {toggleEditBio ? (
           <form>
             <textarea
@@ -66,25 +62,17 @@ const UserProfile = () => {
             </href>
           </form>
         ) : (
-          
           <li>{user.profile?.bio}</li>
-        
         )}
-
         <br />
-
         <href onClick={(c) => setToggleEditBio(!toggleEditBio)}>
           <small>{toggleEditBio ? null : "edit bio"}</small>
         </href>
-
         <UserMediaCard key={user.id} media={user.profile} />
-
         <h3>Settings</h3>
-
         <NavLink to={`/preferences/${user.id}`}>
           <button className="secondary-button">Preferences</button>
         </NavLink>
-
         {toggleGeo ? (
           <Geo
             key={user.id}
@@ -99,24 +87,24 @@ const UserProfile = () => {
         >
           Location
         </button>
-
         <br />
         <hr />
-  
         <br />
         <li>
           <button class="outline" onClick={logoutUser}>
             Logout
           </button>
         </li>
-        <br/>
-        <img src={require("../src/img/timbrelogo.png")} alt="timbre_logo" className="logo2" />
+        <br />
+        <img
+          src={require("../src/img/timbrelogo.png")}
+          alt="timbre_logo"
+          className="logo2"
+        />
       </>
     );
   } else {
-    return (
-    <Home />
-    )
+    return <Home />;
   }
 };
 
