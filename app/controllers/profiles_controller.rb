@@ -24,6 +24,16 @@ class ProfilesController < ApplicationController
         render json: @current_user, status: :accepted
     end
 
+    def destroy
+        profile = @current_user.profile
+        if profile.nil?
+          render json: { message: "Profile not found" }, status: :not_found
+        else
+          profile.destroy
+          render json: { message: "Profile deleted" }, status: :ok
+        end
+      end
+
     private 
 
     def profile_params

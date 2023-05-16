@@ -42,6 +42,16 @@ const UserProfile = () => {
     setToggleEditBio(!toggleEditBio);
   };
 
+  const handleDeleteProfileClick = () => {
+    fetch(`/profiles/${user.profile.id}`, {
+      method: "DELETE",
+    }).then((resp) => {
+      if (resp.ok) {
+        logoutUser();
+      }
+    });
+  }
+
   if (loggedIn) {
     return (
       <>
@@ -89,6 +99,9 @@ const UserProfile = () => {
         </button>
         <br />
         <hr />
+        <button class="secondary outline" onClick={handleDeleteProfileClick}>
+            Delete Profile
+          </button>
         <br />
         <li>
           <button class="outline" onClick={logoutUser}>
