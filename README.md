@@ -1,6 +1,8 @@
 # README
 
-Timbre (pronounced TOM-ber) is a match-making app that helps musicians find other musicians nearby.  
+# Timbre
+
+Timbre is a match-making app that helps musicians find other musicians nearby.  
 
 ## How to Install
 
@@ -15,7 +17,7 @@ npm install --prefix client
 bundle install
 ~~~
 
-Start the cliet:
+Start the client:
 
 ~~~
 npm start --prefix client
@@ -35,6 +37,10 @@ Timbre is designed to promote networking and discovery among musicians, for begi
 
 Unlike any app of its kind, Timbre uses a model inspired by dating apps to connect creative musicians to other creative musicians. (But it is NOT a dating app)!
 
+## Usage
+
+To use Timbre, create a profile and add your musical preferences and skills. You can then search for other musicians nearby based on your location and musical interests. When you find someone you want to connect with, you can message them through CometChat to arrange a collaboration or jam session.
+
 ## Google Maps API 
 
 To match nearby artists, Timbre uses Google Maps JavaScript API with geolocation. 
@@ -53,6 +59,8 @@ Follow the most recent install instructions from CometChat:
    
 
 ## Technical Information
+
+Timbre is built using React for the front-end and Ruby on Rails for the back-end. The Google Maps JavaScript API with geolocation is used to match nearby artists. CometChat is used for chat functionality.
 
 Entity-Relationship Diagram
 
