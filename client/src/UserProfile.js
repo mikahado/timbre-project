@@ -74,10 +74,10 @@ const UserProfile = () => {
           <p><strong>Instrument</strong> <br/> {user_2.preference?.instruments}</p>
           <p><strong>Wants to play with</strong><br/>{user_2.preference?.instruments_wanted}</p>
           <p><strong>Skill level</strong> <br/>{user_2.preference?.skill}</p>
-          <p><strong>Main Genre</strong> <br/>{user_2.preference?.genres}</p>
+          {/* <p><strong>Main Genre</strong> <br/>{user_2.preference?.genres}</p> */}
           <p><strong>Music Goals</strong> <br/>to {user_2.preference?.goals}</p>
           <p><strong>Pay:</strong> <br/>{user_2.preference?.money}</p>
-          <p><strong>Can host</strong> <br/>{user_2.preference?.host}</p>
+          {/* <p><strong>Can host</strong> <br/>{user_2.preference?.host}</p> */}
 
         <footer>
           <li>*</li>

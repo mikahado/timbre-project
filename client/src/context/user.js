@@ -134,10 +134,11 @@ const UserProvider = ({ children }) => {
           setErrors(errorsLis);
         } else {
           if (data.matched_user) {
+            console.log(data)
             alert("You got a match!")
             const updatedUser = {
               ...user,
-              matches: [...user.matches, data.matched_user],
+              matches: [...user.matches, data],
             };
             setUser(updatedUser);
           } else {
