@@ -13,7 +13,6 @@ class MatchRequestsController < ApplicationController
         else
           render json: { errors: match_request.errors.full_messages }, status: :unprocessable_entity  
         end
-
     end
 
     private 

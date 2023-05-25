@@ -15,7 +15,6 @@ end
     # has_many :pending_matches, foreign_key: :receiver, class_name: "MatchRequest"
     # has_many :sent_matches, foreign_key: :requester, class_name: "MatchRequest"
 
-
 # the has many matches through, above, is essentially doing the code below
 
 # def matches

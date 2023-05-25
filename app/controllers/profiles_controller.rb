@@ -12,8 +12,9 @@ class ProfilesController < ApplicationController
 
     def create
         profile = @current_user.profile || @current_user.build_profile
+        
         if profile.update!(profile_params)
-         render json: profile, status: :created
+            render json: profile, status: :created
         else
             render json: { errors: profile.errors.full_messages }, status: :unprocessable_entity
         end
